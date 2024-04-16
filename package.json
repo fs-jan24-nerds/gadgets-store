@@ -9,7 +9,7 @@
     "lint": "eslint src/**/*.{ts,tsx}",
     "fix": "eslint src/**/*.{ts,tsx} --fix && prettier --write .",
     "preview": "vite preview",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "prepare": "husky install"
   },
   "dependencies": {
