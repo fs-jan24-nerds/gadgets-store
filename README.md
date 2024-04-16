@@ -66,19 +66,6 @@ fs-jan24-Nerbs/
 
 ## Getting Started
 
-### Prerequisites
-
-Before you start, make sure you have the following installed:
-
-- Node.js
-- npm or Yarn package manager
-
-## Installation
-
-To install and run the website locally, follow these steps:
-
-### Prerequisites
-
 Before you start, make sure you have the following installed:
 
 - Node.js
@@ -90,8 +77,6 @@ To install the required dependencies, run the following command in your terminal
 
 ```bash
 npm install
-# or
-yarn install
 ```
 
 ## Usage
@@ -99,9 +84,7 @@ yarn install
 To start the development server and view the website, use the following command:
 
 ```bash
-npm start
-# or
-yarn start
+npm run dev
 ```
 
 Open your web browser and navigate to <http://localhost:3000> to see the website.
