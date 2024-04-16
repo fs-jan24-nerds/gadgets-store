@@ -4,7 +4,7 @@ This is a React TypeScript website based on design in [Figma](<https://www.figma
 
 ## Demo
 
-Check out the [DEMO]() to see the project in action!
+Check out the [DEMO](https://fs-jan24-nerds.github.io/gadgets-store/) to see the project in action!
 
 ## Table of Contents
 
@@ -44,24 +44,24 @@ The project follows a standard folder structure for better organization:
 
 ```graphql
 fs-jan24-Nerbs/
-â
-âââ public/              # Static assets and HTML template
-â
-âââ src/                 # Source files
-â   âââ modules/         # React components
-â   âââ components/      # Reusable React components.
-â   âââ pages/           # Components representing specific pages/views in the application.
-â   âââ hooks/           # Custom hooks
-â   âââ styles/          # Global styles and CSS files.
-â   âââ utils/           # Helper functions and utilities.
-â   âââ api/             # Code for interacting with any external data sources.
-â   âââ App.tsx          # Main application component
-â   âââ index.tsx        # Entry point for the React application.
-â   âââ ...
-â
-âââ .gitignore           # Git ignore file
-âââ package.json         # Project metadata and dependencies
-âââ README.md            # Project documentation
+│
+├── public/              # Static assets and HTML template
+│
+├── src/                 # Source files
+│   ├── modules/         # React components
+│   ├── components/      # Reusable React components.
+│   ├── pages/           # Components representing specific pages/views in the application.
+│   ├── hooks/           # Custom hooks
+│   ├── styles/          # Global styles and CSS files.
+│   ├── utils/           # Helper functions and utilities.
+│   ├── api/             # Code for interacting with any external data sources.
+│   ├── App.tsx          # Main application component
+│   ├── index.tsx        # Entry point for the React application.
+│   └── ...
+│
+├── .gitignore           # Git ignore file
+├── package.json         # Project metadata and dependencies
+└── README.md            # Project documentation
 ```
 
 ## Getting Started
