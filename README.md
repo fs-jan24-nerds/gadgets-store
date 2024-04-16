@@ -84,12 +84,6 @@ Before you start, make sure you have the following installed:
 - Node.js
 - npm or Yarn package manager
 
-### Clone the repository
-
-```bash
-git clone https://github.com/fs-jan24-CodeCrafters/fs-jan24-CodeCrafters.git
-```
-
 ### Install dependencies
 
 To install the required dependencies, run the following command in your terminal:
