@@ -66,29 +66,10 @@ fs-jan24-Nerbs/
 
 ## Getting Started
 
-### Prerequisites
-
 Before you start, make sure you have the following installed:
 
 - Node.js
 - npm or Yarn package manager
-
-## Installation
-
-To install and run the website locally, follow these steps:
-
-### Prerequisites
-
-Before you start, make sure you have the following installed:
-
-- Node.js
-- npm or Yarn package manager
-
-### Clone the repository
-
-```bash
-git clone https://github.com/fs-jan24-CodeCrafters/fs-jan24-CodeCrafters.git
-```
 
 ### Install dependencies
 
