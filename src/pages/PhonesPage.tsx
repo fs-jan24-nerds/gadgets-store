@@ -11,7 +11,6 @@ export const PhonesPage = () => {
   const dispatch = useDispatch();
   
   useEffect(() => {
-    console.log('PhonesPage useEffect')
     if (isLoaded) return;
     dispatch(setProducts(getProducts()))
   }, [isLoaded, dispatch])
