@@ -12,7 +12,7 @@ export const Navigation: React.FC = () => {
     );
   return (
     <nav>
-      <div className="flex justify space-x-4" >
+      <div className="flex justify space-x-4">
         {Object.values(NavMenu).map((menu) => (
           <NavLink key={menu} to={{ pathname: menu, search: location.search }} className={getClass}>
             {menu.toUpperCase()}
