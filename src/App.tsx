@@ -1,15 +1,15 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { Layout } from './components/Layout';
+import { CartPage } from './pages/CartPage';
+import { FavouritePage } from './pages/FavouritePage';
 import { HomePage } from './pages/HomePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { PhonesPage } from './pages/PhonesPage';
-import { FavouritePage } from './pages/FavouritePage';
-import { CartPage } from './pages/CartPage';
 
 function App() {
   return (
-    <div className="container">
+    <div className="">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
