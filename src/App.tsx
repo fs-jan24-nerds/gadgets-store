@@ -9,7 +9,7 @@ import { PhonesPage } from './pages/PhonesPage';
 
 function App() {
   return (
-    <div className="container">
+    <div className="">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
