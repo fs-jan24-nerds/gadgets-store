@@ -8,8 +8,9 @@ import { FavouritePage } from './pages/FavouritePage';
 import { CartPage } from './pages/CartPage';
 
 function App() {
+  
   return (
-    <div className="container">
+    <div className="">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />

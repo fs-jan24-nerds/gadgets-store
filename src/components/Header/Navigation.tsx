@@ -6,11 +6,13 @@ import classNames from 'classnames';
 export const Navigation: React.FC = () => {
   const location = useLocation();
   const getClass = ({ isActive }: { isActive: boolean }) =>
-    classNames(' gap-1  text-secondary test-xs', { 'text-primary': isActive });
-
+    classNames(
+      'navlink hover:border-b-4 border-primary font-bold tracking-wide leading-3 flex flex-col sm:flex-row',
+      { 'navlink-active': isActive, 'text-secondary relative': !isActive },
+    );
   return (
     <nav>
-      <div className="flex justify space-x-4">
+      <div className="flex justify space-x-4" >
         {Object.values(NavMenu).map((menu) => (
           <NavLink key={menu} to={{ pathname: menu, search: location.search }} className={getClass}>
             {menu.toUpperCase()}
