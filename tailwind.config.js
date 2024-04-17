@@ -4,6 +4,11 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        'mont-bold': ['Mont-Bold', 'sans-serif'],
+        'mont-regular': ['Mont-Regular', 'sans-serif'],
+        'mont-semiBold': ['Mont-semiBold', 'sans-serif'],
+      },
       colors: {
         primary: '#313237',
         secondary: '#89939A',

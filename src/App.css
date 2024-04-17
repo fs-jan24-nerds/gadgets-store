@@ -1,7 +1,7 @@
 /* #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0;
+ 
   text-align: center;
 }
 
@@ -40,34 +40,3 @@
 .read-the-docs {
   color: #888;
 } */
-
-/* Navigation */
-
-.navlink {
-  position: relative;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  height: 64px;
-
-  transition: color ease-out;
-}
-
-.navlink-active {
-  position: relative;
-}
-
-.navlink-active:hover {
-  background-color: var(--tw-primary);
-}
-
-.navlink-active::after {
-  content: '';
-  position: absolute;
-  display: block;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 8px;
-  background-color: var(--tw-primary);
-}
