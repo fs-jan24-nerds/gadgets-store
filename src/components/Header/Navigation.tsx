@@ -6,11 +6,11 @@ import classNames from 'classnames';
 export const Navigation: React.FC = () => {
   const location = useLocation();
   const getClass = ({ isActive }: { isActive: boolean }) =>
-    classNames('gap-1 text-', { primary: isActive });
+    classNames(' gap-1  text-secondary test-xs', { 'text-primary': isActive });
 
   return (
     <nav>
-      <div className="flex justify space-x-4 ">
+      <div className="flex justify space-x-4">
         {Object.values(NavMenu).map((menu) => (
           <NavLink key={menu} to={{ pathname: menu, search: location.search }} className={getClass}>
             {menu.toUpperCase()}
