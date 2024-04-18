@@ -1,0 +1,32 @@
+.navlink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  height: 64px;
+
+  transition: color ease-out;
+}
+
+.navlink:hover {
+  color: var(--tw-primary);
+}
+
+.navlink-active {
+  position: relative;
+}
+
+.navlink-active:hover {
+  background-color: var(--tw-primary);
+}
+
+.navlink-active::after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background-color: var(--tw-primary);
+}
