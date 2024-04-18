@@ -15,7 +15,7 @@ export const Navigation: React.FC = () => {
 
   return (
     <nav>
-      <div className="flex justify-between lg:gap-16 gap-8">
+      <div className="flex justify-between lg:gap-16 gap-8 ">
         {Object.values(NavMenu).map((menu) => (
           <NavLink key={menu} to={{ pathname: menu, search: location.search }} className={getClass}>
             {menu.toUpperCase()}
