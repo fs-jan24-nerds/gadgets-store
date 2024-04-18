@@ -65,7 +65,6 @@ export const ProductDetail: React.FC<Props> = ({ product }) => {
           ))}
         </select>
       </div>
-      {/* Additional UI elements for adding to cart, etc. */}
     </div>
   );
 };
