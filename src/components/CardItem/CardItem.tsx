@@ -1,16 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { useCartProducts } from '../../hooks/useCartProducts';
 import { Product } from '../../types/Product';
 
 type Props = {
   product: Product;
-  isInCart?: boolean;
   isFavourite?: boolean;
 };
 
-export const CardItem: React.FC<Props> = ({ product, isInCart = false, isFavourite = false }) => {
-  const { image, name, price, fullPrice, screen, ram, capacity } = product;
-  const isDiscountActive = fullPrice !== price;
+export const CardItem: React.FC<Props> = ({ product, isFavourite = false }) => {
+  const { id, image, name, price, fullPrice, screen, ram, capacity } = product;
+  const [ cart, addToCart, removeFromCart ] = useCartProducts();
 
+  const isDiscountActive = fullPrice !== price;
+  const isInCart = cart.some((cartProduct) => cartProduct.id === id);
   const descriptionContent = {
     Screen: screen,
     RAM: ram,
@@ -46,11 +48,17 @@ export const CardItem: React.FC<Props> = ({ product, isInCart = false, isFavouri
       </div>
       <div className="flex justify-between">
         {isInCart ? (
-          <button className="w-[160px] h-[40px] font-bold text-sm bg-white border border-1 border-elements text-green ">
+          <button 
+            className="w-[160px] h-[40px] font-bold text-sm bg-white border border-1 border-elements text-green" 
+            onClick={() => removeFromCart(id)}
+          >
             Added to cart
           </button>
         ) : (
-          <button className="w-[160px] h-[40px] font-bold text-sm bg-primary text-white">
+          <button 
+            className="w-[160px] h-[40px] font-bold text-sm bg-primary text-white" 
+            onClick={() => addToCart(product)}
+          >
             Add to cart
           </button>
         )}
