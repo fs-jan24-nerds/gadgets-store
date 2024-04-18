@@ -12,7 +12,6 @@ const initialState: FavouritesState = {
   isLike: false
 };
 
-
 export const favouritesSlice = createSlice({
   name: 'products',
   initialState,
@@ -21,11 +20,8 @@ export const favouritesSlice = createSlice({
       state.products.push({
         ...action.payload,
       });
-     
-    },
-   
-  }
-  
-});
+      },
+   }
+  });
 export const { addToFavourites } = favouritesSlice.actions;
 export default favouritesSlice.reducer;
