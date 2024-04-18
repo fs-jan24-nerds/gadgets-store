@@ -9,7 +9,7 @@ export const Header = () => {
   const location = useLocation();
 
   return (
-    <header className="grid grid-cols-12 w-full items-center border-b-2 border-elements sm:justify-between font-mont-bold">
+    <header className="grid grid-cols-12 w-full items-center border-b-2 border-elements sm:justify-between font-mont-bold mb-6 lg:mb-8 xl:mb-14">
       <Link
         to={{ pathname: 'home', search: location.search }}
         className="w-32 h-16 flex items-center justify-center"
