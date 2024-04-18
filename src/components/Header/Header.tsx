@@ -5,10 +5,6 @@ import cart from '../../assets/icons/cart.svg';
 import logo from '../../assets/icons/Logo.svg';
 import burgerMenu from '../../assets/icons/Menu.svg';
 
-const getClassIcon = () => {
-  return'border-l-2 border-gray w-16 h-16 flex items-center justify-center';
-};
-
 export const Header = () => {
   const location = useLocation();
 
@@ -18,7 +14,7 @@ export const Header = () => {
         to={{ pathname: 'home', search: location.search }}
         className="w-32 h-16 flex items-center justify-center"
       >
-        <img src="/img/icons/Logo.svg" alt="logo" />
+        <img src={logo} alt="logo" />
       </Link>
       <div className="hidden sm:grid col-start-3 col-end-13 justify-between hidden:sm ">
         <Navigation />
