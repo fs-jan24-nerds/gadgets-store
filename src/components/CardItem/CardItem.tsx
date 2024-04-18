@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useCartProducts } from '../../hooks/useCartProducts';
+import { useDispatch } from 'react-redux';
 import { Product } from '../../types/Product';
+import { addToFavourites } from '../../store/favouriteSlice';
+import likeIcon from '../../assets/icons/LikeIcon.svg';
+import disLikeIcon from '../../assets/icons/dislike.svg';
+import { useState } from 'react';
 
 type Props = {
   product: Product;
@@ -10,13 +15,19 @@ type Props = {
 export const CardItem: React.FC<Props> = ({ product, isFavourite = false }) => {
   const { id, image, name, price, fullPrice, screen, ram, capacity } = product;
   const [ cart, addToCart, removeFromCart ] = useCartProducts();
-
+  const isDiscountActive = fullPrice !== price;
+  const dispatch = useDispatch();
+  const [isLike, setIsLike] = useState(false);
   const isDiscountActive = fullPrice !== price;
   const isInCart = cart.some((cartProduct) => cartProduct.id === id);
   const descriptionContent = {
     Screen: screen,
     RAM: ram,
     Capacity: capacity,
+  };
+  const sendToFavourites = () => {
+    dispatch(addToFavourites(product));
+    setIsLike(true)
   };
 
   return (
@@ -62,10 +73,14 @@ export const CardItem: React.FC<Props> = ({ product, isFavourite = false }) => {
             Add to cart
           </button>
         )}
-        {isFavourite ? (
-          <button className="border text-sm w-[40px] h-[40px]">UnFav</button>
+        {isLike ? (
+          <button className="text-sm w-[40px] h-[40px]">
+            <img src={likeIcon} alt="like" />
+          </button>
         ) : (
-          <button className="border text-sm w-[40px] h-[40px]">Fav</button>
+          <button onClick={sendToFavourites} className="text-sm w-[40px] h-[40px]">
+            <img src={disLikeIcon} alt="dislike" />
+          </button>
         )}
       </div>
     </article>
