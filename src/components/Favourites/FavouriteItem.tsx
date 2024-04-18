@@ -1,6 +1,6 @@
 import { FavouriteProduct } from '../../types/Product';
-import unLike from '../../assets/Unlike.svg'
-import likeIcon from '../../assets/LikeIcon.svg'
+import disLikeIcon from '../../assets/icons/dislike.svg'
+import likeIcon from '../../assets/icons/LikeIcon.svg'
 
 type Props = {
   product: FavouriteProduct;
@@ -58,7 +58,7 @@ export const FavouritesItem: React.FC<Props> = ({ product }) => {
             </button>
           )}
           {isFavourite ? (
-            <button className="border text-sm w-[40px] h-[40px]"><img src={unLike} alt="unfavorite" /></button>
+            <button className="border text-sm w-[40px] h-[40px]"><img src={disLikeIcon} alt="dislike" /></button>
           ) : (
             <button className="border text-sm w-[40px] h-[40px]"><img src={likeIcon} alt="like"/></button>
           )}
