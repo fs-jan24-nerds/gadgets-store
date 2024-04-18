@@ -20,6 +20,18 @@ export interface Product {
   item?: Item;
 }
 
+export interface FavouriteProduct {
+  id: number;
+  name: string;
+  fullPrice: number;
+  price: number;
+  screen: string;
+  capacity: string;
+  ram: string;
+  image: string;
+  item?: Item;
+}
+
 export interface Item {
   id: string;
   category: Categories;
