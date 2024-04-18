@@ -1,4 +1,4 @@
-export type Categories = 'phones' | 'tablets' | 'accessories'
+export type Categories = 'phones' | 'tablets' | 'accessories';
 
 export interface Description {
   title: string;
@@ -18,10 +18,10 @@ export interface Product {
   year: number;
   image: string;
   item?: Item;
-};
+}
 
 export interface FavouriteProduct {
-  id:number,
+  id: number;
   name: string;
   fullPrice: number;
   price: number;
@@ -30,15 +30,14 @@ export interface FavouriteProduct {
   ram: string;
   image: string;
   item?: Item;
-};
-
+}
 
 export interface Item {
   id: string;
   category: Categories;
   namespaceId: string;
   name: string;
-  capacityAvailable: string[]
+  capacityAvailable: string[];
   capacity: string;
   priceRegular: number;
   priceDiscount: number;
@@ -53,8 +52,14 @@ export interface Item {
   camera: string;
   zoom: string;
   cell: string[];
-};
+}
 
-export interface Tablet extends Omit<Item, 'category'> { category: 'tablets' };
-export interface Accessorie extends Omit<Item, 'category'> { category: 'accessories' };
-export interface Phone extends Omit<Item, 'category'> { category: 'phones' };
+export interface Tablet extends Omit<Item, 'category'> {
+  category: 'tablets';
+}
+export interface Accessorie extends Omit<Item, 'category'> {
+  category: 'accessories';
+}
+export interface Phone extends Omit<Item, 'category'> {
+  category: 'phones';
+}

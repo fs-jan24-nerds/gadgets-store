@@ -10,7 +10,6 @@ const initialState: FavouritesState = {
   products: [],
 };
 
-
 export const favouritesSlice = createSlice({
   name: 'products',
   initialState,
@@ -18,8 +17,8 @@ export const favouritesSlice = createSlice({
     addToFavourites: (state, action: PayloadAction<FavouriteProduct>) => {
       state.products.push({
         ...action.payload,
-        });
-    }  
+      });
+    },
   },
 });
 export const { addToFavourites } = favouritesSlice.actions;
