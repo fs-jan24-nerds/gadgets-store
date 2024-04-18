@@ -9,16 +9,14 @@ import { useState } from 'react';
 
 type Props = {
   product: Product;
-  isFavourite?: boolean;
 };
 
-export const CardItem: React.FC<Props> = ({ product, isFavourite = false }) => {
+export const CardItem: React.FC<Props> = ({ product }) => {
   const { id, image, name, price, fullPrice, screen, ram, capacity } = product;
   const [ cart, addToCart, removeFromCart ] = useCartProducts();
   const isDiscountActive = fullPrice !== price;
   const dispatch = useDispatch();
   const [isLike, setIsLike] = useState(false);
-  const isDiscountActive = fullPrice !== price;
   const isInCart = cart.some((cartProduct) => cartProduct.id === id);
   const descriptionContent = {
     Screen: screen,
