@@ -31,19 +31,14 @@ export const HomePage = () => {
     <>
       <h1 className="text-5xl font-extrabold">Welcome to Nice Gadgets store!</h1>
       <section>
-        <SwiperComponent sectionTitle='Brand new models' filterFunction={filterForNewModel} />
+        <SliderPromo />
+        <SwiperComponent sectionTitle="Brand new models" filterFunction={filterForNewModel} />
         <Category />
-        <SwiperComponent sectionTitle='Hot prices' filterFunction={filterProductsByPriceDifference} />
+        <SwiperComponent
+          sectionTitle="Hot prices"
+          filterFunction={filterProductsByPriceDifference}
+        />
       </section>
     </>
   );
 };
-export const HomePage = () => (
-  <>
-    <h1 className="text-5xl font-extrabold">Welcome to Nice Gadgets store!</h1>
-    <section>
-      <SliderPromo />
-      <Category />
-    </section>
-  </>
-);
