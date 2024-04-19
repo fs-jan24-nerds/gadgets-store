@@ -14,34 +14,20 @@ interface Props {
 }
 
 export const About: React.FC<Props> = ({ item }) => {
-  console.log(item);
-
   return (
     <div className="grid grid-cols-12 w-full">
-      <div className="col-span-6">
+      <div className="col-span-12 md:col-span-6 mb-10">
         <h1 className="font-bold text-2xl md:text-3xl lg:text-xl border-b-2 border-elements">
           About
         </h1>
-        <div>
-          <h2 className="font-bold text-xl md:text-2xl lg:text-xl mt-6">
-            {item.description[0].title}
-          </h2>
-          <p className="mt-3 font-medium text-secondary">{item.description[0].text}</p>
-        </div>
-        <div>
-          <h2 className="font-bold text-xl md:text-2xl lg:text-xl mt-6">
-            {item.description[1].title}
-          </h2>
-          <p className="mt-3 font-medium text-secondary">{item.description[1].text}</p>
-        </div>
-        <div>
-          <h2 className="font-bold text-xl md:text-2xl lg:text-xl mt-6">
-            {item.description[2].title}
-          </h2>
-          <p className="mt-3 font-medium text-secondary">{item.description[2].text}</p>
-        </div>
+        {item.description.map((desc: Description, index: number) => (
+          <div key={index}>
+            <h2 className="font-bold text-xl md:text-2xl lg:text-xl mt-6">{desc.title}</h2>
+            <p className="mt-3 font-medium text-secondary">{desc.text}</p>
+          </div>
+        ))}
       </div>
-      <div className="col-start-8 col-span-5">
+      <div className="col-span-12 md:col-start-8 md:col-span-5 mb-10">
         <h1 className="font-bold text-2xl md:text-3xl lg:text-xl border-b-2 border-elements">
           Tech specs
         </h1>
