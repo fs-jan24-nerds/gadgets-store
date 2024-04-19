@@ -8,6 +8,7 @@ import { setProducts } from '../store/productsSlice';
 import { Pagination } from '../components/Pagination/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import { slicedList } from '../utils/generatePagination';
+import { ITEMS_PER_PAGE } from '../types/constants';
 
 export const PhonesPage = () => {
   const { products, isLoaded } = useSelector((state: RootState) => state.products);
@@ -21,16 +22,11 @@ export const PhonesPage = () => {
   }, [isLoaded, dispatch]);
 
   const phoneProducts = products.filter((product) => product.category === 'phones');
-  const pageProductsList = slicedList(phoneProducts, +currentPageNumber, 16);
+  const pageProductsList = slicedList(phoneProducts, +currentPageNumber, ITEMS_PER_PAGE);
 
   return (
     <>
       <h1 className="text-lg">Phones Page</h1>
-      <Pagination
-        totalProducts={phoneProducts.length}
-        productsPerPage={16}
-        currentPageNumber={String(currentPageNumber)}
-      />
       {isLoaded && (
         <div className="grid grid-cols-4 gap-y-1 gap-x-[300px]">
           {pageProductsList.map((product) => (
@@ -38,6 +34,11 @@ export const PhonesPage = () => {
           ))}
         </div>
       )}
+      <Pagination
+        totalProducts={phoneProducts.length}
+        productsPerPage={ITEMS_PER_PAGE}
+        currentPageNumber={+currentPageNumber}
+      />
     </>
   );
 };
