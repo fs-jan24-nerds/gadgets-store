@@ -11,7 +11,10 @@ export const PhonesPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isLoaded) return;
+    if (isLoaded) {
+      return
+    };
+
     dispatch(setProducts(getProducts()));
   }, [isLoaded, dispatch]);
 
@@ -20,7 +23,7 @@ export const PhonesPage = () => {
       <h1 className="text-lg">Phones Page</h1>
 
       {isLoaded && (
-        <div className="grid grid-cols-4 gap-y-1 gap-x-[300px]">
+        <div className="grid grid-cols-4 gap-y-1">
           {products
             .filter((product) => product.category === 'phones')
             .map((product) => (
