@@ -1,0 +1,14 @@
+.bullet {
+  display: block;
+  width: 14px;
+  height: 4px;
+
+  background-color: #e2e6e9;
+
+  cursor: pointer;
+}
+
+.bulletActive {
+  background-color: #313237;
+}
+
