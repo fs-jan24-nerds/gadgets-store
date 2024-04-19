@@ -1,9 +1,7 @@
-import classNames from 'classnames';
-import styles from './Navigation.module.css';
-
 import { useLocation } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { NavMenu } from '../../types/enums';
+import { getClassNavLink } from '../../utils/getClass';
 
 import React, { useState, useEffect } from 'react';
 
@@ -26,11 +24,6 @@ export const Navigation: React.FC<NavigationProps> = ({ closeMenu }) => {
     };
   }, []);
 
-  const getClass = ({ isActive }: { isActive: boolean }) =>
-    classNames(
-      `${styles.navlink} hover:border-b-4 border-primary font-bold tracking-wide leading-3 flex lg:flex-row`,
-      { 'navlink-active': isActive, '${styles} text-secondary relative': !isActive },
-    );
 
   return (
     <nav>
@@ -41,7 +34,7 @@ export const Navigation: React.FC<NavigationProps> = ({ closeMenu }) => {
           <NavLink
             key={menu}
             to={{ pathname: menu, search: location.search }}
-            className={getClass}
+            className={getClassNavLink}
             onClick={closeMenu}
           >
             {menu.toUpperCase()}

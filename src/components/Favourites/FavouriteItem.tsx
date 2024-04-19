@@ -1,28 +1,26 @@
 import { FavouriteProduct } from '../../types/Product';
-import unLike from '../../assets/Unlike.svg'
-import likeIcon from '../../assets/LikeIcon.svg'
+import likeIcon from '../../assets/icons/LikeIcon.svg';
+import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
 
 type Props = {
   product: FavouriteProduct;
-  // isInCart?: boolean;
-  // isFavourite?: boolean;
 };
 export const FavouritesItem: React.FC<Props> = ({ product }) => {
-  const { image, name, price, fullPrice, screen, ram, capacity } = product;
+  const { id, image, name, price, fullPrice, screen, ram, capacity } = product;
   const isDiscountActive = fullPrice !== price;
   const descriptionContent = {
     Screen: screen,
     RAM: ram,
     Capacity: capacity,
   };
+  const [, , removeFromFavourites] = useFavouritesProducts();
 
-  const isFavourite = false;
   const isInCart = false;
 
   return (
     <>
-      <article className="flex justify-between flex-col p-8 border border-1 border-elements h-[506px] w-[272px]">
-        <div className="flex flex-col h-[15.875rem] mb-[50px]">
+      <article className="flex justify-between flex-col p-8 border border-1 border-elements w-[272px]">
+        <div className="flex flex-col">
           <img className="w-full h-full object-cover" src={image} />
           <h3 className="mt-2 text-sm leading-5 font-semibold text-primary">{name}</h3>
         </div>
@@ -49,7 +47,7 @@ export const FavouritesItem: React.FC<Props> = ({ product }) => {
         </div>
         <div className="flex justify-between">
           {isInCart ? (
-            <button className="w-[160px] h-[40px] font-bold text-sm bg-white border border-1 border-elements text-green ">
+            <button className="w-[160px] h-[40px] font-bold text-sm bg-white border border-1 border-elements text-green">
               Added to cart
             </button>
           ) : (
@@ -57,11 +55,12 @@ export const FavouritesItem: React.FC<Props> = ({ product }) => {
               Add to cart
             </button>
           )}
-          {isFavourite ? (
-            <button className="border text-sm w-[40px] h-[40px]"><img src={unLike} alt="unfavorite" /></button>
-          ) : (
-            <button className="border text-sm w-[40px] h-[40px]"><img src={likeIcon} alt="like"/></button>
-          )}
+          <button
+            className="border text-sm w-[40px] h-[40px]"
+            onClick={() => removeFromFavourites(id)}
+          >
+            <img src={likeIcon} alt="like" />
+          </button>
         </div>
       </article>
     </>

@@ -9,7 +9,7 @@ export const Category = () => {
       <h1 className="font-mont font-bold leading-[41px] tracking-tighter text-gray-900 text-left mb-6 md:text-[32px] sm:text-[22px]">
         Shop by category
       </h1>
-      <div className="md:block sm:space-y-8 md:flex gap-4 md:space-y-0">
+      <div className="block sm:space-y-8 md:flex gap-4 md:space-y-0">
         <CategoryItem
           image={phones}
           bgColor="#6D6474"

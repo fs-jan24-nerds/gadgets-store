@@ -10,7 +10,6 @@ export const CategoryItem: React.FC<Props> = ({ image, bgColor, description, tit
   return (
     <>
       <div className="w-full h-full">
-        {/* <a href="#" style={{ backgroundColor: bgColor }} className="sm:w-full sm:h-full mb-4 block md:mb-6"> */}
         <a href="#" style={{ backgroundColor: bgColor }} className="mb-4 block md:mb-6">
           <img src={image} alt={description} className="sm:w-full sm:h-full" />
         </a>
