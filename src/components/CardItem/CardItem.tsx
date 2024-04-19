@@ -23,10 +23,13 @@ export const CardItem: React.FC<Props> = ({ product }) => {
   };
 
   return (
-    <article className="flex justify-between flex-col p-8 border border-1 border-elements w-[272px]">
-      <div className="flex flex-col">
-        <img className="w-full h-full object-cover" src={image} />
-        <h3 className="mt-2 text-sm leading-5 font-semibold text-primary">{name}</h3>
+
+    <article className="flex justify-between flex-col p-8 border border-1 border-elements w-[272px] ">
+      <div className="flex flex-col h-[290px]">
+        <div className="max-h-[240px]">
+          <img className="object-scale-down w-full max-h-full" src={image} />
+        </div>
+        <h3 className="grow mt-2 text-sm leading-5 font-semibold text-primary">{name}</h3>
       </div>
       <div className="flex text-2xl">
         {isDiscountActive ? (

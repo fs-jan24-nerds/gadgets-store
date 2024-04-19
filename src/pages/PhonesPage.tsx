@@ -17,7 +17,10 @@ export const PhonesPage = () => {
   const currentPageNumber = searchParams.get('page') || 1;
 
   useEffect(() => {
-    if (isLoaded) return;
+    if (isLoaded) {
+      return
+    };
+
     dispatch(setProducts(getProducts()));
   }, [isLoaded, dispatch]);
 
@@ -28,7 +31,7 @@ export const PhonesPage = () => {
     <>
       <h1 className="text-lg">Phones Page</h1>
       {isLoaded && (
-        <div className="grid grid-cols-4 gap-y-1 gap-x-[300px]">
+        <div className="grid grid-cols-4 gap-y-1">
           {pageProductsList.map((product) => (
             <CardItem key={product.id} product={product} />
           ))}
