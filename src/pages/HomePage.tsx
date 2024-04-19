@@ -1,4 +1,5 @@
 import { Category } from '../components/Category/Category';
+import SliderPromo from '../components/PromoSlider/SliderPromo';
 import { SwiperComponent } from '../components/SwiperForModels/SwiperForModels';
 import { Product } from '../types/Product';
 
@@ -30,9 +31,13 @@ export const HomePage = () => {
     <>
       <h1 className="text-5xl font-extrabold">Welcome to Nice Gadgets store!</h1>
       <section>
-        <SwiperComponent sectionTitle='Brand new models' filterFunction={filterForNewModel} />
+        <SliderPromo />
+        <SwiperComponent sectionTitle="Brand new models" filterFunction={filterForNewModel} />
         <Category />
-        <SwiperComponent sectionTitle='Hot prices' filterFunction={filterProductsByPriceDifference} />
+        <SwiperComponent
+          sectionTitle="Hot prices"
+          filterFunction={filterProductsByPriceDifference}
+        />
       </section>
     </>
   );
