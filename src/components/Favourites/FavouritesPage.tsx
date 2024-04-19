@@ -5,7 +5,7 @@ import homeIcon from '../../assets/Home.svg';
 import { useNavigate } from 'react-router-dom';
 
 export const FavouritesPage = () => {
-  const { products } = useAppSelector((state) => state.favourites);
+  const { favouritesProducts: products } = useAppSelector((state) => state.favourites);
   const navigate = useNavigate();
 
   return (
@@ -21,7 +21,7 @@ export const FavouritesPage = () => {
       <h1 className="font-Mont font-extrabold leading-14 tracking-tight  text-primary sm:text-5xl text-3xl mb-[8px]">
         Favourites
       </h1>
-      <p className='font-Mont text-secondary mb-[40px] text-[14px]'>{products.length} items</p>
+      <p className="font-Mont text-secondary mb-[40px] text-[14px]">{products.length} items</p>
       {products.length > 0 ? (
         <div className="flex gap-[16px] justify-center md:justify-start flex-wrap">
           {products.map((product) => (

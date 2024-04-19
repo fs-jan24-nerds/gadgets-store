@@ -2,26 +2,23 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { FavouriteProduct } from '../types/Product';
 
+
 export interface FavouritesState {
-  products: FavouriteProduct[];
-  isLike: boolean;
+  favouritesProducts: FavouriteProduct[];
 }
 
 const initialState: FavouritesState = {
-  products: [],
-  isLike: false
+  favouritesProducts: [],
 };
 
 export const favouritesSlice = createSlice({
-  name: 'products',
+  name: 'favourites',
   initialState,
   reducers: {
-    addToFavourites: (state, action: PayloadAction<FavouriteProduct>) => {
-      state.products.push({
-        ...action.payload,
-      });
-      },
+    setFavourites: (state, action: PayloadAction<FavouriteProduct[]>) => {
+      state.favouritesProducts = action.payload
+    }
    }
   });
-export const { addToFavourites } = favouritesSlice.actions;
+export const { setFavourites } = favouritesSlice.actions;
 export default favouritesSlice.reducer;

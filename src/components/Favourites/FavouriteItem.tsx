@@ -4,9 +4,7 @@ import likeIcon from '../../assets/icons/LikeIcon.svg'
 
 type Props = {
   product: FavouriteProduct;
-  // isInCart?: boolean;
-  // isFavourite?: boolean;
-};
+ };
 export const FavouritesItem: React.FC<Props> = ({ product }) => {
   const { image, name, price, fullPrice, screen, ram, capacity } = product;
   const isDiscountActive = fullPrice !== price;
