@@ -36,9 +36,13 @@ export const Pagination: React.FC<Props> = ({
           &lt;
         </Link>
         {paginationRange.map((number, i) => {
-          const isDots = number === dots
+          const isDots = number === dots;
           if (isDots) {
-            return <span className={stylePagesPagination}>{dots}</span>
+            return (
+              <span key={`p-${i}`} className={stylePagesPagination}>
+                {dots}
+              </span>
+            );
           }
           return (
             <NavLink
