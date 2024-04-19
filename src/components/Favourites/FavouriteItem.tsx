@@ -13,14 +13,14 @@ export const FavouritesItem: React.FC<Props> = ({ product }) => {
     RAM: ram,
     Capacity: capacity,
   };
-  const [, , removeFromFavourites ] = useFavouritesProducts();
+  const [, , removeFromFavourites] = useFavouritesProducts();
 
   const isInCart = false;
 
   return (
     <>
-      <article className="flex justify-between flex-col p-8 border border-1 border-elements h-[506px] w-[272px]">
-        <div className="flex flex-col h-[15.875rem] mb-[50px]">
+      <article className="flex justify-between flex-col p-8 border border-1 border-elements w-[272px]">
+        <div className="flex flex-col">
           <img className="w-full h-full object-cover" src={image} />
           <h3 className="mt-2 text-sm leading-5 font-semibold text-primary">{name}</h3>
         </div>
@@ -47,7 +47,7 @@ export const FavouritesItem: React.FC<Props> = ({ product }) => {
         </div>
         <div className="flex justify-between">
           {isInCart ? (
-            <button className="w-[160px] h-[40px] font-bold text-sm bg-white border border-1 border-elements text-green ">
+            <button className="w-[160px] h-[40px] font-bold text-sm bg-white border border-1 border-elements text-green">
               Added to cart
             </button>
           ) : (

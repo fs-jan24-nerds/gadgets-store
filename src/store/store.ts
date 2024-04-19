@@ -18,6 +18,7 @@ export const store = configureStore({
 store.subscribe(
   throttle(() => {   
     saveToLocalStorage('cart', store.getState().cart.cart)
+    saveToLocalStorage('fav', store.getState().favourites.favouritesProducts)
   }, 500) 
 )
 
