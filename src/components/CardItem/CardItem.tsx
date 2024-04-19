@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useCartProducts } from '../../hooks/useCartProducts';
-import {Product } from '../../types/Product';
+import { Product } from '../../types/Product';
 import likeIcon from '../../assets/icons/LikeIcon.svg';
 import disLikeIcon from '../../assets/icons/dislike.svg';
 import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
@@ -12,7 +12,7 @@ type Props = {
 export const CardItem: React.FC<Props> = ({ product }) => {
   const { id, image, name, price, fullPrice, screen, ram, capacity } = product;
   const [cart, addToCart, removeFromCart] = useCartProducts();
-  const [favouritesProducts, addToFavourites] = useFavouritesProducts()
+  const [favouritesProducts, addToFavourites, removeFromFavourites] = useFavouritesProducts();
   const isDiscountActive = fullPrice !== price;
   const isInCart = cart.some((cartProduct) => cartProduct.id === id);
   const isLike = favouritesProducts.some((likeProduct) => likeProduct.id === id);
@@ -21,7 +21,6 @@ export const CardItem: React.FC<Props> = ({ product }) => {
     RAM: ram,
     Capacity: capacity,
   };
-
 
   return (
     <article className="flex justify-between flex-col p-8 border border-1 border-elements w-[272px]">
@@ -67,11 +66,11 @@ export const CardItem: React.FC<Props> = ({ product }) => {
           </button>
         )}
         {isLike ? (
-          <button className="text-sm w-[40px] h-[40px]">
+          <button className="text-sm w-[40px] h-[40px]"  onClick={() => removeFromFavourites(id)}>
             <img src={likeIcon} alt="like" />
           </button>
         ) : (
-          <button onClick={() => addToFavourites(product)} className="text-sm w-[40px] h-[40px]">
+          <button className="text-sm w-[40px] h-[40px]" onClick={() => addToFavourites(product)}>
             <img src={disLikeIcon} alt="dislike" />
           </button>
         )}
