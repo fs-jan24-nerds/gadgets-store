@@ -1,15 +1,27 @@
 import { FavouriteProduct } from "../types/Product";
 import { useAppDispatch, useAppSelector } from "../store/store";
-import { setFavourites } from "../store/favouriteSlice";
+import { addFavourites, removeFavourite } from "../store/favouriteSlice";
 
-export const useFavouritesProducts = (): [FavouriteProduct[], (product: FavouriteProduct) => void] => {
+
+export const useFavouritesProducts = (): [
+  FavouriteProduct[],
+  (product: FavouriteProduct) => void,
+  (productId: number) => void
+]  => {
   const dispatch = useAppDispatch();
   const { favouritesProducts } = useAppSelector(state => state.favourites);
 
-  const addToFavourites = (productToAdd: FavouriteProduct) => {
-    dispatch(setFavourites([...favouritesProducts, productToAdd]));
+  const addToFavourites = (product: FavouriteProduct) => {
+    dispatch(addFavourites(product));
   };
 
-  return [favouritesProducts, addToFavourites];
+  const removeFromFavourites = (productId?: number) => {
+    if (productId !== undefined) {
+      dispatch(removeFavourite(productId));
+    }
+  };
+
+  return [favouritesProducts, addToFavourites, removeFromFavourites];
 }
+
 

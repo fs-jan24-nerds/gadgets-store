@@ -1,20 +1,20 @@
 import { FavouriteProduct } from '../../types/Product';
-import disLikeIcon from '../../assets/icons/dislike.svg'
-import likeIcon from '../../assets/icons/LikeIcon.svg'
+import likeIcon from '../../assets/icons/LikeIcon.svg';
+import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
 
 type Props = {
   product: FavouriteProduct;
- };
+};
 export const FavouritesItem: React.FC<Props> = ({ product }) => {
-  const { image, name, price, fullPrice, screen, ram, capacity } = product;
+  const { id, image, name, price, fullPrice, screen, ram, capacity } = product;
   const isDiscountActive = fullPrice !== price;
   const descriptionContent = {
     Screen: screen,
     RAM: ram,
     Capacity: capacity,
   };
+  const [, , removeFromFavourites ] = useFavouritesProducts();
 
-  const isFavourite = false;
   const isInCart = false;
 
   return (
@@ -55,11 +55,12 @@ export const FavouritesItem: React.FC<Props> = ({ product }) => {
               Add to cart
             </button>
           )}
-          {isFavourite ? (
-            <button className="border text-sm w-[40px] h-[40px]"><img src={disLikeIcon} alt="dislike" /></button>
-          ) : (
-            <button className="border text-sm w-[40px] h-[40px]"><img src={likeIcon} alt="like"/></button>
-          )}
+          <button
+            className="border text-sm w-[40px] h-[40px]"
+            onClick={() => removeFromFavourites(id)}
+          >
+            <img src={likeIcon} alt="like" />
+          </button>
         </div>
       </article>
     </>
