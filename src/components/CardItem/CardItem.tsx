@@ -1,16 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { useCartProducts } from '../../hooks/useCartProducts';
 import { Product } from '../../types/Product';
+import likeIcon from '../../assets/icons/LikeIcon.svg';
+import disLikeIcon from '../../assets/icons/dislike.svg';
+import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
 
 type Props = {
   product: Product;
-  isInCart?: boolean;
-  isFavourite?: boolean;
 };
 
-export const CardItem: React.FC<Props> = ({ product, isInCart = false, isFavourite = false }) => {
-  const { image, name, price, fullPrice, screen, ram, capacity } = product;
+export const CardItem: React.FC<Props> = ({ product }) => {
+  const { id, image, name, price, fullPrice, screen, ram, capacity } = product;
+  const [cart, addToCart, removeFromCart] = useCartProducts();
+  const [favouritesProducts, addToFavourites, removeFromFavourites] = useFavouritesProducts();
   const isDiscountActive = fullPrice !== price;
-
+  const isInCart = cart.some((cartProduct) => cartProduct.id === id);
+  const isLike = favouritesProducts.some((likeProduct) => likeProduct.id === id);
   const descriptionContent = {
     Screen: screen,
     RAM: ram,
@@ -18,8 +23,8 @@ export const CardItem: React.FC<Props> = ({ product, isInCart = false, isFavouri
   };
 
   return (
-    <article className="flex justify-between flex-col p-8 border border-1 border-elements h-[506px] w-[272px]">
-      <div className="flex flex-col h-[15.875rem]">
+    <article className="flex justify-between flex-col p-8 border border-1 border-elements w-[272px]">
+      <div className="flex flex-col">
         <img className="w-full h-full object-cover" src={image} />
         <h3 className="mt-2 text-sm leading-5 font-semibold text-primary">{name}</h3>
       </div>
@@ -46,18 +51,28 @@ export const CardItem: React.FC<Props> = ({ product, isInCart = false, isFavouri
       </div>
       <div className="flex justify-between">
         {isInCart ? (
-          <button className="w-[160px] h-[40px] font-bold text-sm bg-white border border-1 border-elements text-green ">
+          <button
+            className="w-[160px] h-[40px] font-bold text-sm bg-white border border-1 border-elements text-green"
+            onClick={() => removeFromCart(id)}
+          >
             Added to cart
           </button>
         ) : (
-          <button className="w-[160px] h-[40px] font-bold text-sm bg-primary text-white">
+          <button
+            className="w-[160px] h-[40px] font-bold text-sm bg-primary text-white"
+            onClick={() => addToCart(product)}
+          >
             Add to cart
           </button>
         )}
-        {isFavourite ? (
-          <button className="border text-sm w-[40px] h-[40px]">UnFav</button>
+        {isLike ? (
+          <button className="text-sm w-[40px] h-[40px]"  onClick={() => removeFromFavourites(id)}>
+            <img src={likeIcon} alt="like" />
+          </button>
         ) : (
-          <button className="border text-sm w-[40px] h-[40px]">Fav</button>
+          <button className="text-sm w-[40px] h-[40px]" onClick={() => addToFavourites(product)}>
+            <img src={disLikeIcon} alt="dislike" />
+          </button>
         )}
       </div>
     </article>

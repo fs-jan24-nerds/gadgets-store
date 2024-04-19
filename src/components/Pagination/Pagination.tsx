@@ -20,22 +20,26 @@ export const Pagination: React.FC<Props> = ({
   const isSecondPage = currentPageNumber >= totalPages;
 
   const paginationRange = generatePagination(currentPageNumber, totalPages);
-  console.log({ paginationRange });
+  const dots = '...';
 
   const stylePagesPagination =
     'w-8 h-8 hover:border-primary flex border-box items-center border-2 border-elements justify-center text-primary';
   return (
     <div className="flex justify-center pt-10 pb-20">
       <ul className="flex gap-3">
-        <NavLink
+        <Link
           to={`${pathname}?page=${currentPageNumber - 1}`}
           className={cn(stylePagesPagination, 'mx-2', {
             'opacity-50 cursor-default pointer-events-none': isFirstPage,
           })}
         >
           &lt;
-        </NavLink>
+        </Link>
         {paginationRange.map((number, i) => {
+          const isDots = number === dots
+          if (isDots) {
+            return <span className={stylePagesPagination}>{dots}</span>
+          }
           return (
             <NavLink
               key={`p-${i}`}

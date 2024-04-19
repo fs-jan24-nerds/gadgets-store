@@ -3,17 +3,39 @@ import { NavLink } from 'react-router-dom';
 import { NavMenu } from '../../types/enums';
 import { getClassNavLink } from '../../utils/getClass';
 
-export const Navigation: React.FC = () => {
+import React, { useState, useEffect } from 'react';
+
+interface NavigationProps {
+  closeMenu: () => void;
+}
+
+export const Navigation: React.FC<NavigationProps> = ({ closeMenu }) => {
   const location = useLocation();
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
 
   return (
     <nav>
-      <div className="flex justify-between lg:gap-16 gap-8">
+      <div
+        className={`flex lg:gap-16 gap-8 ${isMobile ? 'flex-col items-center h-screen' : 'flex-row'}`}
+      >
         {Object.values(NavMenu).map((menu) => (
           <NavLink
             key={menu}
             to={{ pathname: menu, search: location.search }}
             className={getClassNavLink}
+            onClick={closeMenu}
           >
             {menu.toUpperCase()}
           </NavLink>
