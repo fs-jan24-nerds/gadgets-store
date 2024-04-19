@@ -3,7 +3,7 @@ import notfound404 from '../../public/img/page-not-found.png';
 
 export const NotFoundPage = () => {
   const navigate = useNavigate();
-  const handleClick = () => navigate('/');
+  const handleClick = () => navigate('gadgets-store/');
 
   return (
     <div className="lg:px-24 lg:py-24 md:py-10 md:px-44 px-4 py-24 items-center flex justify-center flex-col-reverse lg:flex-row md:gap-20 gap-16">
