@@ -47,7 +47,7 @@ export const Header = () => {
         <div className="flex col-end-12 items-center box-border sm: justify-center">
           <NavLink
             to={{ pathname: 'favorites', search: location.search }}
-            className="flex border-collapse border-l-2 border-elements w-16 h-16 items-center justify-center"
+            className="flex border-l-2 border-elements w-16 h-16 items-center justify-center"
             onClick={closeMenu}
           >
             <img src={favourites} alt="favourites" className="w-6 h-6" />
