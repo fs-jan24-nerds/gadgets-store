@@ -34,15 +34,7 @@ export const SwiperComponent: React.FC<SwiperComponentProps> = ({
     dispatch(setProducts(getProducts()));
   }, [isLoaded, dispatch]);
 
-  // const handleNext = () => {
-  //   sliderRef.current?.swiper.slideNext();
-  // };
-
-  // const handlePrevious = () => {
-  //   sliderRef.current?.swiper.slidePrev();
-  // };
   const windowWidth = window.innerWidth;
-  console.log(windowWidth);
 
   let prevViewSliders: number;
 
@@ -136,9 +128,9 @@ export const SwiperComponent: React.FC<SwiperComponentProps> = ({
             spaceBetween: 0,
             slidesPerView: 3,
           },
-          1200: {
-            width: 1200,
-            spaceBetween: 58,
+          1136: {
+            width: 1136,
+            spaceBetween: 15,
             slidesPerView: 4,
           },
         }}
