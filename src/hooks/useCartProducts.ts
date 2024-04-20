@@ -1,30 +1,37 @@
 import { Product } from "../types/Product";
 import { useSelector } from "react-redux";
-import { setCart } from "../store/cartSlice";
+import { addToCart, removeAllFromCart, removeOneFromCart } from "../store/cartSlice";
 import { RootState } from "../store/store";
 import { useDispatch } from "react-redux";
+import { CartItemType } from "../types/cart";
 
-export const useCartProducts = (): [Product[], (product: Product) => void, (productId: Product["id"]) => void] => {
+type HookType = {
+  cart: CartItemType[];
+  addProductToCart: (...productsToAdd: Product[]) => void;
+  removeOneFromCartById: (...productIdsToRemove: Product["id"][]) => void;
+  removeAllFromCartById: (...productIdsToRemove: Product["id"][]) => void;
+}
+
+export const useCartProducts = (): HookType => {
   const dispatch = useDispatch();
   const { cart }= useSelector((state: RootState) => state.cart);
 
-  const addToCart = (...productsToAdd: Product[]) => {
-    dispatch(setCart([...cart, ...productsToAdd]));
+  const addProductToCart = (productToAdd: Product) => {
+    dispatch(addToCart(productToAdd));
   }
 
-  const removeFromCartById = (...productIdsToRemove: Product["id"][]) => {
-    //since cart can contain multiple of copies of the same product we need to filter out only first item with same id
-    const cartCopy = [...cart];
-
-    for (const productIdToRemove of productIdsToRemove) {
-      const index = cartCopy.findIndex(product => product.id === productIdToRemove);
-      if (index > -1) {
-        cartCopy.splice(index, 1);
-      }
-    }
-
-    dispatch(setCart(cartCopy));
+  const removeOneFromCartById = (productIdToRemove: number) => {
+    dispatch(removeOneFromCart(productIdToRemove));
   }
 
-  return [cart, addToCart, removeFromCartById];
+  const removeAllFromCartById = (productIdToRemove: number) => {
+    dispatch(removeAllFromCart(productIdToRemove))
+  }
+
+  return {
+    cart,
+    addProductToCart,
+    removeOneFromCartById,
+    removeAllFromCartById,
+  };
 }
