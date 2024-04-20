@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const CardItem: React.FC<Props> = ({ product }) => {
-  const { id, image, name, price, fullPrice, screen, ram, capacity } = product;
+  const { id, image, name, price, fullPrice, screen, ram, capacity, itemId } = product;
   const {cart, addProductToCart, removeAllFromCartById} = useCartProducts();
 
   const [favouritesProducts, addToFavourites, removeFromFavourites] = useFavouritesProducts();
