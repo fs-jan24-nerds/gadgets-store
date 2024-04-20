@@ -11,8 +11,9 @@ type Props = {
 };
 
 export const CardItem: React.FC<Props> = ({ product }) => {
-  const { id, itemId, image, name, price, fullPrice, screen, ram, capacity } = product;
-  const [cart, addToCart, removeFromCart] = useCartProducts();
+  const { id, image, name, price, fullPrice, screen, ram, capacity } = product;
+  const {cart, addProductToCart, removeAllFromCartById} = useCartProducts();
+
   const [favouritesProducts, addToFavourites, removeFromFavourites] = useFavouritesProducts();
   const isDiscountActive = fullPrice !== price;
   const isInCart = cart.some((cartProduct) => cartProduct.id === id);
@@ -60,14 +61,14 @@ export const CardItem: React.FC<Props> = ({ product }) => {
         {isInCart ? (
           <button
             className="w-[160px] h-[40px] font-bold text-sm bg-white border border-1 border-elements text-green"
-            onClick={() => removeFromCart(id)}
+            onClick={() => removeAllFromCartById(id)}
           >
             Added to cart
           </button>
         ) : (
           <button
             className="w-[160px] h-[40px] font-bold text-sm bg-primary text-white"
-            onClick={() => addToCart(product)}
+            onClick={() => addProductToCart(product)}
           >
             Add to cart
           </button>
