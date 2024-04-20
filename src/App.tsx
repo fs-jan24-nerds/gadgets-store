@@ -9,6 +9,7 @@ import { TabletsPage } from './pages/TabletsPage';
 import { AccessoriesPage } from './pages/AccessoriesPage';
 import { FavouritesPage } from './components/Favourites/FavouritesPage';
 import CartPage from './components/Cart/CartPage';
+import { ProductDetails } from './components/ProductDetails/ProductDetails';
 
 function App() {
   return (
@@ -17,8 +18,10 @@ function App() {
         <Route path="/gadgets-store/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="home" element={<Navigate replace to="/gadgets-store/" />} />
-          <Route path="phones" element={<PhonesPage />} />
-          <Route path="phones/:id" element={<PhonesPage />} />
+          <Route path="phones">
+            <Route index element={<PhonesPage />} />
+            <Route path=":id" element={<ProductDetails />} />
+          </Route>
           <Route path="favorites" element={<FavouritesPage />} />
           <Route path="tablets" element={<TabletsPage />} />
           <Route path="accessories" element={<AccessoriesPage />} />
