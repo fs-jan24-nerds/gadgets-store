@@ -4,13 +4,14 @@ import { Product } from '../../types/Product';
 import likeIcon from '../../assets/icons/LikeIcon.svg';
 import disLikeIcon from '../../assets/icons/dislike.svg';
 import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
+import { Link } from 'react-router-dom';
 
 type Props = {
   product: Product;
 };
 
 export const CardItem: React.FC<Props> = ({ product }) => {
-  const { id, image, name, price, fullPrice, screen, ram, capacity } = product;
+  const { id, itemId, image, name, price, fullPrice, screen, ram, capacity } = product;
   const [cart, addToCart, removeFromCart] = useCartProducts();
   const [favouritesProducts, addToFavourites, removeFromFavourites] = useFavouritesProducts();
   const isDiscountActive = fullPrice !== price;
@@ -23,13 +24,16 @@ export const CardItem: React.FC<Props> = ({ product }) => {
   };
 
   return (
-
     <article className="flex justify-between flex-col p-8 border border-1 border-elements w-[272px] ">
       <div className="flex flex-col h-[290px]">
         <div className="max-h-[240px]">
-          <img className="object-scale-down w-full max-h-full" src={image} />
+          <Link to={`${itemId}`}>
+            <img className="object-scale-down w-full max-h-full" src={image} />
+          </Link>
         </div>
-        <h3 className="grow mt-2 text-sm leading-5 font-semibold text-primary">{name}</h3>
+        <Link to={`${itemId}`}>
+          <h3 className="grow mt-2 text-sm leading-5 font-semibold text-primary">{name}</h3>
+        </Link>
       </div>
       <div className="flex text-2xl">
         {isDiscountActive ? (
@@ -69,7 +73,7 @@ export const CardItem: React.FC<Props> = ({ product }) => {
           </button>
         )}
         {isLike ? (
-          <button className="text-sm w-[40px] h-[40px]"  onClick={() => removeFromFavourites(id)}>
+          <button className="text-sm w-[40px] h-[40px]" onClick={() => removeFromFavourites(id)}>
             <img src={likeIcon} alt="like" />
           </button>
         ) : (
