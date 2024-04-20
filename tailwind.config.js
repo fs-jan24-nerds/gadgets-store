@@ -9,6 +9,9 @@ export default {
         'mont-regular': ['Mont-Regular', 'sans-serif'],
         'mont-semiBold': ['Mont-semiBold', 'sans-serif'],
       },
+      spacing: {
+        'max-width': '1136px',
+      },
       colors: {
         primary: '#313237',
         secondary: '#89939A',
