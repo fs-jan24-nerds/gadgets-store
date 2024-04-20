@@ -6,7 +6,7 @@ export const Layout: React.FC = () => {
   return (
     <div>
       <Header />
-      <main className="max-w-7xl mx-auto sm:px-4 md:px-6 lg:px-8">
+      <main className="box-border max-w-max-width mx-auto">
         <Outlet />
       </main>
       <Footer />
