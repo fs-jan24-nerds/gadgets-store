@@ -1,0 +1,19 @@
+.leftArrow,
+.rightArrow {
+  width: 32px;
+  flex-shrink: 0;
+  border: 1px solid #b4bdc3;
+}
+
+.bullet {
+  display: block;
+  width: 14px;
+  height: 4px;
+  
+  background-color: #e2e6e9;
+  cursor: pointer;
+}
+
+.bulletActive {
+  background-color: #313237;
+}
