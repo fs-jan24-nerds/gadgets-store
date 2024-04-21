@@ -4,3 +4,11 @@ export enum NavMenu {
   tablets = 'tablets',
   accessories = 'accessories',
 }
+
+export enum PhoneColor {
+  BLACK = 'Black',
+  GREEN = 'Green',
+  PURPLE = 'Purple',
+  RED = 'Red',
+  WHITE = 'White',
+}

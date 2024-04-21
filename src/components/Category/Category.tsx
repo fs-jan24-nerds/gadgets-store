@@ -6,10 +6,10 @@ import { CategoryItem } from './CategoryItem';
 export const Category = () => {
   return (
     <>
-      <h1 className="font-mont font-bold leading-[41px] tracking-tighter text-gray-900 text-left mb-6 md:text-[32px] sm:text-[22px]">
+      <h1 className="font-mont font-bold leading-[41px] tracking-tighter text-gray-900 text-left mb-6 md:text-[32px] sm:text-[22px] mt-14 md:mt-16 lg:mt-20">
         Shop by category
       </h1>
-      <div className="block sm:space-y-8 md:flex gap-4 md:space-y-0">
+      <div className="grid sm:flex gap-4">
         <CategoryItem
           image={phones}
           bgColor="#6D6474"

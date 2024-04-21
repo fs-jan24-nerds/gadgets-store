@@ -1,5 +1,5 @@
 import { Category } from '../components/Category/Category';
-import SliderPromo from '../components/PromoSlider/SliderPromo';
+import SliderPromo from '../components/SliderPromo/SliderPromo';
 import { SwiperComponent } from '../components/SwiperForModels/SwiperForModels';
 import { Product } from '../types/Product';
 
@@ -28,17 +28,22 @@ export const HomePage = () => {
   };
 
   return (
-    <>
-      <h1 className="text-5xl font-extrabold">Welcome to Nice Gadgets store!</h1>
-      <section>
+    <div className="">
+      <section className="max-w-max-width mx-auto box-content px-0 sm:px-6 lg:px-8">
         <SliderPromo />
+      </section>
+      <section className="max-w-max-width mx-auto box-content px-4 sm:px-6 lg:px-8">
         <SwiperComponent sectionTitle="Brand new models" filterFunction={filterForNewModel} />
+      </section>
+      <section className="max-w-max-width mx-auto box-content px-4 sm:px-6 lg:px-8">
         <Category />
+      </section>
+      <section className="max-w-max-width mx-auto box-content px-4 sm:px-6 lg:px-8">
         <SwiperComponent
           sectionTitle="Hot prices"
           filterFunction={filterProductsByPriceDifference}
         />
       </section>
-    </>
+    </div>
   );
 };

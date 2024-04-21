@@ -1,8 +1,6 @@
 import { Product } from '../types/Product';
 
 export const generatePagination = (currentPage: number, totalPages: number) => {
-  console.log({ currentPage, totalPages });
-
   if (totalPages <= 2) {
     return Array.from({ length: totalPages }, (_, i) => i + 1);
   }
