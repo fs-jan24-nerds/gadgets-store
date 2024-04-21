@@ -22,7 +22,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="grid grid-cols-12 w-full items-center border border-elements sm:justify-between font-mont-bold mb-6 lg:mb-8 xl:mb-14">
+    <header className="sticky top-0 z-10 bg-white grid grid-cols-12 w-full items-center border border-elements sm:justify-between font-mont-bold mb-6 lg:mb-8 xl:mb-14">
       <Link
         to={{ pathname: 'home', search: location.search }}
         className="w-32 h-16 flex items-center justify-center"
@@ -47,14 +47,14 @@ export const Header = () => {
         <div className="flex col-end-12 items-center box-border sm: justify-center">
           <NavLink
             to={{ pathname: 'favorites', search: location.search }}
-            className="flex border-collapse border border-elements w-16 h-16 items-center justify-center"
+            className="flex border-collapse border-l border-elements w-16 h-16 items-center justify-center"
             onClick={closeMenu}
           >
             <img src={favourites} alt="favourites" className="w-6 h-6" />
           </NavLink>
           <NavLink
             to={{ pathname: 'cart', search: location.search }}
-            className="flex border-elements border w-16 h-16  items-center justify-center"
+            className="flex border-l border-elements w-16 h-16  items-center justify-center"
             onClick={closeMenu}
           >
             <img src={cart} alt="cart" className="w-6 h-6" />
