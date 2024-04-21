@@ -18,8 +18,8 @@ export const PhonesPage = () => {
 
   useEffect(() => {
     if (isLoaded) {
-      return
-    };
+      return;
+    }
 
     dispatch(setProducts(getProducts()));
   }, [isLoaded, dispatch]);
@@ -28,7 +28,7 @@ export const PhonesPage = () => {
   const pageProductsList = slicedList(phoneProducts, +currentPageNumber, ITEMS_PER_PAGE);
 
   return (
-    <>
+    <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">
       <h1 className="text-lg">Phones Page</h1>
       {isLoaded && (
         <div className="grid grid-cols-4 gap-y-1">
@@ -42,6 +42,6 @@ export const PhonesPage = () => {
         productsPerPage={ITEMS_PER_PAGE}
         currentPageNumber={+currentPageNumber}
       />
-    </>
+    </div>
   );
 };
