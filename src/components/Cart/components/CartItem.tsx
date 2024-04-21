@@ -13,7 +13,7 @@ export const CartItem: React.FC<Props> = ({ cartItem }) => {
   const { addProductToCart, removeOneFromCartById, removeAllFromCartById } = useCartProducts();
 
   return (
-    <div className="sm:flex items-center justify-between gap-[24px] p-[24px] border border-gray-300 mb-[16px] ">
+    <div className="sm:flex items-center justify-between gap-[24px] p-[24px] border border-gray-300 mb-[16px]">
       <div className="sm:mb-0 flex gap-[24px] items-center justify-center mb-7">
         <button onClick={() => removeAllFromCartById(id)}>
           <span className="text-secondary text-base">X</span>

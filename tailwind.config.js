@@ -22,6 +22,9 @@ export default {
         green: '#27AE60',
         red: '#EB5757',
       },
+      boxShadow: {
+        '3xl': '0px 5px 12px -1px rgba(153,153,153,0.34)',
+      },
     },
   },
   plugins: [],
