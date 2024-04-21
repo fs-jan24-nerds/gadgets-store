@@ -1,17 +1,24 @@
 import { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Navigation } from './Navigation';
+import { useAppSelector } from '../../store/store';
+import { useCartProducts } from '../../hooks/useCartProducts';
 
 import Close from '../../assets/Close.svg';
 import BurgerMenu from '../../assets/icons/Menu.svg';
 import favourites from '../../assets/icons/favourites.svg';
-import cart from '../../assets/icons/cart.svg';
+import cartIcon from '../../assets/icons/cart.svg';
 import logo from '../../assets/icons/Logo.svg';
 
 export const Header = () => {
   const location = useLocation();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { favouritesProducts } = useAppSelector((state) => state.favourites);
+
+  const { cart } = useCartProducts();
+  const totalItems = cart.reduce((acc, cartItem) => acc + cartItem.count, 0);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -22,7 +29,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-10 bg-white grid grid-cols-12 w-full items-center border border-elements sm:justify-between font-mont-bold mb-6 lg:mb-8 xl:mb-14">
+    <header className="grid grid-cols-12 w-full items-center border-b-2 border-elements sm:justify-between font-mont-bold mb-6 lg:mb-8 xl:mb-14">
       <Link
         to={{ pathname: 'home', search: location.search }}
         className="w-32 h-16 flex items-center justify-center"
@@ -47,17 +54,37 @@ export const Header = () => {
         <div className="flex col-end-12 items-center box-border sm: justify-center">
           <NavLink
             to={{ pathname: 'favorites', search: location.search }}
-            className="flex border-collapse border-l border-elements w-16 h-16 items-center justify-center"
+            className="flex border-collapse border-l-2 border-elements w-16 h-16 items-center justify-center"
             onClick={closeMenu}
           >
-            <img src={favourites} alt="favourites" className="w-6 h-6" />
+            <div className="relative">
+              <img src={favourites} alt="favourites" className="w-6 h-6" />
+              {favouritesProducts.length > 0 && (
+                <span
+                  className=" bg-red absolute rounded-full leading-none grid place-items-center
+                   text-white w-[18px] h-[18px] top-0 right-0 transform translate-x-2/4 -translate-y-2/4"
+                >
+                  {favouritesProducts.length}
+                </span>
+              )}
+            </div>
           </NavLink>
           <NavLink
             to={{ pathname: 'cart', search: location.search }}
-            className="flex border-l border-elements w-16 h-16  items-center justify-center"
+            className="flex border-elements border-l-2 w-16 h-16 items-center justify-center"
             onClick={closeMenu}
           >
-            <img src={cart} alt="cart" className="w-6 h-6" />
+            <div className="relative">
+              <img src={cartIcon} alt="cart" className="w-6 h-6" />
+              {totalItems > 0 && (
+                <span
+                  className=" bg-red absolute rounded-full leading-none grid place-items-center
+              text-white w-[18px] h-[18px] top-0 right-0 transform translate-x-2/4 -translate-y-2/4"
+                >
+                  {totalItems}
+                </span>
+              )}
+            </div>
           </NavLink>
         </div>
       </div>
