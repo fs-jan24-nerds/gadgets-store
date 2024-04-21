@@ -18,10 +18,12 @@ function App() {
         <Route path="/gadgets-store/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="home" element={<Navigate replace to="/gadgets-store/" />} />
+          
           <Route path="phones">
             <Route index element={<PhonesPage />} />
             <Route path=":id" element={<ProductDetails />} />
           </Route>
+          
           <Route path="favorites" element={<FavouritesPage />} />
           <Route path="tablets" element={<TabletsPage />} />
           <Route path="accessories" element={<AccessoriesPage />} />

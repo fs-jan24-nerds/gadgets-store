@@ -42,7 +42,6 @@ export const SwiperComponent: React.FC<SwiperComponentProps> = ({
   //   sliderRef.current?.swiper.slidePrev();
   // };
   const windowWidth = window.innerWidth;
-  console.log(windowWidth);
 
   let prevViewSliders: number;
 
