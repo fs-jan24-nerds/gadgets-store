@@ -1,25 +1,32 @@
-import Logo from '../../assets/Logo.png';
-import ToTop from '../../assets/Back to top button.png';
+import Logo from '../../assets/icons/Logo.svg';
+import ToTop from '../../assets/icons/to-top-arrow.svg';
 
 export function Footer() {
   return (
-    <footer className="md:flex md:justify-between md:items-center md:bottom-4 md:w-full">
-      <img src={Logo} alt="Logo" className="h-6 mr-5 md:mr-0 md:mb-4 mb-7" />
-      <div className="md:flex md:items-center">
-        <a href="#" className="mx-5 block mb-5" style={{ color: '#89939A' }}>
-          GitHub
-        </a>
-        <a href="#" className="mx-5 block mb-5" style={{ color: '#89939A' }}>
-          Contacts
-        </a>
-        <a href="#" className="mx-5 block mb-5" style={{ color: '#89939A' }}>
-          Rights
-        </a>
-      </div>
-      <div className="flex justify-center items-center md:mb-4">
-        <a href="#" className="block pr-2 ml-5" style={{ color: '#89939A' }}>
-          <img src={ToTop} alt="" className="mb-3" />
-        </a>
+    <footer className="flex border border-elements mt-16 lg:mt-20  px-4 sm:px-8">
+      <div className="w-max-width mx-auto md:flex md:justify-between md:items-center">
+        <img src={Logo} alt="Logo" className="mt-8 mr-0 md:mr-0 md:mb-4 mb-7" />
+
+        <div className="md:flex md:items-center">
+          <a href="#" className="block mb-0 text-secondary mr-24">
+            GitHub
+          </a>
+
+          <a href="#" className="block mb-0 text-secondary font-extrabold mr-24">
+            <p className="font-bold">Contacts</p>
+          </a>
+
+          <a href="#" className="block mb-0 text-secondary">
+            Rights
+          </a>
+        </div>
+
+        <button className="flex gap-8 justify-center w-full md:w-auto items-center mb-8 md:mb-0 mt-8 md:mt-0">
+          <p>Back to top</p>
+          <div className="flex justify-center items-center w-8 h-8 border border-elements">
+            <img src={ToTop} alt="" className="" />
+          </div>
+        </button>
       </div>
     </footer>
   );

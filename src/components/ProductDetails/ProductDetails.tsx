@@ -23,11 +23,9 @@ export const ProductDetails: React.FC = () => {
     if (isLoaded) {
       const selectedPhone = phones.find((phone) => phone.id === id);
 
-      console.log({ selectedPhone });
       setPhone(selectedPhone);
     }
   }, [id, phones]);
-  console.log(phone);
 
   return (
     <>

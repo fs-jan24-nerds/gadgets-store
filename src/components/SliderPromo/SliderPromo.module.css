@@ -1,3 +1,8 @@
+.slide {
+  height: 100%;
+  object-fit: cover;
+}
+
 .leftArrow,
 .rightArrow {
   width: 32px;
@@ -9,11 +14,21 @@
   display: block;
   width: 14px;
   height: 4px;
-  
+
   background-color: #e2e6e9;
   cursor: pointer;
 }
 
 .bulletActive {
   background-color: #313237;
+}
+
+@media (max-width: 639px) {
+  .slide {
+    height: 320px;
+  }
+  .leftArrow,
+  .rightArrow {
+    display: none;
+  }
 }
