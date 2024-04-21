@@ -27,7 +27,7 @@ export const Navigation: React.FC<NavigationProps> = ({ closeMenu }) => {
   return (
     <nav>
       <div
-        className={`flex lg:gap-16 md:gap-8 sm:gap-4 ${isMobile ? 'flex-col items-center md:h-screen h-full' : 'flex-row'}`}
+        className={`flex lg:gap-16 md:gap-8 sm:gap-4 md:p-t p-6 ${isMobile ? 'flex-col items-center md:h-screen h-full' : 'flex-row'}`}
       >
         {Object.values(NavMenu).map((menu) => (
           <NavLink
