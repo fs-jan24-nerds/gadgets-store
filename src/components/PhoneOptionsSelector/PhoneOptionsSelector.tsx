@@ -52,7 +52,7 @@ export const PhoneOptionsSelector = () => {
     <article className="w-[40%]">
       <div className="flex justify-between text-xs font-medium leading-4 font-mont text-secondary mb-[8px]">
         <h3>Available colors</h3>
-        <span className='text-icons'>ID: 802390</span>
+        <span className="text-icons">ID: 802390</span>
       </div>
       <div className="flex mb-[25px] gap-2">
         {phoneColors.map((color, index) => (
@@ -65,7 +65,9 @@ export const PhoneOptionsSelector = () => {
         ))}
       </div>
       <div className="w-[320px] h-[1px] bg-elements mb-[24px]"></div>
-      <h3 className="text-xs font-medium leading-4  font-mont text-secondary mb-[8px]">Select capacity</h3>
+      <h3 className="text-xs font-medium leading-4  font-mont text-secondary mb-[8px]">
+        Select capacity
+      </h3>
       <div className="font-mont-semiBold flex gap-1 mb-[24px]">
         {phoneMemorySize.map((size, index) => (
           <button className={sizeMenu(index)} key={size} onClick={() => setSelectedSize(index)}>

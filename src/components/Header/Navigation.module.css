@@ -1,12 +1,12 @@
-.navlink {
+/* .navlink {
   position: relative;
   display: flex;
   align-items: center;
   white-space: nowrap;
   height: 64px;
 
-  transition: color ease-out;
-}
+  transition: color ease-out 0.5s;
+} */
 
 .navlink:hover {
   color: var(--tw-primary);

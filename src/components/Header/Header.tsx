@@ -22,14 +22,13 @@ export const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-10 bg-white grid grid-cols-12 w-full items-center border border-elements sm:justify-between font-mont-bold mb-6 lg:mb-8 xl:mb-14">
+    <header className="grid sticky top-0 z-10 bg-white grid-cols-12 w-full items-center border-b-2 border-elements justify-between font-mont-bold mb-6 lg:mb-8 xl:mb-14">
       <Link
         to={{ pathname: 'home', search: location.search }}
         className="w-32 h-16 flex items-center justify-center"
       >
-        <img src={logo} alt="logo" />
+        <img src={logo} alt="logo" className="mx-6" />
       </Link>
-      {/* Бургер-меню на мобільних екранах */}
       <div className="sm:hidden col-end-13 ml-auto">
         <button onClick={toggleMenu} className="w-6 h-6">
           {!isMenuOpen ? (
@@ -39,22 +38,21 @@ export const Header = () => {
           )}
         </button>
       </div>
-      {/* Навігація */}
       <div
-        className={`sm:grid col-start-3 col-end-13 justify-between hidden:sm ${isMenuOpen ? 'block' : 'hidden'}`}
+        className={`sm:grid col-start-1 col-span-12  sm:col-start-3 sm:col-span-13 justify-between hidden:sm ${isMenuOpen ? 'block' : 'hidden'}`}
       >
         <Navigation closeMenu={closeMenu} />
-        <div className="flex col-end-12 items-center box-border sm: justify-center">
+        <div className="flex col-end-12 items-center box-border justify-stretch sm:justify-center border-t-2">
           <NavLink
             to={{ pathname: 'favorites', search: location.search }}
-            className="flex border-collapse border-l border-elements w-16 h-16 items-center justify-center"
+            className="flex border-l-2 border-elements w-16 h-16 items-center flex-1 justify-center"
             onClick={closeMenu}
           >
             <img src={favourites} alt="favourites" className="w-6 h-6" />
           </NavLink>
           <NavLink
             to={{ pathname: 'cart', search: location.search }}
-            className="flex border-l border-elements w-16 h-16  items-center justify-center"
+            className="flex border-elements border-l-2 w-16 h-16  items-center flex-1 justify-center"
             onClick={closeMenu}
           >
             <img src={cart} alt="cart" className="w-6 h-6" />

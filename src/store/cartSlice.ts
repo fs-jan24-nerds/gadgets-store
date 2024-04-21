@@ -23,17 +23,17 @@ export const cartSlice = createSlice({
     },
     addToCart: (state, action: PayloadAction<Product>) => {
       const isInCart = state.cart.some((cartItem) => cartItem.id === action.payload.id);
-      
+
       if (isInCart) {
         state.cart = state.cart.map((cartItem) => {
           if (cartItem.id === action.payload.id) {
             return {
               ...cartItem,
               count: cartItem.count + 1,
-            }
+            };
           }
           return cartItem;
-        })
+        });
       }
 
       if (!isInCart) {
@@ -50,10 +50,10 @@ export const cartSlice = createSlice({
           return {
             ...cartItem,
             count: cartItem.count - 1,
-          }
+          };
         }
         return cartItem;
-      })
+      });
 
       state.cart = state.cart.filter((cartItem) => cartItem.count > 0);
     },
