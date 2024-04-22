@@ -5,7 +5,7 @@ const stylePagesPagination =
 
 export const getClassNavLink = ({ isActive }: { isActive: boolean }) =>
   cn(
-    'relative flex items-center whitespace-nowrap h-16 transition-colors duration-500 ease-out hover:border-b-4 hover:text-primary hover:border-primary',
+    'relative flex items-center whitespace-nowrap h-16 transition-colors duration-500 ease-out hover:border-b-4 hover:text-primary hover:border-b-primary',
     {
       'border-b-4 border-transparent text-secondary': !isActive,
       'border-b-4 border-primary text-primary': isActive,
