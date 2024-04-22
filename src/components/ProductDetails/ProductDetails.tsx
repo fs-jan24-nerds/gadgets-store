@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, useParams } from 'react-router-dom';
 import { RootState, useAppSelector } from '../../store/store';
 import { getPhones } from '../../api/api';
@@ -6,12 +5,14 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setPhones } from '../../store/phonesSlice';
 import { Item } from '../../types/Product';
+import { PhoneOptionsSelector } from '../PhoneOptionsSelector/PhoneOptionsSelector';
 
 export const ProductDetails: React.FC = () => {
   const { phones, isLoaded } = useAppSelector((state: RootState) => state.phones);
   const { id } = useParams();
 
   const [phone, setPhone] = useState<Item | undefined>();
+
   const dispatch = useDispatch();
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
 
@@ -28,14 +29,14 @@ export const ProductDetails: React.FC = () => {
 
       setPhone(selectedPhone);
     }
-  }, [id, phones, isLoaded]);
+  }, [id, phones]);
 
   const productStyles =
-    'items-center w-20 h-20 border border-#C4C4C4 cursor-pointer hover:border-primary transition-colors duration-500 ease-out';
+    'items-center w-20 h-20 p-2 border border-#C4C4C4 cursor-pointer hover:border-primary transition-colors duration-500 ease-out';
   return (
     <>
       {phone && (
-        <div className="mx-auto max-w-screen-xl">
+        <div className="mx-auto max-w-screen-xl p-6">
           <div className="mb-6">
             <Link to={-1 as any} className="flex text-secondary">
               <div className="w-4 h-4">
@@ -52,7 +53,7 @@ export const ProductDetails: React.FC = () => {
               {phone?.name}
             </h1>
           </div>
-          <div className="flex flex-col md:flex-row md:items-center">
+          <div className="flex flex-col md:flex-row md:items-start">
             <div className="flex md:flex-row md:w-[570px] md:h-[464px] mb-[80px] flex-col-reverse m-auto">
               <div className="flex md:flex-col gap-2 md:gap-4 items-center">
                 {phone.images.map((image, index) => {
@@ -75,52 +76,7 @@ export const ProductDetails: React.FC = () => {
                 />
               </div>
             </div>
-
-            <div className="flex flex-col">
-              <div className="my-4">
-                <label htmlFor="capacity" className="block mb-2">
-                  Capacity:
-                </label>
-                <select name="capacity" id="capacity">
-                  {phone.capacityAvailable.map((capacity, index) => (
-                    <option key={index} value={capacity}>
-                      {capacity}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="my-4">
-                <label htmlFor="color" className="block mb-2">
-                  Color:
-                </label>
-                <select name="color" id="color">
-                  {phone.colorsAvailable?.map((color, index) => (
-                    <option key={index} value={color}>
-                      {color}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="text-lg">
-                <p>
-                  {phone?.screen}, {phone?.resolution}
-                </p>
-                <p>Processor: {phone?.processor}</p>
-                <p>RAM: {phone?.ram}</p>
-                <p>Camera: {phone?.camera}</p>
-                <p>Zoom: {phone?.zoom}</p>
-                <p>Connectivity: {phone?.cell.join(', ')}</p>
-                <p className="font-bold">
-                  Price:
-                  {phone?.priceDiscount < phone?.priceRegular ? (
-                    <span className="text-red-500">${phone?.priceDiscount}</span>
-                  ) : (
-                    <span>${phone?.priceRegular}</span>
-                  )}
-                </p>
-              </div>
-            </div>
+            <PhoneOptionsSelector phone={phone} />
           </div>
 
           {phone.description?.map(({ title, text }, index) => (

@@ -3,17 +3,22 @@ import likeIcon from '../../assets/icons/LikeIcon.svg';
 import disLikeIcon from '../../assets/icons/dislike.svg';
 import classNames from 'classnames';
 import { PhoneColor } from '../../types/enums';
+import { Item } from '../../types/Product';
+
 
 const phoneMemorySize = [64, 256, 512];
+type Props = {
+  phone: Item | undefined;
+};
 
-export const PhoneOptionsSelector = () => {
+export const PhoneOptionsSelector: React.FC<Props> = ({ phone }) => {
   const [selectedSize, setSelectedSize] = useState<number>(0);
   const [selectedColor, setSelectedColor] = useState<number>(0);
   const phoneColors = Object.values(PhoneColor);
-  const isDiscountActive = true;
+
   const isInCart = false;
   const isLike = false;
-
+ const isDiscountActive = true;
   const colorMenu = (color: number) => {
     const changeColorClasses: string = classNames(
       'flex',
@@ -49,7 +54,7 @@ export const PhoneOptionsSelector = () => {
   };
 
   return (
-    <article className="w-[40%]">
+    <article className="w-[100%]">
       <div className="flex justify-between text-xs font-medium leading-4 font-mont text-secondary mb-[8px]">
         <h3>Available colors</h3>
         <span className="text-icons">ID: 802390</span>
@@ -78,11 +83,15 @@ export const PhoneOptionsSelector = () => {
       <div className="flex mb-[16px] items-center">
         {isDiscountActive ? (
           <>
-            <p className="font-mont-bold mr-2 font-extrabold text-[32px] text-primary">$799</p>
-            <p className="font-mont-semiBold line-through  text-[22px] text-secondary">$599</p>
+            <p className="font-mont-bold mr-2 font-extrabold text-[32px] text-primary">
+              ${phone?.priceDiscount}
+            </p>
+            <p className="font-mont-semiBold line-through  text-[22px] text-secondary">
+              ${phone?.priceRegular}
+            </p>
           </>
         ) : (
-          <p className="font-extrabold text-primary">$500</p>
+          <p className="font-extrabold text-primary">${phone?.priceRegular}</p>
         )}
       </div>
 
@@ -98,17 +107,11 @@ export const PhoneOptionsSelector = () => {
           </button>
         )}
         {isLike ? (
-          <button
-            className="text-sm w-[48px] h-[40px]"
-            // onClick={() => removeFromFavourites(id)}
-          >
+          <button className="text-sm w-[48px] h-[40px]">
             <img src={likeIcon} alt="like" />
           </button>
         ) : (
-          <button
-            className="text-sm w-[48px] h-[40px]"
-            // onClick={() => addToFavourites(product)}
-          >
+          <button className="text-sm w-[48px] h-[40px]">
             <img src={disLikeIcon} alt="dislike" />
           </button>
         )}
@@ -121,10 +124,10 @@ export const PhoneOptionsSelector = () => {
           <p> RAM:</p>
         </div>
         <div className="flex flex-col gap-[6px] text-primary text-right">
-          <p> 6.5 OLED</p>
-          <p>2688x1242</p>
-          <p>Apple A12 Bionic</p>
-          <p>3 GB</p>
+          <p> {phone?.screen}</p>
+          <p>{phone?.resolution}</p>
+          <p>{phone?.processor}</p>
+          <p>{phone?.ram}</p>
         </div>
       </div>
     </article>
