@@ -1,6 +1,7 @@
 import { Category } from '../components/Category/Category';
+import { SliderModels } from '../components/SliderModels/SliderModels';
 import SliderPromo from '../components/SliderPromo/SliderPromo';
-import { SwiperComponent } from '../components/SwiperForModels/SwiperForModels';
+// import { SwiperComponent } from '../components/SwiperForModels/SwiperForModels';
 import { Product } from '../types/Product';
 
 export const HomePage = () => {
@@ -24,7 +25,7 @@ export const HomePage = () => {
       (a, b) => b.priceDifference - a.priceDifference,
     );
 
-    return sortedProducts.slice(0, 10);
+    return sortedProducts.slice(0, 15);
   };
 
   return (
@@ -33,16 +34,13 @@ export const HomePage = () => {
         <SliderPromo />
       </section>
       <section className="max-w-max-width mx-auto box-content px-4 sm:px-6 lg:px-8">
-        <SwiperComponent sectionTitle="Brand new models" filterFunction={filterForNewModel} />
+        <SliderModels sectionTitle="Brand new models" filterFunction={filterForNewModel} />
       </section>
       <section className="max-w-max-width mx-auto box-content px-4 sm:px-6 lg:px-8">
         <Category />
       </section>
       <section className="max-w-max-width mx-auto box-content px-4 sm:px-6 lg:px-8">
-        <SwiperComponent
-          sectionTitle="Hot prices"
-          filterFunction={filterProductsByPriceDifference}
-        />
+        <SliderModels sectionTitle="Hot prices" filterFunction={filterProductsByPriceDifference} />
       </section>
     </div>
   );

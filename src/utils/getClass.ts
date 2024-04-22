@@ -1,14 +1,15 @@
 import cn from 'classnames';
 
-import styles from '../components/Header/Navigation.module.css';
-
 const stylePagesPagination =
   'w-8 h-8 flex items-center justify-center font-bold border-2 hover:border-primary';
 
 export const getClassNavLink = ({ isActive }: { isActive: boolean }) =>
   cn(
-    `${styles.navlink} hover:border-b-4 border-primary font-bold tracking-wide leading-3 flex lg:flex-row`,
-    { 'navlink-active': isActive, '${styles} text-secondary relative': !isActive },
+    'relative flex items-center whitespace-nowrap h-16 transition-colors duration-500 ease-out hover:border-b-4 hover:text-primary hover:border-primary',
+    {
+      'border-b-4 border-transparent text-secondary': !isActive,
+      'border-b-4 border-primary text-primary': isActive,
+    },
   );
 
 export const getClassPaginate = ({ isActive }: { isActive: boolean }) =>

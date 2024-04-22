@@ -24,12 +24,13 @@ const CartPage = () => {
       </h1>
 
       <div className="md:flex justify-between md:gap-4 gap-5 items-start">
-        {
-          cart.length === 0
-            ? <EmptyCartMessage />
-            : (<><CartTable /> <Checkout /></> )
-        }
-
+        {cart.length === 0 ? (
+          <EmptyCartMessage />
+        ) : (
+          <>
+            <CartTable /> <Checkout />
+          </>
+        )}
       </div>
     </>
   );

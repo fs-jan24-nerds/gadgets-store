@@ -12,7 +12,7 @@ type Props = {
 
 export const CardItem: React.FC<Props> = ({ product }) => {
   const { id, image, name, price, fullPrice, screen, ram, capacity, itemId } = product;
-  const {cart, addProductToCart, removeAllFromCartById} = useCartProducts();
+  const { cart, addProductToCart, removeAllFromCartById } = useCartProducts();
 
   const [favouritesProducts, addToFavourites, removeFromFavourites] = useFavouritesProducts();
   const isDiscountActive = fullPrice !== price;
@@ -25,11 +25,14 @@ export const CardItem: React.FC<Props> = ({ product }) => {
   };
 
   return (
-    <article className="flex justify-between flex-col p-8 border border-1 border-elements w-[272px] ">
+    <article className="flex justify-between flex-col p-8 border border-1 border-elements w-[272px] transition-shadow duration-300 hover:shadow-3xl">
       <div className="flex flex-col h-[290px]">
         <div className="max-h-[240px]">
           <Link to={`${itemId}`}>
-            <img className="object-scale-down w-full max-h-full" src={image} />
+            <img
+              className="object-scale-down w-full max-h-full transition-scale duration-300 hover:scale-105"
+              src={image}
+            />
           </Link>
         </div>
         <Link to={`${itemId}`}>
