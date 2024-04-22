@@ -1,17 +1,24 @@
 import { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Navigation } from './Navigation';
+import { useAppSelector } from '../../store/store';
+import { useCartProducts } from '../../hooks/useCartProducts';
 
 import Close from '../../assets/Close.svg';
 import BurgerMenu from '../../assets/icons/Menu.svg';
 import favourites from '../../assets/icons/favourites.svg';
-import cart from '../../assets/icons/cart.svg';
+import cartIcon from '../../assets/icons/cart.svg';
 import logo from '../../assets/icons/Logo.svg';
 
 export const Header = () => {
   const location = useLocation();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { favouritesProducts } = useAppSelector((state) => state.favourites);
+
+  const { cart } = useCartProducts();
+  const totalItems = cart.reduce((acc, cartItem) => acc + cartItem.count, 0);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -48,14 +55,34 @@ export const Header = () => {
             className="flex border-l-2 border-elements w-16 h-16 items-center flex-1 justify-center"
             onClick={closeMenu}
           >
-            <img src={favourites} alt="favourites" className="w-6 h-6" />
+            <div className="relative">
+              <img src={favourites} alt="favourites" className="w-6 h-6" />
+              {favouritesProducts.length > 0 && (
+                <span
+                  className=" bg-red absolute rounded-full leading-none grid place-items-center
+                   text-white w-[18px] h-[18px] top-0 right-0 transform translate-x-2/4 -translate-y-2/4"
+                >
+                  {favouritesProducts.length}
+                </span>
+              )}
+            </div>
           </NavLink>
           <NavLink
             to={{ pathname: 'cart', search: location.search }}
             className="flex border-elements border-l-2 w-16 h-16  items-center flex-1 justify-center"
             onClick={closeMenu}
           >
-            <img src={cart} alt="cart" className="w-6 h-6" />
+            <div className="relative">
+              <img src={cartIcon} alt="cart" className="w-6 h-6" />
+              {totalItems > 0 && (
+                <span
+                  className=" bg-red absolute rounded-full leading-none grid place-items-center
+              text-white w-[18px] h-[18px] top-0 right-0 transform translate-x-2/4 -translate-y-2/4"
+                >
+                  {totalItems}
+                </span>
+              )}
+            </div>
           </NavLink>
         </div>
       </div>

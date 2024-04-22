@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, useParams } from 'react-router-dom';
 import { RootState, useAppSelector } from '../../store/store';
 import { getPhones } from '../../api/api';
@@ -27,7 +28,7 @@ export const ProductDetails: React.FC = () => {
 
       setPhone(selectedPhone);
     }
-  }, [id, phones]);
+  }, [id, phones, isLoaded]);
 
   const productStyles =
     'items-center w-20 h-20 border border-#C4C4C4 cursor-pointer hover:border-primary transition-colors duration-500 ease-out';
