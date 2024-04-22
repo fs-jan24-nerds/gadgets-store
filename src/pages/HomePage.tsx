@@ -6,9 +6,11 @@ import { Product } from '../types/Product';
 
 export const HomePage = () => {
   const filterForNewModel = (products: Product[]) => {
-    return products.filter(
-      (product) => product.category === 'phones' && product.name.includes('Apple iPhone 14'),
-    );
+    return products
+      .filter(
+        (product) => product.category === 'phones' && product.name.includes('Apple iPhone 14'),
+      )
+      .slice(0, 15);
   };
 
   const getPriceDifference = (product: Product) => {

@@ -46,10 +46,10 @@ export const Header = () => {
         </button>
       </div>
       <div
-        className={`sm:grid col-start-1 col-span-12 border-t-2 border-elements sm:col-start-3 sm:col-span-13 justify-between hidden:sm ${isMenuOpen ? 'block' : 'hidden'}`}
+        className={`sm:grid col-start-1 col-span-12  border-elements sm:col-start-3 sm:col-span-13 justify-between hidden:sm ${isMenuOpen ? 'block' : 'hidden'}`}
       >
         <Navigation closeMenu={closeMenu} />
-        <div className="flex col-end-12 items-center box-border justify-stretch sm:justify-center border-t-2">
+        <div className="flex col-end-12 items-center box-border justify-stretch sm:justify-center ">
           <NavLink
             to={{ pathname: 'favorites', search: location.search }}
             className="flex border-l-2 border-elements w-16 h-16 items-center flex-1 justify-center"
