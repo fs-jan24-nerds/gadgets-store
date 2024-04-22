@@ -31,7 +31,7 @@ export const HomePage = () => {
   };
 
   return (
-    <div className="">
+    <div className="mt-6 sm:mt-8 md:mt-14">
       <section className="max-w-max-width mx-auto box-content px-0 sm:px-6 lg:px-8">
         <SliderPromo />
       </section>

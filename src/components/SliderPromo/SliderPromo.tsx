@@ -16,7 +16,7 @@ import styles from './SliderPromo.module.css';
 const SliderPromo = () => {
   return (
     <div>
-      <h1 className="text-5xl font-extrabold text-left">Welcome to Nice Gadgets store!</h1>
+      <h1 className="text-5xl text-left">Welcome to Nice Gadgets store!</h1>
 
       <div className="flex flex-col items-center max-w-full mt-6 lg:mt-8 xl:mt-14 mb-14 lg:mb-16 xl:mb-20">
         <div className="flex gap-4 w-full mb-8">
