@@ -27,7 +27,9 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isLoaded) return;
+    if (isLoaded) {
+      return;
+    }
     dispatch(setProducts(getProducts()));
   }, [isLoaded, dispatch]);
 
