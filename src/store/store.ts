@@ -3,6 +3,7 @@ import productsReducer from './productsSlice';
 import favouritsReducer from './favouriteSlice';
 import phonesReducer from './phonesSlice';
 import cartReducer from './cartSlice';
+import filerReduser from './SortSlice'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { saveToLocalStorage } from '../utils/localStorage';
@@ -14,6 +15,7 @@ export const store = configureStore({
     phones: phonesReducer,
     favourites: favouritsReducer,
     cart: cartReducer,
+    filter: filerReduser,
   },
 });
 
