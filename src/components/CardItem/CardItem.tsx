@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useCartProducts } from '../../hooks/useCartProducts';
-import { Product } from '../../types/Product';
-import like from '../../assets/icons/like.svg';
-import dislike from '../../assets/icons/dislike.svg';
-import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
 import { Link } from 'react-router-dom';
+import dislike from '../../assets/icons/dislike.svg';
+import like from '../../assets/icons/like.svg';
+import { useCartProducts } from '../../hooks/useCartProducts';
+import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
+import { Product } from '../../types/Product';
 
 type Props = {
   product: Product;
