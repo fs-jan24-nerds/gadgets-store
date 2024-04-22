@@ -2,6 +2,7 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Banner from '../../assets/SliderPromo/Banner.png';
+
 import LeftArrow from '../../assets/SliderPromo/icons/left-arrow.svg';
 import RightArrow from '../../assets/SliderPromo/icons/right-arrow.svg';
 
@@ -38,9 +39,9 @@ const SliderPromo = () => {
             }}
             autoplay={{
               delay: 3000,
+              disableOnInteraction: false,
             }}
-            speed={1500}
-            loop={true}
+            speed={1000}
             slidesPerView={1}
           >
             <SwiperSlide>
@@ -48,11 +49,11 @@ const SliderPromo = () => {
             </SwiperSlide>
 
             <SwiperSlide>
-              <img src={Banner} className={styles.slide} alt="Slide 1" />
+              <img src={Banner} className={styles.slide} alt="Slide 2" />
             </SwiperSlide>
 
             <SwiperSlide>
-              <img src={Banner} className={styles.slide} alt="Slide 1" />
+              <img src={Banner} className={styles.slide} alt="Slide 3" />
             </SwiperSlide>
           </Swiper>
 

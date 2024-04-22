@@ -1,15 +1,14 @@
 import classNames from 'classnames';
-import { Product } from '../../types/Product';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { CardItem } from '../CardItem';
-import { Navigation, Virtual } from 'swiper/modules';
 import { useEffect, useState } from 'react';
-import { setProducts } from '../../store/productsSlice';
-import { getProducts } from '../../api/api';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigation, Virtual } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
+import { getProducts } from '../../api/api';
+import { setProducts } from '../../store/productsSlice';
+import { RootState } from '../../store/store';
+import { Product } from '../../types/Product';
+import { CardItem } from '../CardItem';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -20,10 +19,10 @@ interface Props {
 }
 
 export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) => {
-  const { products, isLoaded } = useSelector((state: RootState) => ({
-    products: filterFunction(state.products.products),
-    isLoaded: state.products.isLoaded,
-  }));
+  const { products, isLoaded } = useSelector((state: RootState) => state.products);
+
+  const filteredProducts = filterFunction(products);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -105,7 +104,7 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
         virtual
         onSlideChange={onSlideChange}
       >
-        {products.map((product, index) => (
+        {filteredProducts.map((product, index) => (
           <SwiperSlide key={product.id} virtualIndex={index} className="swiper-slide">
             <CardItem product={product} />
           </SwiperSlide>
