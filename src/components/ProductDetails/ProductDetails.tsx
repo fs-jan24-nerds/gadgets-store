@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, useParams } from 'react-router-dom';
 import { RootState, useAppSelector } from '../../store/store';
 import { getPhones } from '../../api/api';
@@ -6,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { setPhones } from '../../store/phonesSlice';
 import { Item } from '../../types/Product';
 import { PhoneOptionsSelector } from '../PhoneOptionsSelector/PhoneOptionsSelector';
+import { About } from '../About';
 
 export const ProductDetails: React.FC = () => {
   const { phones, isLoaded } = useAppSelector((state: RootState) => state.phones);
@@ -29,7 +31,7 @@ export const ProductDetails: React.FC = () => {
 
       setPhone(selectedPhone);
     }
-  }, [id, phones]);
+  }, [id, phones, isLoaded]);
 
   const productStyles =
     'items-center w-20 h-20 p-2 border border-#C4C4C4 cursor-pointer hover:border-primary transition-colors duration-500 ease-out';
@@ -79,12 +81,7 @@ export const ProductDetails: React.FC = () => {
             <PhoneOptionsSelector phone={phone} />
           </div>
 
-          {phone.description?.map(({ title, text }, index) => (
-            <div key={index}>
-              <h2 className="text-xl font-semibold">{title}</h2>
-              {text?.map((paragraph, pIndex) => <p key={pIndex}>{paragraph}</p>)}
-            </div>
-          ))}
+          <About item={phone} />
         </div>
       )}
     </>
