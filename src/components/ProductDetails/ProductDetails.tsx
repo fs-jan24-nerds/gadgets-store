@@ -30,11 +30,11 @@ export const ProductDetails: React.FC = () => {
   }, [id, phones]);
 
   const productStyles =
-    'items-center w-20 h-20 p-2 border border-#C4C4C4 cursor-pointer hover:border-primary transition-colors duration-500 ease-out';
+    'items-center w-20 h-20 border border-#C4C4C4 cursor-pointer hover:border-primary transition-colors duration-500 ease-out';
   return (
     <>
       {phone && (
-        <div className="mx-auto max-w-screen-xl p-6">
+        <div className="mx-auto max-w-screen-xl">
           <div className="mb-6">
             <Link to={-1 as any} className="flex text-secondary">
               <div className="w-4 h-4">
