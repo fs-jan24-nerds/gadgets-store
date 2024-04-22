@@ -28,10 +28,10 @@ export const PhonesPage = () => {
   const pageProductsList = slicedList(phoneProducts, +currentPageNumber, ITEMS_PER_PAGE);
 
   return (
-    <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">
+    <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">
       <h1 className="text-lg">Phones Page</h1>
       {isLoaded && (
-        <div className="grid grid-cols-4 gap-y-1">
+        <div className="grid grid-cols-1  gap-x-[16px] gap-y-[40px] sm:grid-cols-2 bd  md:grid-cols-3  lg:grid-cols-4 ">
           {pageProductsList.map((product) => (
             <CardItem key={product.id} product={product} />
           ))}
