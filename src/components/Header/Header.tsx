@@ -9,6 +9,7 @@ import logo from '../../assets/icons/Logo.svg';
 import BurgerMenu from '../../assets/icons/Menu.svg';
 import cartIcon from '../../assets/icons/cart.svg';
 import favourites from '../../assets/icons/favourites.svg';
+import { getClassNavLink } from '../../utils/getClass';
 
 export const Header = () => {
   const location = useLocation();
@@ -21,11 +22,17 @@ export const Header = () => {
   const totalItems = cart.reduce((acc, cartItem) => acc + cartItem.count, 0);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    isMenuOpen ? closeMenu() : openMenu();
   };
 
   const closeMenu = () => {
+    document.body.classList.remove('overflow-hidden');
     setIsMenuOpen(false);
+  };
+
+  const openMenu = () => {
+    document.body.classList.add('overflow-hidden');
+    setIsMenuOpen(true);
   };
 
   return (
@@ -46,20 +53,24 @@ export const Header = () => {
         </button>
       </div>
       <div
-        className={`sm:grid col-start-1 col-span-12  border-elements sm:col-start-3 sm:col-span-13 justify-between hidden:sm ${isMenuOpen ? 'block' : 'hidden'}`}
+        className={`sm:grid col-start-1 col-span-12 sm:col-start-3 sm:col-span-13 justify-between hidden:sm ${isMenuOpen ? 'block border-t-2 border-elements' : 'hidden'}`}
       >
         <Navigation closeMenu={closeMenu} />
-        <div className="flex col-end-12 items-center box-border justify-stretch sm:justify-center ">
+        <div
+          className={`flex col-end-12 items-center box-border justify-stretch sm:justify-center ${isMenuOpen && 'border-t-2 border-elements'}`}
+        >
           <NavLink
             to={{ pathname: 'favorites', search: location.search }}
-            className="flex border-l-2 border-elements w-16 h-16 items-center flex-1 justify-center"
+            className={(props) =>
+              `${getClassNavLink(props)} hover:border-b-primary border-l-2 border-l-elements flex w-16 h-16 items-center flex-1 justify-center`
+            }
             onClick={closeMenu}
           >
             <div className="relative">
               <img src={favourites} alt="favourites" className="w-6 h-6" />
               {favouritesProducts.length > 0 && (
                 <span
-                  className=" bg-red absolute rounded-full leading-none grid place-items-center
+                  className="bg-red absolute rounded-full leading-none grid place-items-center
                    text-white w-[18px] h-[18px] top-0 right-0 transform translate-x-2/4 -translate-y-2/4"
                 >
                   {favouritesProducts.length}
@@ -69,7 +80,9 @@ export const Header = () => {
           </NavLink>
           <NavLink
             to={{ pathname: 'cart', search: location.search }}
-            className="flex border-elements border-l-2 w-16 h-16  items-center flex-1 justify-center"
+            className={(props) =>
+              `${getClassNavLink(props)} hover:border-b-primary flex border-l-elements border-l-2 w-16 h-16 items-center flex-1 justify-center`
+            }
             onClick={closeMenu}
           >
             <div className="relative">

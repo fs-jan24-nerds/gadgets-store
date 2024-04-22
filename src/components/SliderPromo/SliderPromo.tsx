@@ -1,7 +1,10 @@
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import Banner from '../../assets/SliderPromo/Banner.png';
+import Slider3 from '../../assets/SliderPromo/sleder3.jpeg';
+import Slider1 from '../../assets/SliderPromo/slider1.jpg';
+import Slider2 from '../../assets/SliderPromo/slider2.jpeg';
+import Slider4 from '../../assets/SliderPromo/slider4.jpg';
 
 import LeftArrow from '../../assets/SliderPromo/icons/left-arrow.svg';
 import RightArrow from '../../assets/SliderPromo/icons/right-arrow.svg';
@@ -41,19 +44,24 @@ const SliderPromo = () => {
               delay: 3000,
               disableOnInteraction: false,
             }}
-            speed={1000}
+            speed={1500}
             slidesPerView={1}
+            spaceBetween={25}
           >
             <SwiperSlide>
-              <img src={Banner} className={styles.slide} alt="Slide 1" />
+              <img src={Slider1} className={styles.slide} alt="Slide 1" />
             </SwiperSlide>
 
             <SwiperSlide>
-              <img src={Banner} className={styles.slide} alt="Slide 2" />
+              <img src={Slider2} className={styles.slide} alt="Slide 2" />
             </SwiperSlide>
 
             <SwiperSlide>
-              <img src={Banner} className={styles.slide} alt="Slide 3" />
+              <img src={Slider3} className={styles.slide} alt="Slide 3" />
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <img src={Slider4} className={styles.slide} alt="Slide 3" />
             </SwiperSlide>
           </Swiper>
 
