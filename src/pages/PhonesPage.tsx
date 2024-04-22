@@ -9,6 +9,8 @@ import { Pagination } from '../components/Pagination/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import { slicedList } from '../utils/generatePagination';
 import { ITEMS_PER_PAGE } from '../types/constants';
+import { Grid } from '../components/Grid/Grid';
+import { GridItem } from '../components/Grid/GridItem';
 
 export const PhonesPage = () => {
   const { products, isLoaded } = useSelector((state: RootState) => state.products);
@@ -31,11 +33,13 @@ export const PhonesPage = () => {
     <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">
       <h1 className="text-lg">Phones Page</h1>
       {isLoaded && (
-        <div className="grid grid-cols-1  gap-x-[16px] gap-y-[40px] sm:grid-cols-2 bd  md:grid-cols-3  lg:grid-cols-4 ">
+        <Grid>
           {pageProductsList.map((product) => (
-            <CardItem key={product.id} product={product} />
+            <GridItem key={product.id} className="col-span-4 tablet:col-span-6">
+              <CardItem product={product} />
+            </GridItem>
           ))}
-        </div>
+        </Grid>
       )}
       <Pagination
         totalProducts={phoneProducts.length}

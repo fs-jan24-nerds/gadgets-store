@@ -15,9 +15,9 @@ export const Checkout = () => {
         Total for {totalItems} items
       </p>
 
-      <p className="bg-secondary w-full md:w-[321px] h-1 mb-[24px]"></p>
+      <div className="bg-secondary w-full h-1 mb-[24px]"></div>
 
-      <button className="md:w-80 w-full h-12 bg-primary text-white font-Mont font-bold text-base leading-6 text-center">
+      <button className="w-full h-12 bg-primary text-white font-Mont font-bold text-base leading-6 text-center">
         Checkout
       </button>
     </div>

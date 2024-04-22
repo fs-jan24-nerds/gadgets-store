@@ -27,7 +27,7 @@ export const CardItem: React.FC<Props> = ({ product }) => {
   return (
     <article className="flex justify-between flex-col p-8 border border-1 border-elements transition-shadow duration-300 hover:shadow-3xl">
       <div className="flex flex-col">
-        <div className="max-h-[240px] mb-[24px]">
+        <div className="h-[240px] mb-[24px]">
           <Link to={`${itemId}`}>
             <img
               className="object-scale-down w-full max-h-full transition-scale duration-300 hover:scale-105"
@@ -36,7 +36,9 @@ export const CardItem: React.FC<Props> = ({ product }) => {
           </Link>
         </div>
         <Link to={`${itemId}`}>
-          <h3 className="grow mt-2 text-sm leading-5 font-semibold text-primary">{name}</h3>
+          <h3 className="grow mt-2 text-sm leading-5 h-[2.5rem] overflow-hidden font-semibold text-primary">
+            {name}
+          </h3>
         </Link>
       </div>
       <div className="flex text-2xl">
