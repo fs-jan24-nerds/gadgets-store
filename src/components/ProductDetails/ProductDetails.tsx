@@ -3,7 +3,7 @@ import { RootState, useAppSelector } from '../../store/store';
 import { getProductById } from '../../api/api';
 import { useEffect, useState } from 'react';
 import { Item } from '../../types/Product';
-import { ProductOptionsSelector } from '../ProductOptionsSelector/ProductOptionsSelector';
+import { SelectedProductFilter } from '../SelectedProductFilter/SelectedProductFilter';
 import { About } from '../About';
 import { BackButton } from '../BackButton/BackButton';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
@@ -64,7 +64,7 @@ export const ProductDetails = () => {
                 />
               </div>
             </div>
-            <ProductOptionsSelector phone={product} />
+            <SelectedProductFilter product={product} />
           </div>
 
           <About item={product} />
