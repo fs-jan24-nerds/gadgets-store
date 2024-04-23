@@ -5,8 +5,8 @@ import { HomePage } from './pages/HomePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { FavouritesPage } from './components/Favourites/FavouritesPage';
 import CartPage from './components/Cart/CartPage';
-import { ProductDetails } from './components/ProductDetails/ProductDetails';
 import { ProductList } from './pages/ProductList';
+import { ProductDetails } from './components/ProductDetails/ProductDetails';
 
 function App() {
   return (

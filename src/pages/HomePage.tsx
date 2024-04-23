@@ -6,9 +6,11 @@ import { Product } from '../types/Product';
 
 export const HomePage = () => {
   const filterForNewModel = (products: Product[]) => {
-    return products.filter(
-      (product) => product.category === 'phones' && product.name.includes('Apple iPhone 14'),
-    );
+    return products
+      .filter(
+        (product) => product.category === 'phones' && product.name.includes('Apple iPhone 14'),
+      )
+      .slice(0, 15);
   };
 
   const getPriceDifference = (product: Product) => {
@@ -29,7 +31,7 @@ export const HomePage = () => {
   };
 
   return (
-    <div className="">
+    <div className="mt-6 sm:mt-8 md:mt-14">
       <section className="max-w-max-width mx-auto box-content px-0 sm:px-6 lg:px-8">
         <SliderPromo />
       </section>

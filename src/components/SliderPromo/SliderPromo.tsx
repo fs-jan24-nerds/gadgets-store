@@ -1,7 +1,11 @@
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import Banner from '../../assets/SliderPromo/Banner.png';
+import Slider3 from '../../assets/SliderPromo/sleder3.jpeg';
+import Slider1 from '../../assets/SliderPromo/slider1.jpg';
+import Slider2 from '../../assets/SliderPromo/slider2.jpeg';
+import Slider4 from '../../assets/SliderPromo/slider4.jpg';
+
 import LeftArrow from '../../assets/SliderPromo/icons/left-arrow.svg';
 import RightArrow from '../../assets/SliderPromo/icons/right-arrow.svg';
 
@@ -15,7 +19,7 @@ import styles from './SliderPromo.module.css';
 const SliderPromo = () => {
   return (
     <div>
-      <h1 className="text-5xl font-extrabold text-left">Welcome to Nice Gadgets store!</h1>
+      <h1 className="text-5xl text-left">Welcome to Nice Gadgets store!</h1>
 
       <div className="flex flex-col items-center max-w-full mt-6 lg:mt-8 xl:mt-14 mb-14 lg:mb-16 xl:mb-20">
         <div className="flex gap-4 w-full mb-8">
@@ -38,21 +42,26 @@ const SliderPromo = () => {
             }}
             autoplay={{
               delay: 3000,
+              disableOnInteraction: false,
             }}
             speed={1500}
-            loop={true}
             slidesPerView={1}
+            spaceBetween={25}
           >
             <SwiperSlide>
-              <img src={Banner} className={styles.slide} alt="Slide 1" />
+              <img src={Slider1} className={styles.slide} alt="Slide 1" />
             </SwiperSlide>
 
             <SwiperSlide>
-              <img src={Banner} className={styles.slide} alt="Slide 1" />
+              <img src={Slider2} className={styles.slide} alt="Slide 2" />
             </SwiperSlide>
 
             <SwiperSlide>
-              <img src={Banner} className={styles.slide} alt="Slide 1" />
+              <img src={Slider3} className={styles.slide} alt="Slide 3" />
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <img src={Slider4} className={styles.slide} alt="Slide 3" />
             </SwiperSlide>
           </Swiper>
 

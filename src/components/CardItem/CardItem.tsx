@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useCartProducts } from '../../hooks/useCartProducts';
-import { Product } from '../../types/Product';
-import likeIcon from '../../assets/icons/LikeIcon.svg';
-import disLikeIcon from '../../assets/icons/dislike.svg';
-import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
 import { Link } from 'react-router-dom';
+import dislike from '../../assets/icons/dislike.svg';
+import like from '../../assets/icons/like.svg';
+import { useCartProducts } from '../../hooks/useCartProducts';
+import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
+import { Product } from '../../types/Product';
 
 type Props = {
   product: Product;
@@ -25,9 +25,9 @@ export const CardItem: React.FC<Props> = ({ product }) => {
   };
 
   return (
-    <article className="flex justify-between flex-col p-8 border border-1 border-elements w-[272px] transition-shadow duration-300 hover:shadow-3xl">
-      <div className="flex flex-col h-[290px]">
-        <div className="max-h-[240px]">
+    <article className="flex justify-between flex-col p-8 border border-1 border-elements transition-shadow duration-300 hover:shadow-3xl">
+      <div className="flex flex-col">
+        <div className="h-[240px] mb-[24px]">
           <Link to={`${itemId}`}>
             <img
               className="object-scale-down w-full max-h-full transition-scale duration-300 hover:scale-105"
@@ -36,7 +36,9 @@ export const CardItem: React.FC<Props> = ({ product }) => {
           </Link>
         </div>
         <Link to={`${itemId}`}>
-          <h3 className="grow mt-2 text-sm leading-5 font-semibold text-primary">{name}</h3>
+          <h3 className="grow mt-2 text-sm leading-5 h-[2.5rem] overflow-hidden font-semibold text-primary">
+            {name}
+          </h3>
         </Link>
       </div>
       <div className="flex text-2xl">
@@ -60,31 +62,41 @@ export const CardItem: React.FC<Props> = ({ product }) => {
           </div>
         ))}
       </div>
-      <div className="flex justify-between">
-        {isInCart ? (
-          <button
-            className="w-[160px] h-[40px] font-bold text-sm bg-white border border-1 border-elements text-green"
-            onClick={() => removeAllFromCartById(id)}
-          >
-            Added to cart
-          </button>
-        ) : (
-          <button
-            className="w-[160px] h-[40px] font-bold text-sm bg-primary text-white"
-            onClick={() => addProductToCart(product)}
-          >
-            Add to cart
-          </button>
-        )}
-        {isLike ? (
-          <button className="text-sm w-[40px] h-[40px]" onClick={() => removeFromFavourites(id)}>
-            <img src={likeIcon} alt="like" />
-          </button>
-        ) : (
-          <button className="text-sm w-[40px] h-[40px]" onClick={() => addToFavourites(product)}>
-            <img src={disLikeIcon} alt="dislike" />
-          </button>
-        )}
+      <div className="flex justify-between gap-x-1 items-start">
+        <div className="w-[100%]">
+          {isInCart ? (
+            <button
+              className="w-[100%] h-[40px] font-bold text-sm bg-white border border-1 border-elements text-green"
+              onClick={() => removeAllFromCartById(id)}
+            >
+              Added to cart
+            </button>
+          ) : (
+            <button
+              className="w-[100%] h-[40px] font-bold text-sm bg-primary text-white"
+              onClick={() => addProductToCart(product)}
+            >
+              Add to cart
+            </button>
+          )}
+        </div>
+        <div>
+          {isLike ? (
+            <button
+              className="flex items-center justify-center text-sm w-[40px] h-[40px] border border-1 border-elements"
+              onClick={() => removeFromFavourites(id)}
+            >
+              <img src={dislike} alt="like" />
+            </button>
+          ) : (
+            <button
+              className="flex items-center justify-center text-sm w-[40px] h-[40px] border border-1 border-elements"
+              onClick={() => addToFavourites(product)}
+            >
+              <img src={like} alt="dislike" />
+            </button>
+          )}
+        </div>
       </div>
     </article>
   );

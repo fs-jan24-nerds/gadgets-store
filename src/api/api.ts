@@ -3,22 +3,22 @@ import phonesJson from '../../public/api/phones.json';
 import tabletsJson from '../../public/api/tablets.json';
 import accessoriesJson from '../../public/api/accessories.json';
 
-import { Item, Product } from '../types/Product';
+import { Accessorie, Item, Phone, Product, Tablet } from '../types/Product';
 
 export const getProducts = () => {
   return productsJson as Product[];
 };
 
 export const getPhones = () => {
-  return phonesJson as Item[];
+  return phonesJson as Phone[];
 };
 
 export const getTablets = () => {
-  return tabletsJson as Item[];
+  return tabletsJson as Tablet[];
 };
 
 export const getAccessories = () => {
-  return accessoriesJson as Item[];
+  return accessoriesJson as Accessorie[];
 };
 
 export const getProductById = (productId: string, category: string): Item | undefined => {
