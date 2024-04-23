@@ -12,7 +12,7 @@ import { Grid } from '../components/Grid/Grid';
 import { GridItem } from '../components/Grid/GridItem';
 import { slicedList } from '../utils/generatePagination';
 
-import { selectCurrentSort } from '../store/SortSlice';
+import { selectCurrentSort, setSort } from '../store/SortSlice';
 import { SortStatus } from '../types/enums';
 import { Product } from '../types/Product';
 import { SortComponent } from '../components/SortComponent/SortComponent';
@@ -30,6 +30,13 @@ export const PhonesPage = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const currentPageNumber = searchParams.get('page') || 1;
+
+  useEffect(() => {
+    const currentSort = searchParams.get('sort') as SortStatus;
+    if (currentSort && Object.values(SortStatus).includes(currentSort)) {
+      dispatch(setSort(currentSort));
+    }
+  }, [dispatch, searchParams]);
 
   useEffect(() => {
     if (isLoaded) {
