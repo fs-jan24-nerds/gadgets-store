@@ -26,6 +26,7 @@ export const PhonesPage = () => {
 
   const phoneProducts = products.filter((product) => product.category === 'phones');
   const pageProductsList = slicedList(phoneProducts, +currentPageNumber, ITEMS_PER_PAGE);
+  
 
   return (
     <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">

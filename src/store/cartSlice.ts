@@ -44,7 +44,7 @@ export const cartSlice = createSlice({
         });
       }
     },
-    removeOneFromCart: (state, action: PayloadAction<number>) => {
+    removeOneFromCart: (state, action: PayloadAction<number | string>) => {
       state.cart = state.cart.map((cartItem) => {
         if (cartItem.id === action.payload) {
           return {
@@ -57,7 +57,7 @@ export const cartSlice = createSlice({
 
       state.cart = state.cart.filter((cartItem) => cartItem.count > 0);
     },
-    removeAllFromCart: (state, action: PayloadAction<number>) => {
+    removeAllFromCart: (state, action: PayloadAction<number | string>) => {
       state.cart = state.cart.filter((cartItem) => cartItem.id !== action.payload);
     },
   },
