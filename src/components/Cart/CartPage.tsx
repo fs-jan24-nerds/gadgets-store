@@ -6,10 +6,13 @@ import { EmptyCartMessage } from './components/EmptyCartMessage';
 import { Checkout } from './components/Checkout';
 import { Grid } from '../Grid/Grid';
 import { GridItem as GI } from '../Grid/GridItem';
+import { useState } from 'react';
+import { ConfirmedOrderPage } from './components/ConfirmedOrderPage';
 
 const CartPage = () => {
   const navigate = useNavigate();
   const { cart } = useCartProducts();
+  const [isConfirmed, setIsComfirmed] = useState(false);
 
   return (
     <Grid>
@@ -28,19 +31,27 @@ const CartPage = () => {
           Cart
         </h1>
       </GI>
-      {cart.length === 0 ? (
+      {isConfirmed ? (
         <GI>
-          <EmptyCartMessage />
-        </GI>
+          <ConfirmedOrderPage />
+          </GI>
       ) : (
         <>
-          <GI className="col-span-4 tablet:col-span-12 desktop:col-span-16">
-            <CartTable />
-          </GI>
+          {cart.length === 0 && !isConfirmed ? (
+            <GI>
+              <EmptyCartMessage />
+            </GI>
+          ) : (
+            <>
+              <GI className="col-span-4 tablet:col-span-12 desktop:col-span-16">
+                <CartTable />
+              </GI>
 
-          <GI className="col-span-4 tablet:col-span-12 desktop:col-span-8">
-            <Checkout />
-          </GI>
+              <GI className="col-span-4 tablet:col-span-12 desktop:col-span-8">
+                <Checkout onComfirmed={setIsComfirmed} />
+              </GI>
+            </>
+          )}
         </>
       )}
     </Grid>
