@@ -19,7 +19,6 @@ export const ProductDetails = () => {
   useEffect(() => {
     if (isLoaded) {
       if (id && category) {
-        // const product = getProductById(id, category);
         const product = getProductById(id, category);
         setProduct(product);
       }
@@ -33,7 +32,7 @@ export const ProductDetails = () => {
       {product && (
         <div className="mx-auto max-w-screen-xl px-6">
           <div className="mb-6">
-            <Breadcrumbs categoryName={category || ''} />
+            <Breadcrumbs />
 
             <BackButton />
 

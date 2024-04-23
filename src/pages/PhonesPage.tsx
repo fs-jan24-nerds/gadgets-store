@@ -69,7 +69,7 @@ export const PhonesPage = () => {
 
   return (
     <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">
-      <Breadcrumbs categoryName={'Phones'} />
+      <Breadcrumbs />
       <h1 className="text-5xl font-extrabold">Mobile phones</h1>
       <p className="text-secondary text-xs font-semibold mb-10 mt-2 ">{totalLength} models</p>
       <SortComponent />
