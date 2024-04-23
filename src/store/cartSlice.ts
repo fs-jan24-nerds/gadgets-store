@@ -58,11 +58,10 @@ export const cartSlice = createSlice({
       });
 
       state.cart = state.cart.filter((cartItem) => cartItem.count > 0);
-      toast.warn('Товар успішно видалено з корзини');
     },
     removeAllFromCart: (state, action: PayloadAction<number | string>) => {
       state.cart = state.cart.filter((cartItem) => cartItem.id !== action.payload);
-      toast.error('Товар успішно видалено з корзини');
+      toast.warn('Товар успішно видалено з корзини');
     },
   },
 });
