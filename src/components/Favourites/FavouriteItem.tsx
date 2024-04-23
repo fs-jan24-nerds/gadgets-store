@@ -1,9 +1,8 @@
-import {Product } from '../../types/Product';
+import { Product } from '../../types/Product';
 import dislike from '../../assets/icons/dislike.svg';
 import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
 import { Link } from 'react-router-dom';
 import { useCartProducts } from '../../hooks/useCartProducts';
-
 
 type Props = {
   product: Product;
@@ -18,7 +17,6 @@ export const FavouritesItem: React.FC<Props> = ({ product }) => {
     Capacity: capacity,
   };
   const [, , removeFromFavourites] = useFavouritesProducts();
-
 
   const { cart, addProductToCart, removeAllFromCartById } = useCartProducts();
   const isInCart = cart.some((cartProduct) => cartProduct.id === id);

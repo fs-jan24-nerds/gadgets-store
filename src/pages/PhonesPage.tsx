@@ -12,9 +12,21 @@ import { Grid } from '../components/Grid/Grid';
 import { GridItem } from '../components/Grid/GridItem';
 import { slicedList } from '../utils/generatePagination';
 
+import { selectCurrentSort } from '../store/SortSlice';
+import { SortStatus } from '../types/enums';
+import { Product } from '../types/Product';
+import { SortComponent } from '../components/SortComponent/SortComponent';
+
+const sortByYear = (a: Product, b: Product): number => {
+  const aYear = a.year ?? 0;
+  const bYear = b.year ?? 0;
+
+  return bYear - aYear;
+};
 
 export const PhonesPage = () => {
   const { products, isLoaded } = useSelector((state: RootState) => state.products);
+  const currentSort = useSelector(selectCurrentSort);
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const currentPageNumber = searchParams.get('page') || 1;
@@ -28,13 +40,33 @@ export const PhonesPage = () => {
   }, [isLoaded, dispatch]);
 
   const phoneProducts = products.filter((product) => product.category === 'phones');
-  const pageProductsList = slicedList(phoneProducts, +currentPageNumber, ITEMS_PER_PAGE);
+
+  const totalLength = phoneProducts.length;
+
+  const sortedProducts = [...phoneProducts];
+
+  switch (currentSort) {
+    case SortStatus.PriceHigh:
+      sortedProducts.sort((a, b) => b.price - a.price);
+      break;
+    case SortStatus.PriceLow:
+      sortedProducts.sort((a, b) => a.price - b.price);
+      break;
+    case SortStatus.Newest:
+      sortedProducts.sort(sortByYear);
+      break;
+    default:
+  }
+
+  const pageProductsList = slicedList(sortedProducts, +currentPageNumber, ITEMS_PER_PAGE);
 
   return (
     <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">
       <Breadcrumbs categoryName={'Phones'} />
+      <h1 className="text-5xl font-extrabold">Mobile phones</h1>
+      <p className="text-secondary text-xs font-semibold mb-10 mt-2 ">{totalLength} models</p>
+      <SortComponent />
 
-      <h1 className="text-lg">Phones Page</h1>
       {isLoaded && (
         <Grid>
           {pageProductsList.map((product) => (
@@ -45,7 +77,7 @@ export const PhonesPage = () => {
         </Grid>
       )}
       <Pagination
-        totalProducts={phoneProducts.length}
+        totalProducts={totalLength}
         productsPerPage={ITEMS_PER_PAGE}
         currentPageNumber={+currentPageNumber}
       />

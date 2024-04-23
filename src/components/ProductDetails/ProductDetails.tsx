@@ -6,16 +6,14 @@ import { setPhones } from '../../store/phonesSlice';
 import { RootState, useAppSelector } from '../../store/store';
 import { Item } from '../../types/Product';
 import { About } from '../About';
-import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
-import { PhoneOptionsSelector } from '../PhoneOptionsSelector/PhoneOptionsSelector';
 import { BackButton } from '../BackButton/BackButton';
+import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
+import { ProductOptionsSelector } from '../ProductOptionsSelector/ProductOptionsSelector';
 
 export const ProductDetails: React.FC = () => {
   const { phones, isLoaded } = useAppSelector((state: RootState) => state.phones);
   const { id } = useParams();
-
   const [phone, setPhone] = useState<Item | undefined>();
-
   const dispatch = useDispatch();
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
 
@@ -37,7 +35,7 @@ export const ProductDetails: React.FC = () => {
   const productStyles =
     'items-center w-20 h-20 p-2 border border-#C4C4C4 cursor-pointer hover:border-primary transition-colors duration-500 ease-out';
   return (
-    <>
+    <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">
       {phone && (
         <div className="mx-auto max-w-screen-xl px-6">
           <div className="mb-6">
@@ -72,12 +70,12 @@ export const ProductDetails: React.FC = () => {
                 />
               </div>
             </div>
-            <PhoneOptionsSelector phone={phone} />
+            <ProductOptionsSelector phone={phone} />
           </div>
 
           <About item={phone} />
         </div>
       )}
-    </>
+    </div>
   );
 };
