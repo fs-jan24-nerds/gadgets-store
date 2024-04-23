@@ -1,21 +1,19 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { getProducts } from '../api/api';
-import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs';
 import { CardItem } from '../components/CardItem';
-import { Pagination } from '../components/Pagination/Pagination';
-import { setProducts } from '../store/productsSlice';
 import { RootState } from '../store/store';
-import { ITEMS_PER_PAGE } from '../types/constants';
-import { Grid } from '../components/Grid/Grid';
-import { GridItem } from '../components/Grid/GridItem';
+import { useDispatch } from 'react-redux';
+import { setProducts } from '../store/productsSlice';
+import { Pagination } from '../components/Pagination/Pagination';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { slicedList } from '../utils/generatePagination';
-
+import { ITEMS_PER_PAGE } from '../types/constants';
+import { Product } from '../types/Product';
 import { selectCurrentSort, setSort } from '../store/SortSlice';
 import { SortStatus } from '../types/enums';
-import { Product } from '../types/Product';
 import { SortComponent } from '../components/SortComponent/SortComponent';
+import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs';
 
 const sortByYear = (a: Product, b: Product): number => {
   const aYear = a.year ?? 0;
@@ -24,9 +22,12 @@ const sortByYear = (a: Product, b: Product): number => {
   return bYear - aYear;
 };
 
-export const PhonesPage = () => {
+export const ProductList = () => {
+  const { category } = useParams();
+
   const { products, isLoaded } = useSelector((state: RootState) => state.products);
   const currentSort = useSelector(selectCurrentSort);
+
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const currentPageNumber = searchParams.get('page') || 1;
@@ -39,18 +40,15 @@ export const PhonesPage = () => {
   }, [dispatch, searchParams]);
 
   useEffect(() => {
-    if (isLoaded) {
-      return;
+    if (!isLoaded) {
+      dispatch(setProducts(getProducts()));
     }
-
-    dispatch(setProducts(getProducts()));
   }, [isLoaded, dispatch]);
 
-  const phoneProducts = products.filter((product) => product.category === 'phones');
+  const allProducts = products.filter((product) => product.category === category);
 
-  const totalLength = phoneProducts.length;
-
-  const sortedProducts = [...phoneProducts];
+  const totalLength = allProducts.length;
+  const sortedProducts = [...allProducts];
 
   switch (currentSort) {
     case SortStatus.PriceHigh:
@@ -68,20 +66,17 @@ export const PhonesPage = () => {
   const pageProductsList = slicedList(sortedProducts, +currentPageNumber, ITEMS_PER_PAGE);
 
   return (
-    <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">
-      <Breadcrumbs categoryName={'Phones'} />
+    <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">
+      <Breadcrumbs categoryName={category || ''} />
       <h1 className="text-5xl font-extrabold">Mobile phones</h1>
       <p className="text-secondary text-xs font-semibold mb-10 mt-2 ">{totalLength} models</p>
       <SortComponent />
-
       {isLoaded && (
-        <Grid>
+        <div className="grid grid-cols-4 gap-y-1">
           {pageProductsList.map((product) => (
-            <GridItem key={product.id} className="col-span-4 tablet:col-span-6">
-              <CardItem product={product} />
-            </GridItem>
+            <CardItem key={product.id} product={product} />
           ))}
-        </Grid>
+        </div>
       )}
       <Pagination
         totalProducts={totalLength}

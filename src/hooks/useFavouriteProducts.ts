@@ -1,15 +1,14 @@
-import {Product } from "../types/Product";
-import { useAppDispatch, useAppSelector } from "../store/store";
-import { addFavourites, removeFavourite } from "../store/favouriteSlice";
-
+import { Product } from '../types/Product';
+import { useAppDispatch, useAppSelector } from '../store/store';
+import { addFavourites, removeFavourite } from '../store/favouriteSlice';
 
 export const useFavouritesProducts = (): [
   Product[],
   (product: Product) => void,
-  (productId: number) => void
-]  => {
+  (productId: number) => void,
+] => {
   const dispatch = useAppDispatch();
-  const { favouritesProducts } = useAppSelector(state => state.favourites);
+  const { favouritesProducts } = useAppSelector((state) => state.favourites);
 
   const addToFavourites = (product: Product) => {
     dispatch(addFavourites(product));
@@ -22,6 +21,4 @@ export const useFavouritesProducts = (): [
   };
 
   return [favouritesProducts, addToFavourites, removeFromFavourites];
-}
-
-
+};

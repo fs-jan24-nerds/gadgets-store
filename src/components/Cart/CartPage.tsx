@@ -1,29 +1,24 @@
-import { useNavigate } from 'react-router-dom';
-import vectorIcon from './img/Vector.svg';
 import { CartTable } from './components/CartTable';
 import { useCartProducts } from '../../hooks/useCartProducts';
 import { EmptyCartMessage } from './components/EmptyCartMessage';
 import { Checkout } from './components/Checkout';
 import { Grid } from '../Grid/Grid';
 import { GridItem as GI } from '../Grid/GridItem';
+
 import { useState } from 'react';
 import { ConfirmedOrderPage } from './components/ConfirmedOrderPage';
 
+import { BackButton } from '../BackButton/BackButton';
+
+
 const CartPage = () => {
-  const navigate = useNavigate();
   const { cart } = useCartProducts();
   const [isConfirmed, setIsComfirmed] = useState(false);
 
   return (
     <Grid>
       <GI>
-        <button
-          onClick={() => navigate('..')}
-          className="flex items-center gap-2 font-Mont text-lg font-bold leading-4 tracking-tight text-left text-secondary  mb-4"
-        >
-          <img src={vectorIcon} alt="vector" />
-          <span>Back</span>
-        </button>
+        <BackButton />
       </GI>
 
       <GI>
