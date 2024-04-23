@@ -13,7 +13,6 @@ export enum PhoneColor {
   WHITE = 'White',
 }
 
-
 export enum SortStatus {
   Newest = 'Newest',
   PriceLow = 'Price low',

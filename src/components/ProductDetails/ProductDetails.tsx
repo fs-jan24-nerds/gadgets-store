@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getPhones } from '../../api/api';
 import { setPhones } from '../../store/phonesSlice';
-import { ProductOptionsSelector } from '../ProductOptionsSelector/ProductOptionsSelector';
-import { Item } from '../../types/Product';
 import { RootState, useAppSelector } from '../../store/store';
+import { Item } from '../../types/Product';
 import { About } from '../About';
+import { BackButton } from '../BackButton/BackButton';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
+import { ProductOptionsSelector } from '../ProductOptionsSelector/ProductOptionsSelector';
 
 export const ProductDetails: React.FC = () => {
   const { phones, isLoaded } = useAppSelector((state: RootState) => state.phones);
@@ -40,16 +41,7 @@ export const ProductDetails: React.FC = () => {
           <div className="mb-6">
             <Breadcrumbs categoryName={phone.name} />
 
-            <Link to=".." className="flex text-secondary">
-              <div className="w-4 h-4">
-                <img
-                  src="/gadgets-store/src/assets/icons/leftArrow.svg"
-                  alt="Go back"
-                  className="max-w-full"
-                />
-              </div>
-              Back
-            </Link>
+            <BackButton />
 
             <h1 className="font-mont-bold leading-[41px] tracking-tighter text-primary text-left mb-6 md:text-4xl text-[22px]">
               {phone?.name}
