@@ -21,7 +21,6 @@ export const ProductOptionsSelector: React.FC<Props> = ({ phone }) => {
 
   const [favouritesProducts, addToFavourites, removeFromFavourites] = useFavouritesProducts();
 
-
   const selectedProduct = useAppSelector((state) =>
     state.products.products.find((product) => product.itemId === phone.id),
   );
@@ -97,7 +96,7 @@ export const ProductOptionsSelector: React.FC<Props> = ({ phone }) => {
               ${itemPhone.priceDiscount}
             </p>
             <p className="font-mont-semiBold line-through  text-[22px] text-secondary">
-              ${itemPhone.priceRegular} 
+              ${itemPhone.priceRegular}
             </p>
           </>
         ) : (

@@ -9,8 +9,6 @@ import { RootState, useAppSelector } from '../../store/store';
 import { About } from '../About';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 
-
-
 export const ProductDetails: React.FC = () => {
   const { phones, isLoaded } = useAppSelector((state: RootState) => state.phones);
   const { id } = useParams();
@@ -32,8 +30,6 @@ export const ProductDetails: React.FC = () => {
       setPhone(selectedPhone);
     }
   }, [id, phones, isLoaded]);
-
-  
 
   const productStyles =
     'items-center w-20 h-20 p-2 border border-#C4C4C4 cursor-pointer hover:border-primary transition-colors duration-500 ease-out';

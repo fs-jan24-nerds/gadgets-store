@@ -21,9 +21,6 @@ export const FavouritesItem: React.FC<Props> = ({ product }) => {
   const { cart, addProductToCart, removeAllFromCartById } = useCartProducts();
   const isInCart = cart.some((cartProduct) => cartProduct.id === id);
 
-
-
-
   return (
     <article className="flex justify-between flex-col p-8 border border-1 border-elements transition-shadow duration-300 hover:shadow-3xl">
       <div className="flex flex-col">
