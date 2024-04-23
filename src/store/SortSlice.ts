@@ -2,25 +2,25 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { SortStatus } from '../types/enums';
 
 export interface SortState {
-  filter: SortStatus;
+  sort: SortStatus;
 }
 
 const initialState = {
-  filter: SortStatus.Newest,
+  sort: SortStatus.Newest,
 };
 
-const filterSlice = createSlice({
-  name: 'filter',
+const sortSlice = createSlice({
+  name: 'sort',
   initialState,
   reducers: {
-    setFilter: (state, action: PayloadAction<SortStatus>) => {
-      state.filter = action.payload;
+    setSort: (state, action: PayloadAction<SortStatus>) => {
+      state.sort = action.payload;
     },
   },
 });
 
-export const { setFilter } = filterSlice.actions;
+export const { setSort } = sortSlice.actions;
 
-export default filterSlice.reducer;
+export default sortSlice.reducer;
 
-export const selectCurrentFilter = (state: { filter: SortState }) => state.filter.filter;
+export const selectCurrentSort = (state: { filter: SortState }) => state.filter.sort;

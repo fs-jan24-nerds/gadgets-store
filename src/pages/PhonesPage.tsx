@@ -9,10 +9,10 @@ import { Pagination } from '../components/Pagination/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import { slicedList } from '../utils/generatePagination';
 import { ITEMS_PER_PAGE } from '../types/constants';
-import { selectCurrentFilter } from '../store/SortSlice';
+import { selectCurrentSort } from '../store/SortSlice';
 import { SortStatus } from '../types/enums';
 import { Product } from '../types/Product';
-import { FilterComponent } from '../components/FilterComponent/FilterComponent';
+import { SortComponent } from '../components/SortComponent/SortComponent';
 
 const sortByYear = (a: Product, b: Product): number => {
   const aYear = a.year ?? 0;
@@ -23,7 +23,7 @@ const sortByYear = (a: Product, b: Product): number => {
 
 export const PhonesPage = () => {
   const { products, isLoaded } = useSelector((state: RootState) => state.products);
-  const currentFilter = useSelector(selectCurrentFilter);
+  const currentSort = useSelector(selectCurrentSort);
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const currentPageNumber = searchParams.get('page') || 1;
@@ -40,28 +40,28 @@ export const PhonesPage = () => {
 
   const totalLength = phoneProducts.length;
 
-  const filteredProducts = [...phoneProducts];
+  const sortedProducts = [...phoneProducts];
 
-  switch (currentFilter) {
+  switch (currentSort) {
     case SortStatus.PriceHigh:
-      filteredProducts.sort((a, b) => b.price - a.price);
+      sortedProducts.sort((a, b) => b.price - a.price);
       break;
     case SortStatus.PriceLow:
-      filteredProducts.sort((a, b) => a.price - b.price);
+      sortedProducts.sort((a, b) => a.price - b.price);
       break;
     case SortStatus.Newest:
-      filteredProducts.sort(sortByYear);
+      sortedProducts.sort(sortByYear);
       break;
     default:
   }
 
-  const pageProductsList = slicedList(filteredProducts, +currentPageNumber, ITEMS_PER_PAGE);
+  const pageProductsList = slicedList(sortedProducts, +currentPageNumber, ITEMS_PER_PAGE);
 
   return (
     <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">
       <h1 className="text-5xl font-extrabold">Mobile phones</h1>
       <p className="text-secondary text-xs font-semibold mb-10 mt-2 ">{totalLength} models</p>
-      <FilterComponent />
+      <SortComponent />
       {isLoaded && (
         <div className="grid grid-cols-1  gap-x-[16px] gap-y-[40px] sm:grid-cols-2 bd  md:grid-cols-3  lg:grid-cols-4 ">
           {pageProductsList.map((product) => (
