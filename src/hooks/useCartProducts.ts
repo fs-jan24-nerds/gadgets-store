@@ -20,11 +20,11 @@ export const useCartProducts = (): HookType => {
     dispatch(addToCart(productToAdd));
   };
 
-  const removeOneFromCartById = (productIdToRemove: number) => {
+  const removeOneFromCartById = (productIdToRemove: number | string) => {
     dispatch(removeOneFromCart(productIdToRemove));
   };
 
-  const removeAllFromCartById = (productIdToRemove: number) => {
+  const removeAllFromCartById = (productIdToRemove: number | string) => {
     dispatch(removeAllFromCart(productIdToRemove));
   };
 
@@ -35,3 +35,4 @@ export const useCartProducts = (): HookType => {
     removeAllFromCartById,
   };
 };
+
