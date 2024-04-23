@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Navigation } from './Navigation';
-import { useAppSelector } from '../../store/store';
 import { useCartProducts } from '../../hooks/useCartProducts';
+import { useAppSelector } from '../../store/store';
+import { Navigation } from './Navigation';
 
 import Close from '../../assets/Close.svg';
-import BurgerMenu from '../../assets/icons/Menu.svg';
-import favourites from '../../assets/icons/favourites.svg';
-import cartIcon from '../../assets/icons/cart.svg';
 import logo from '../../assets/icons/Logo.svg';
+import BurgerMenu from '../../assets/icons/Menu.svg';
+import cartIcon from '../../assets/icons/cart.svg';
+import favourites from '../../assets/icons/favourites.svg';
 import { getClassNavLink } from '../../utils/getClass';
 
 export const Header = () => {
@@ -36,7 +36,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="grid top-0 z-10 bg-white grid-cols-10 w-full items-center border-b-2 md:border-t-2 max-xs:border-transparent border-elements justify-between font-mont-bold mb-6 lg:mb-8 xl:mb-14">
+    <header className="grid sticky top-0 z-10 bg-white grid-cols-10 w-full items-center border-b-2 md:border-t-2 max-xs:border-transparent border-elements justify-between font-mont-bold">
       <Link
         to={{ pathname: 'home', search: location.search }}
         className="w-32 h-16 flex items-center justify-center"
@@ -62,7 +62,7 @@ export const Header = () => {
           <NavLink
             to={{ pathname: 'favorites', search: location.search }}
             className={(props) =>
-              `${getClassNavLink(props)} border-l-2 border-l-elements flex w-16 h-16 items-center flex-1 justify-center hover:border-b-primary`
+              `${getClassNavLink(props)} hover:border-b-primary border-l-2 border-l-elements flex w-16 h-16 items-center flex-1 justify-center`
             }
             onClick={closeMenu}
           >

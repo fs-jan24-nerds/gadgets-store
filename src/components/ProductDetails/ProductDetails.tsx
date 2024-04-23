@@ -1,18 +1,18 @@
-import { Link, useParams } from 'react-router-dom';
-import { RootState, useAppSelector } from '../../store/store';
-import { getPhones } from '../../api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { getPhones } from '../../api/api';
 import { setPhones } from '../../store/phonesSlice';
+import { ProductOptionsSelector } from '../ProductOptionsSelector/ProductOptionsSelector';
 import { Item } from '../../types/Product';
-import { PhoneOptionsSelector } from '../PhoneOptionsSelector/PhoneOptionsSelector';
+import { RootState, useAppSelector } from '../../store/store';
+import { About } from '../About';
+import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 
 export const ProductDetails: React.FC = () => {
   const { phones, isLoaded } = useAppSelector((state: RootState) => state.phones);
   const { id } = useParams();
-
   const [phone, setPhone] = useState<Item | undefined>();
-
   const dispatch = useDispatch();
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
 
@@ -29,16 +29,18 @@ export const ProductDetails: React.FC = () => {
 
       setPhone(selectedPhone);
     }
-  }, [id, phones]);
+  }, [id, phones, isLoaded]);
 
   const productStyles =
     'items-center w-20 h-20 p-2 border border-#C4C4C4 cursor-pointer hover:border-primary transition-colors duration-500 ease-out';
   return (
-    <>
+    <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">
       {phone && (
-        <div className="mx-auto max-w-screen-xl p-6">
+        <div className="mx-auto max-w-screen-xl px-6">
           <div className="mb-6">
-            <Link to={-1 as any} className="flex text-secondary">
+            <Breadcrumbs categoryName={phone.name} />
+
+            <Link to=".." className="flex text-secondary">
               <div className="w-4 h-4">
                 <img
                   src="/gadgets-store/src/assets/icons/leftArrow.svg"
@@ -76,17 +78,12 @@ export const ProductDetails: React.FC = () => {
                 />
               </div>
             </div>
-            <PhoneOptionsSelector phone={phone} />
+            <ProductOptionsSelector phone={phone} />
           </div>
 
-          {phone.description?.map(({ title, text }, index) => (
-            <div key={index}>
-              <h2 className="text-xl font-semibold">{title}</h2>
-              {text?.map((paragraph, pIndex) => <p key={pIndex}>{paragraph}</p>)}
-            </div>
-          ))}
+          <About item={phone} />
         </div>
       )}
-    </>
+    </div>
   );
 };
