@@ -1,11 +1,18 @@
-import { Link, useParams } from 'react-router-dom';
-import { RootState, useAppSelector } from '../../store/store';
-import { getPhones } from '../../api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { getPhones } from '../../api/api';
 import { setPhones } from '../../store/phonesSlice';
+
 import { ProductOptionsSelector } from '../ProductOptionsSelector/ProductOptionsSelector';
 import { Item } from '../../types/Product';
+
+import { RootState, useAppSelector } from '../../store/store';
+import { Item } from '../../types/Product';
+import { About } from '../About';
+import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
+import { PhoneOptionsSelector } from '../PhoneOptionsSelector/PhoneOptionsSelector';
+
 
 export const ProductDetails: React.FC = () => {
   const { phones, isLoaded } = useAppSelector((state: RootState) => state.phones);
@@ -27,7 +34,7 @@ export const ProductDetails: React.FC = () => {
 
       setPhone(selectedPhone);
     }
-  }, [id, phones]);
+  }, [id, phones, isLoaded]);
 
   
 
@@ -36,9 +43,11 @@ export const ProductDetails: React.FC = () => {
   return (
     <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">
       {phone && (
-        <div className="mx-auto max-w-screen-xl p-6">
+        <div className="mx-auto max-w-screen-xl px-6">
           <div className="mb-6">
-            <Link to={-1 as any} className="flex text-secondary">
+            <Breadcrumbs categoryName={phone.name} />
+
+            <Link to=".." className="flex text-secondary">
               <div className="w-4 h-4">
                 <img
                   src="/gadgets-store/src/assets/icons/leftArrow.svg"
@@ -79,12 +88,7 @@ export const ProductDetails: React.FC = () => {
             <ProductOptionsSelector phone={phone} />
           </div>
 
-          {phone.description?.map(({ title, text }, index) => (
-            <div key={index}>
-              <h2 className="text-xl font-semibold">{title}</h2>
-              {text?.map((paragraph, pIndex) => <p key={pIndex}>{paragraph}</p>)}
-            </div>
-          ))}
+          <About item={phone} />
         </div>
       )}
     </div>

@@ -1,14 +1,17 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { getProducts } from '../api/api';
-import { CardItem } from '../components/CardItem';
-import { RootState } from '../store/store';
-import { useDispatch } from 'react-redux';
-import { setProducts } from '../store/productsSlice';
-import { Pagination } from '../components/Pagination/Pagination';
+import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { slicedList } from '../utils/generatePagination';
+import { getProducts } from '../api/api';
+import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs';
+import { CardItem } from '../components/CardItem';
+import { Pagination } from '../components/Pagination/Pagination';
+import { setProducts } from '../store/productsSlice';
+import { RootState } from '../store/store';
 import { ITEMS_PER_PAGE } from '../types/constants';
+import { Grid } from '../components/Grid/Grid';
+import { GridItem } from '../components/Grid/GridItem';
+import { slicedList } from '../utils/generatePagination';
+
 
 export const PhonesPage = () => {
   const { products, isLoaded } = useSelector((state: RootState) => state.products);
@@ -30,13 +33,17 @@ export const PhonesPage = () => {
 
   return (
     <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">
+      <Breadcrumbs categoryName={'Phones'} />
+
       <h1 className="text-lg">Phones Page</h1>
       {isLoaded && (
-        <div className="grid grid-cols-1  gap-x-[16px] gap-y-[40px] sm:grid-cols-2 bd  md:grid-cols-3  lg:grid-cols-4 ">
+        <Grid>
           {pageProductsList.map((product) => (
-            <CardItem key={product.id} product={product} />
+            <GridItem key={product.id} className="col-span-4 tablet:col-span-6">
+              <CardItem product={product} />
+            </GridItem>
           ))}
-        </div>
+        </Grid>
       )}
       <Pagination
         totalProducts={phoneProducts.length}
