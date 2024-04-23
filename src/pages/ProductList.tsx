@@ -71,9 +71,8 @@ export const ProductList = () => {
   return (
     <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">
       <Grid>
-        
         <GridItem>
-          <Breadcrumbs categoryName={category || ''} />
+          <Breadcrumbs />
         </GridItem>
 
         <GridItem>
@@ -83,19 +82,19 @@ export const ProductList = () => {
         <GridItem>
           <p className="text-secondary text-xs font-semibold mb-10 mt-2 ">{totalLength} models</p>
         </GridItem>
+
         <GridItem>
           <SortComponent />
         </GridItem>
       </Grid>
-      
-      
+
         {isLoaded ? (
           <Grid>
             {pageProductsList.map((product) => (
               <GridItem key={product.id} className="col-span-4 tablet:col-span-6 laptop:col-span-4 desktop:col-span-6">
                 <CardItem product={product} />
               </GridItem>
-            )) 
+              )) 
             }
           </Grid>
         ) : (
@@ -108,6 +107,7 @@ export const ProductList = () => {
             ))}
           </Grid>
         )}
+        
       <Pagination
         totalProducts={totalLength}
         productsPerPage={ITEMS_PER_PAGE}

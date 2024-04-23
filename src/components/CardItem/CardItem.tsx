@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Link } from 'react-router-dom';
 import dislike from '../../assets/icons/dislike.svg';
 import like from '../../assets/icons/like.svg';

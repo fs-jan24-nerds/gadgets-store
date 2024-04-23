@@ -7,7 +7,7 @@ export const FavouritesPage = () => {
 
   return (
     <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">
-      <Breadcrumbs categoryName="Favourites" />
+      <Breadcrumbs />
 
       <h1 className="font-Mont font-extrabold leading-14 tracking-tight  text-primary sm:text-5xl text-3xl mb-[8px]">
         Favourites

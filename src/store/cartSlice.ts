@@ -63,8 +63,11 @@ export const cartSlice = createSlice({
       state.cart = state.cart.filter((cartItem) => cartItem.id !== action.payload);
       toast.warn('Товар успішно видалено з корзини');
     },
+    clearCart: (state) => {
+      state.cart =[];
+    },
   },
 });
 
-export const { setCart, addToCart, removeOneFromCart, removeAllFromCart } = cartSlice.actions;
+export const { setCart, addToCart, removeOneFromCart, removeAllFromCart, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;

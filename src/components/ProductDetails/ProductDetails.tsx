@@ -3,7 +3,7 @@ import { RootState, useAppSelector } from '../../store/store';
 import { getProductById } from '../../api/api';
 import { useEffect, useState } from 'react';
 import { Item } from '../../types/Product';
-import { ProductOptionsSelector } from '../ProductOptionsSelector/ProductOptionsSelector';
+import { SelectedProductFilter } from '../SelectedProductFilter/SelectedProductFilter';
 import { About } from '../About';
 import { BackButton } from '../BackButton/BackButton';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
@@ -19,7 +19,6 @@ export const ProductDetails = () => {
   useEffect(() => {
     if (isLoaded) {
       if (id && category) {
-        // const product = getProductById(id, category);
         const product = getProductById(id, category);
         setProduct(product);
       }
@@ -33,7 +32,7 @@ export const ProductDetails = () => {
       {product && (
         <div className="mx-auto max-w-screen-xl px-6">
           <div className="mb-6">
-            <Breadcrumbs categoryName={category || ''} />
+            <Breadcrumbs />
 
             <BackButton />
 
@@ -64,7 +63,7 @@ export const ProductDetails = () => {
                 />
               </div>
             </div>
-            <ProductOptionsSelector phone={product} />
+            <SelectedProductFilter product={product} />
           </div>
 
           <About item={product} />
