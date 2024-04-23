@@ -11,9 +11,9 @@ import { ProductDetails } from './components/ProductDetails/ProductDetails';
 function App() {
   return (
     <Routes>
-      <Route path="/gadgets-store/" element={<Layout />}>
+      <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="home" element={<Navigate replace to="/gadgets-store/" />} />
+        <Route path="home" element={<Navigate replace to="/" />} />
         <Route path="favorites" element={<FavouritesPage />} />
         <Route path="cart" element={<CartPage />} />
         <Route path=":category">
