@@ -6,6 +6,7 @@ export default {
     extend: {
       screens: {
         'tablet': '640px',
+        'laptop': '970px',
         'desktop':'1200px',
       },
       fontFamily: {
@@ -30,9 +31,9 @@ export default {
         '3xl': '0px 5px 12px -1px rgba(153,153,153,0.34)',
       },
       gridTemplateColumns: {
-        'mobile': 'repeat(4, minmax(0, 1fr))',
-        'tablet': 'repeat(12, minmax(0, 1fr))',
-        'desktop': 'repeat(24, minmax(0, 32px))',
+        'mobile': 'repeat(4, 1fr)',
+        'tablet': 'repeat(12, 1fr)',
+        'desktop': 'repeat(24, 32px)',
       },
       gridColumn: {
         'span-12': 'span 12 / span 12',
