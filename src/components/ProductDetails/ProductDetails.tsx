@@ -3,15 +3,12 @@ import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { getPhones } from '../../api/api';
 import { setPhones } from '../../store/phonesSlice';
-
 import { ProductOptionsSelector } from '../ProductOptionsSelector/ProductOptionsSelector';
 import { Item } from '../../types/Product';
-
 import { RootState, useAppSelector } from '../../store/store';
-import { Item } from '../../types/Product';
 import { About } from '../About';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
-import { PhoneOptionsSelector } from '../PhoneOptionsSelector/PhoneOptionsSelector';
+
 
 
 export const ProductDetails: React.FC = () => {
