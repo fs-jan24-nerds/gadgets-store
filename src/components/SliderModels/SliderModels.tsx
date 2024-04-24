@@ -40,8 +40,8 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
 
   return (
     <>
-      <div className="flex justify-between">
-        <h2 className="text-4xl">{sectionTitle}</h2>
+      <div className="flex justify-between mb-6 items-center">
+        <h2 className="text-4xl font-mont-semiBold sm:font-mont-Bold">{sectionTitle}</h2>
         <div className="flex space-x-4">
           <button
             disabled={sliderPosition === 0}
@@ -87,17 +87,17 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
         spaceBetween={16}
         breakpoints={{
           320: {
-            width: 560,
-            slidesPerView: 2,
+            width: 240,
+            slidesPerView: 1,
             spaceBetween: 16,
           },
           640: {
-            width: 850,
-            slidesPerView: 3,
+            width: 640,
+            slidesPerView: 2,
             spaceBetween: 16,
           },
           1136: {
-            width: 1136,
+            width: 1072,
             slidesPerView: 4,
             spaceBetween: 16,
           },
