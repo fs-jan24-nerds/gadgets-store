@@ -14,6 +14,9 @@ import { selectCurrentSort, setSort } from '../store/SortSlice';
 import { SortStatus } from '../types/enums';
 import { SortComponent } from '../components/SortComponent/SortComponent';
 import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs';
+import { Grid } from '../components/Grid/Grid';
+import { GridItem } from '../components/Grid/GridItem';
+import { CardItemSkeleton } from '../components/CardItem/CardItemSkeleton';
 
 const sortByYear = (a: Product, b: Product): number => {
   const aYear = a.year ?? 0;
@@ -67,17 +70,44 @@ export const ProductList = () => {
 
   return (
     <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">
-      <Breadcrumbs />
-      <h1 className="text-5xl font-extrabold">Mobile phones</h1>
-      <p className="text-secondary text-xs font-semibold mb-10 mt-2 ">{totalLength} models</p>
-      <SortComponent />
-      {isLoaded && (
-        <div className="grid grid-cols-4 gap-y-1">
-          {pageProductsList.map((product) => (
-            <CardItem key={product.id} product={product} />
-          ))}
-        </div>
-      )}
+      <Grid>
+        <GridItem>
+          <Breadcrumbs />
+        </GridItem>
+
+        <GridItem>
+          <h1 className="text-5xl font-extrabold">Mobile phones</h1>
+        </GridItem>
+
+        <GridItem>
+          <p className="text-secondary text-xs font-semibold mb-10 mt-2 ">{totalLength} models</p>
+        </GridItem>
+
+        <GridItem>
+          <SortComponent />
+        </GridItem>
+      </Grid>
+
+        {isLoaded ? (
+          <Grid>
+            {pageProductsList.map((product) => (
+              <GridItem key={product.id} className="col-span-4 tablet:col-span-6 laptop:col-span-4 desktop:col-span-6">
+                <CardItem product={product} />
+              </GridItem>
+              )) 
+            }
+          </Grid>
+        ) : (
+          <Grid>
+            {[...Array(ITEMS_PER_PAGE)].map((_, index) => (
+              <GridItem key={index} className="col-span-4 tablet:col-span-6 laptop:col-span-4 desktop:col-span-6">
+                <CardItemSkeleton />  
+              </GridItem>
+              
+            ))}
+          </Grid>
+        )}
+        
       <Pagination
         totalProducts={totalLength}
         productsPerPage={ITEMS_PER_PAGE}

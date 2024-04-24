@@ -16,40 +16,42 @@ const CartPage = () => {
   const [isConfirmed, setIsComfirmed] = useState(false);
 
   return (
-    <Grid>
-      <GI>
-        <BackButton />
-      </GI>
-
-      <GI>
-        <h1 className="font-Mont font-bold leading-14 tracking-tight text-left text-primary sm:text-5xl text-3xl mb-8">
-          Cart
-        </h1>
-      </GI>
-      {isConfirmed ? (
+    <div className='max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8'>
+      <Grid>
         <GI>
-          <ConfirmedOrderPage />
-          </GI>
-      ) : (
-        <>
-          {cart.length === 0 && !isConfirmed ? (
-            <GI>
-              <EmptyCartMessage />
-            </GI>
-          ) : (
-            <>
-              <GI className="col-span-4 tablet:col-span-12 desktop:col-span-16">
-                <CartTable />
-              </GI>
+          <BackButton />
+        </GI>
 
-              <GI className="col-span-4 tablet:col-span-12 desktop:col-span-8">
-                <Checkout onComfirmed={setIsComfirmed} />
-              </GI>
-            </>
-          )}
-        </>
-      )}
-    </Grid>
+        <GI>
+          <h1 className="font-Mont font-bold leading-14 tracking-tight text-left text-primary sm:text-5xl text-3xl mb-8">
+            Cart
+          </h1>
+        </GI>
+        {isConfirmed && (
+          <GI>
+            <ConfirmedOrderPage />
+          </GI>
+        )}
+        
+        {!isConfirmed && cart.length === 0 && (
+          <GI>
+            <EmptyCartMessage />
+          </GI>
+        )}
+        
+        {!isConfirmed && cart.length !== 0 && (
+          <>
+            <GI className="col-span-4 tablet:col-span-12 laptop:col-span-8 desktop:col-span-16">
+              <CartTable />
+            </GI>
+
+            <GI className="col-span-4 tablet:col-span-12 laptop:col-span-4 desktop:col-span-8">
+              <Checkout onComfirmed={setIsComfirmed}/>
+            </GI>
+          </>
+        )}
+      </Grid>
+    </div>
   );
 };
 

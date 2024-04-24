@@ -23,7 +23,7 @@ export const ProductDetails = () => {
         setProduct(product);
       }
     }
-  }, [id, product, isLoaded]);
+  }, [id, product, isLoaded, category]);
 
   const productStyles =
     'items-center w-20 h-20 p-2 border border-#C4C4C4 cursor-pointer hover:border-primary transition-colors duration-500 ease-out';

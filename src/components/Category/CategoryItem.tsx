@@ -14,7 +14,7 @@ export const CategoryItem: React.FC<Props> = ({ image, bgColor, description, tit
           <img
             src={image}
             alt={description}
-            className="w-full h-full max-w-[368px] max-h-[368px] "
+            className="object-cover w-full h-full max-w-[368px] max-h-[368px] "
           />
         </a>
         <a
