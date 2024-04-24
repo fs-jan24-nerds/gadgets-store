@@ -11,18 +11,15 @@ import { SliderModels } from '../SliderModels/SliderModels';
 
 export const ProductDetails = () => {
   const { isLoaded } = useAppSelector((state: RootState) => state.products);
-  const { category } = useParams();
-  const { id } = useParams();
-
+  const { category, id } = useParams();
   const [product, setProduct] = useState<Item | undefined>();
+
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
 
   useEffect(() => {
-    if (isLoaded) {
-      if (id && category) {
-        const product = getProductById(id, category);
-        setProduct(product);
-      }
+    if (isLoaded && id && category) {
+      const product = getProductById(id, category);
+      setProduct(product);
     }
   }, [id, product, isLoaded, category]);
 
@@ -43,25 +40,25 @@ export const ProductDetails = () => {
 
   const productStyles =
     'items-center w-20 h-20 p-2 border border-#C4C4C4 cursor-pointer hover:border-primary transition-colors duration-500 ease-out';
-  
-    const sectiomAnimation = {
-      hidden: {
-        opacity: 0,
-      },
-      visible: {
-        opacity: 1,
-      },
-    };
-    const titleAnimation = {
-      hidden: {
-        y: -120,
-        opacity: 0,
-      },
-      visible: {
-        y: 0,
-        opacity: 1,
-      },
-    };
+
+  const sectiomAnimation = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+    },
+  };
+  const titleAnimation = {
+    hidden: {
+      y: -120,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
   return (
     <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">
       {product && (

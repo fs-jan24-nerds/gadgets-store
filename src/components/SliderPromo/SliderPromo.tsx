@@ -16,21 +16,22 @@ import { Title } from '../Title/Title';
 import { motion } from 'framer-motion';
 import { TitleAnimation } from '../../types/titleAnimation';
 type Props = {
-  sectiomAnimation: TitleAnimation
-}
+  sectiomAnimation: TitleAnimation;
+};
 
-  const SliderPromo:React.FC<Props> = ({sectiomAnimation}) => {
+const SliderPromo: React.FC<Props> = ({ sectiomAnimation }) => {
   return (
     <div>
-       <Title title="Welcome to Nice Gadgets store!" />
+      <Title title="Welcome to Nice Gadgets store!" />
 
       <motion.div
-         initial="hidden"
-         transition={{ delay: 0.2, duration: 0.7 }}
-         whileInView={{ y: 0, opacity: 1 }}
-         viewport={{ once: true }}
-         variants={sectiomAnimation}
-        className="flex flex-col items-center max-w-full mt-6 lg:mt-8 xl:mt-14 mb-14 lg:mb-16 xl:mb-20">
+        initial="hidden"
+        transition={{ delay: 0.2, duration: 0.7 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        variants={sectiomAnimation}
+        className="flex flex-col items-center max-w-full mt-6 lg:mt-8 xl:mt-14 mb-14 lg:mb-16 xl:mb-20"
+      >
         <div className="flex gap-4 w-full mb-8">
           <button className={styles.leftArrow}>
             <img src={LeftArrow} alt="left arrow" className="mx-auto" />

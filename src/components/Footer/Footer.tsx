@@ -40,7 +40,7 @@ export function Footer() {
         >
           <p>Back to top</p>
           <div className="flex justify-center items-center w-8 h-8 border border-elements">
-            <img src={ToTop} alt="" className="" />
+            <img src={ToTop} alt="back to top" className="" />
           </div>
         </a>
       </div>
