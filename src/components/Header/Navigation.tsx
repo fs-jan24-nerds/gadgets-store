@@ -1,4 +1,3 @@
-import { useLocation } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { NavMenu } from '../../types/enums';
 import { getClassNavLink } from '../../utils/getClass';
@@ -10,7 +9,6 @@ interface NavigationProps {
 }
 
 export const Navigation: React.FC<NavigationProps> = ({ closeMenu }) => {
-  const location = useLocation();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
 
   useEffect(() => {
@@ -32,7 +30,7 @@ export const Navigation: React.FC<NavigationProps> = ({ closeMenu }) => {
         {Object.values(NavMenu).map((menu) => (
           <NavLink
             key={menu}
-            to={{ pathname: menu, search: location.search }}
+            to={{ pathname: menu }}
             className={getClassNavLink}
             onClick={closeMenu}
           >
