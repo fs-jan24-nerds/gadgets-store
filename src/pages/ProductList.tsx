@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { getProducts } from '../api/api';
+import { getProducts, getProducts1 } from '../api/api';
 import { CardItem } from '../components/CardItem';
 import { RootState } from '../store/store';
 import { useDispatch } from 'react-redux';
@@ -24,13 +24,24 @@ const sortByYear = (a: Product, b: Product): number => {
 
 export const ProductList = () => {
   const { category } = useParams();
-
+  // const [products, setProducts] = useState<Product []>([]);
+  // const [isLoaded, setIsLoaded] = useState(true);
   const { products, isLoaded } = useSelector((state: RootState) => state.products);
   const currentSort = useSelector(selectCurrentSort);
 
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const currentPageNumber = searchParams.get('page') || 1;
+
+  useEffect(() => {
+    const allProds = getProducts1({
+      category: category || 'phones',
+      limit: 16,
+      page: +currentPageNumber,
+    });
+
+    console.log({ allProds });
+  }, [category, searchParams, currentSort]);
 
   useEffect(() => {
     const currentSort = searchParams.get('sort') as SortStatus;
@@ -42,10 +53,12 @@ export const ProductList = () => {
   useEffect(() => {
     if (!isLoaded) {
       dispatch(setProducts(getProducts()));
+      // setProducts(getProducts1({category: category || 'phones'}))
     }
   }, [isLoaded, dispatch]);
 
   const allProducts = products.filter((product) => product.category === category);
+  const limit = parseInt(searchParams.get('limit') || ITEMS_PER_PAGE.toString(), 16);
 
   const totalLength = allProducts.length;
   const sortedProducts = [...allProducts];
@@ -68,7 +81,9 @@ export const ProductList = () => {
   return (
     <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">
       <Breadcrumbs categoryName={category || ''} />
-      <h1 className="text-5xl font-extrabold">Mobile phones</h1>
+      <h1 className="text-5xl font-extrabold">
+        Mobile {category![0].toUpperCase() + category?.slice(1)}
+      </h1>
       <p className="text-secondary text-xs font-semibold mb-10 mt-2 ">{totalLength} models</p>
       <SortComponent />
       {isLoaded && (
@@ -80,7 +95,7 @@ export const ProductList = () => {
       )}
       <Pagination
         totalProducts={totalLength}
-        productsPerPage={ITEMS_PER_PAGE}
+        limit={limit}
         currentPageNumber={+currentPageNumber}
       />
     </div>

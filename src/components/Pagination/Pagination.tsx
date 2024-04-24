@@ -4,17 +4,13 @@ import { getClassPaginate } from '../../utils/getClass';
 import cn from 'classnames';
 
 type Props = {
+  limit: number;
   totalProducts: number;
-  productsPerPage: number;
   currentPageNumber: number;
 };
 
-export const Pagination: React.FC<Props> = ({
-  productsPerPage,
-  totalProducts,
-  currentPageNumber,
-}) => {
-  const totalPages = Math.ceil(totalProducts / productsPerPage);
+export const Pagination: React.FC<Props> = ({ limit, totalProducts, currentPageNumber }) => {
+  const totalPages = Math.ceil(totalProducts / limit);
   const { pathname } = useLocation();
   const isFirstPage = currentPageNumber <= 1;
   const isSecondPage = currentPageNumber >= totalPages;

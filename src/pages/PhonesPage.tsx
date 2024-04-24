@@ -84,8 +84,8 @@ export const PhonesPage = () => {
         </Grid>
       )}
       <Pagination
+        limit={ITEMS_PER_PAGE}
         totalProducts={totalLength}
-        productsPerPage={ITEMS_PER_PAGE}
         currentPageNumber={+currentPageNumber}
       />
     </div>
