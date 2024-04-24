@@ -5,6 +5,7 @@ export default {
   theme: {
     extend: {
       screens: {
+        xs: '500px',
         'tablet': '640px',
         'laptop': '970px',
         'desktop':'1200px',

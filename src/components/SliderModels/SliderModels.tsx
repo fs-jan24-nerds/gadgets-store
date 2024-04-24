@@ -29,7 +29,7 @@ export const SliderModels: React.FC<Props> = ({
   filterFunction,
   sectionTitle,
   sectiomAnimation,
-  titleAnimation
+  titleAnimation,
 }) => {
   const { products, isLoaded } = useSelector((state: RootState) => state.products);
 
@@ -114,17 +114,17 @@ export const SliderModels: React.FC<Props> = ({
           spaceBetween={16}
           breakpoints={{
             320: {
-              width: 560,
-              slidesPerView: 2,
+              width: 240,
+              slidesPerView: 1,
               spaceBetween: 16,
             },
             640: {
-              width: 850,
-              slidesPerView: 3,
+              width: 640,
+              slidesPerView: 2,
               spaceBetween: 16,
             },
             1136: {
-              width: 1136,
+              width: 1072,
               slidesPerView: 4,
               spaceBetween: 16,
             },
