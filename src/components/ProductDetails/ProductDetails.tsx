@@ -26,7 +26,6 @@ export const ProductDetails = () => {
     }
   }, [id, product, isLoaded, category]);
 
-
   const getPriceDifference = (product: Product) => {
     return product.fullPrice - product.price;
   };
@@ -88,7 +87,10 @@ export const ProductDetails = () => {
       )}
 
       <section className="max-w-max-width mx-auto mt-20 box-content px-4 sm:px-6 lg:px-8">
-        <SliderModels sectionTitle="You may also like" filterFunction={filterForRecommendedModels} />
+        <SliderModels
+          sectionTitle="You may also like"
+          filterFunction={filterForRecommendedModels}
+        />
       </section>
     </div>
   );

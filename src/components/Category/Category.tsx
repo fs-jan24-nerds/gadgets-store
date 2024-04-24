@@ -2,14 +2,25 @@ import phones from './img/phones.png';
 import tablets from './img/tablets.png';
 import accessories from './img/Accessories.png';
 import { CategoryItem } from './CategoryItem';
+import { HomeTitle } from '../HomeTitle/HomeTitle';
+import { TitleAnimation } from '../../types/titleAnimation';
+import { motion } from 'framer-motion';
+interface Props {
+  sectiomAnimation: TitleAnimation;
+}
 
-export const Category = () => {
+export const Category: React.FC<Props> = ({ sectiomAnimation }) => {
   return (
-    <>
-      <h1 className="font-mont font-bold leading-[41px] tracking-tighter text-gray-900 text-left mb-6 md:text-[32px] sm:text-[22px] mt-14 md:mt-16 lg:mt-20">
-        Shop by category
-      </h1>
-      <div className="grid sm:flex gap-4">
+    <div className="mb-[56px] tablet:mb-[80px]">
+      <HomeTitle title="Shop by category" />
+      <motion.div
+        className="grid sm:flex gap-4"
+        initial="hidden"
+        transition={{ delay: 0.7, duration: 1 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        variants={sectiomAnimation}
+      >
         <CategoryItem
           image={phones}
           bgColor="#6D6474"
@@ -31,7 +42,7 @@ export const Category = () => {
           title="Accessories"
           subtitle="100 models"
         />
-      </div>
-    </>
+      </motion.div>
+    </div>
   );
 };
