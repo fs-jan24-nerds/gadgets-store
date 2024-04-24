@@ -13,12 +13,24 @@ import { CardItem } from '../CardItem';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+import { motion } from 'framer-motion';
+
+import { HomeTitle } from '../HomeTitle/HomeTitle';
+import { TitleAnimation } from '../../types/titleAnimation';
+
 interface Props {
   filterFunction: (products: Product[]) => Product[];
   sectionTitle: string;
+  sectiomAnimation: TitleAnimation;
+  titleAnimation: TitleAnimation;
 }
 
-export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) => {
+export const SliderModels: React.FC<Props> = ({
+  filterFunction,
+  sectionTitle,
+  sectiomAnimation,
+  titleAnimation
+}) => {
   const { products, isLoaded } = useSelector((state: RootState) => state.products);
 
   const filteredProducts = filterFunction(products);
@@ -39,10 +51,18 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
   };
 
   return (
-    <>
+    <div className="mb-[56px] tablet:mb-[80px]">
       <div className="flex justify-between">
-        <h2 className="text-4xl">{sectionTitle}</h2>
-        <div className="flex space-x-4">
+        <HomeTitle title={sectionTitle} />
+
+        <motion.div
+          initial="hidden"
+          transition={{ delay: 0.3, duration: 0.6 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          variants={titleAnimation}
+          className="flex space-x-4"
+        >
           <button
             disabled={sliderPosition === 0}
             className={classNames(
@@ -74,44 +94,52 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
               )}
             ></div>
           </button>
-        </div>
+        </motion.div>
       </div>
 
-      <Swiper
-        modules={[Navigation, Virtual]}
-        navigation={{
-          prevEl: '.product-slider-button-prev',
-          nextEl: '.product-slider-button-next',
-        }}
-        wrapperClass="swiper-wrapper"
-        spaceBetween={16}
-        breakpoints={{
-          320: {
-            width: 560,
-            slidesPerView: 2,
-            spaceBetween: 16,
-          },
-          640: {
-            width: 850,
-            slidesPerView: 3,
-            spaceBetween: 16,
-          },
-          1136: {
-            width: 1136,
-            slidesPerView: 4,
-            spaceBetween: 16,
-          },
-        }}
-        slidesPerView={4}
-        virtual
-        onSlideChange={onSlideChange}
+      <motion.div
+        initial="hidden"
+        transition={{ delay: 0.7, duration: 1 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        variants={sectiomAnimation}
       >
-        {filteredProducts.map((product, index) => (
-          <SwiperSlide key={product.id} virtualIndex={index} className="swiper-slide">
-            <CardItem product={product} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </>
+        <Swiper
+          modules={[Navigation, Virtual]}
+          navigation={{
+            prevEl: '.product-slider-button-prev',
+            nextEl: '.product-slider-button-next',
+          }}
+          wrapperClass="swiper-wrapper"
+          spaceBetween={16}
+          breakpoints={{
+            320: {
+              width: 560,
+              slidesPerView: 2,
+              spaceBetween: 16,
+            },
+            640: {
+              width: 850,
+              slidesPerView: 3,
+              spaceBetween: 16,
+            },
+            1136: {
+              width: 1136,
+              slidesPerView: 4,
+              spaceBetween: 16,
+            },
+          }}
+          slidesPerView={4}
+          virtual
+          onSlideChange={onSlideChange}
+        >
+          {filteredProducts.map((product, index) => (
+            <SwiperSlide key={product.id} virtualIndex={index} className="swiper-slide">
+              <CardItem product={product} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </motion.div>
+    </div>
   );
 };
