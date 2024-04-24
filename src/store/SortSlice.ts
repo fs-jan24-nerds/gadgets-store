@@ -23,4 +23,4 @@ export const { setSort } = sortSlice.actions;
 
 export default sortSlice.reducer;
 
-export const selectCurrentSort = (state: { filter: SortState }) => state.filter.sort;
+export const selectCurrentSort = (state: { sort: SortState }) => state.sort.sort;
