@@ -48,7 +48,7 @@ export const SortComponent: React.FC = () => {
         <SortDropdown
           options={pageSizeOptions}
           onSelect={handlePerPageChange}
-          initialOption={currentPerPage ?? pageSizeOptions[0]}
+          initialOption={currentPerPage ?? pageSizeOptions[2]}
         />
       </div>
     </div>

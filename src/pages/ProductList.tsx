@@ -34,7 +34,7 @@ export const ProductList = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const currentPageNumber = parseInt(searchParams.get('page') || '1', 10);
-  const itemsPerPage = parseInt(searchParams.get('perPage') || '4', 10);
+  const itemsPerPage = parseInt(searchParams.get('perPage') || '16', 10);
 
   useEffect(() => {
     const currentSort = searchParams.get('sort') as SortStatus;
