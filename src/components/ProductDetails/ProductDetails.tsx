@@ -40,6 +40,25 @@ export const ProductDetails = () => {
 
   const productStyles =
     'items-center w-20 h-20 p-2 border border-#C4C4C4 cursor-pointer hover:border-primary transition-colors duration-500 ease-out';
+
+  const sectiomAnimation = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+    },
+  };
+  const titleAnimation = {
+    hidden: {
+      y: -120,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
   return (
     <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">
       {product && (
@@ -87,6 +106,8 @@ export const ProductDetails = () => {
         <SliderModels
           sectionTitle="You may also like"
           filterFunction={filterForRecommendedModels}
+          sectiomAnimation={sectiomAnimation}
+          titleAnimation={titleAnimation}
         />
       </section>
     </div>

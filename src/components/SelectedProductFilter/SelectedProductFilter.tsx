@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import like from '../../assets/icons/like.svg';
 import dislike from '../../assets/icons/dislike.svg';
 import classNames from 'classnames';
@@ -16,9 +15,6 @@ type Props = {
 export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
   const { isLoaded } = useAppSelector((state: RootState) => state.products);
 
-  const [selectedSize] = useState<string>(phone.capacity);
-  const [selectedColor] = useState<string>(phone.color);
-
   const { cart, addProductToCart, removeAllFromCartById } = useCartProducts();
   const [favouritesProducts, addToFavourites, removeFromFavourites] = useFavouritesProducts();
   const products = useAppSelector((state) => state.products.products);
@@ -28,7 +24,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
   );
 
   const selectedProduct = products.find(
-    (p) => p.color === selectedColor && p.capacity === selectedSize,
+    (p) => p.color === phone.color && p.capacity === phone.capacity,
   );
 
   const isLike = favouritesProducts.some((likeProduct) => likeProduct.id === selectedProduct?.id);
@@ -53,7 +49,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
       'hover:scale-110',
       'transition duration-300',
       {
-        'border-[2px] border-primary': selectedColor === color,
+        'border-[2px] border-primary': phone.color === color,
       },
     );
     return changeColorClasses;
@@ -68,7 +64,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
       'transition duration-300',
       'hover:border-primary',
       {
-        'bg-primary text-white': selectedSize === size,
+        'bg-primary text-white': phone.capacity === size,
       },
     );
     return changeSizeClasses;
@@ -91,7 +87,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
             >
               <span
                 className="w-[20px] h-[20px] rounded-full"
-                style={{ backgroundColor: color }}
+                style={{ backgroundColor: color.replace(' ', '-') }}
               ></span>
             </Link>
           ))}
