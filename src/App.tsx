@@ -7,6 +7,8 @@ import { FavouritesPage } from './components/Favourites/FavouritesPage';
 import CartPage from './components/Cart/CartPage';
 import { ProductList } from './pages/ProductList';
 import { ProductDetails } from './components/ProductDetails/ProductDetails';
+import { ContactForm } from './components/Footer/Contcats';
+import { Rights } from './components/Footer/Rights';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route index element={<ProductList />} />
           <Route path=":id" element={<ProductDetails />} />
         </Route>
+        <Route path="contacts" element={<ContactForm />} />
+        <Route path="rights" element={<Rights />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
