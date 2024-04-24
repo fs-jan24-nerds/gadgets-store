@@ -53,11 +53,11 @@ export const Header = () => {
         </button>
       </div>
       <div
-        className={`sm:grid col-start-1 col-span-12 sm:col-start-3 sm:col-span-13 justify-between hidden:sm ${isMenuOpen ? 'block border-t-2 border-elements' : 'hidden'}`}
+        className={`sm:grid col-start-1 col-span-12 sm:col-start-3 sm:col-span-13 justify-between hidden:sm ${isMenuOpen ? 'block border-t-2 border-elements h-screen' : 'hidden'}`}
       >
         <Navigation closeMenu={closeMenu} />
         <div
-          className={`flex col-end-12 items-center box-border justify-stretch sm:justify-center ${isMenuOpen && 'border-t-2 border-elements'}`}
+          className={`flex col-end-12 items-center box-border justify-stretch sm:justify-center ${isMenuOpen && 'fixed bottom-0 border-t-2 w-full border-elements'}`}
         >
           <NavLink
             to={{ pathname: 'favorites', search: location.search }}
