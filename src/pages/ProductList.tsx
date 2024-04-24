@@ -17,6 +17,7 @@ import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs';
 import { Grid } from '../components/Grid/Grid';
 import { GridItem } from '../components/Grid/GridItem';
 import { CardItemSkeleton } from '../components/CardItem/CardItemSkeleton';
+import { Title } from '../components/Title/Title';
 
 const sortByYear = (a: Product, b: Product): number => {
   const aYear = a.year ?? 0;
@@ -50,6 +51,11 @@ export const ProductList = () => {
   }, [isLoaded, dispatch]);
 
   const allProducts = products.filter((product) => product.category === category);
+  const title = useParams();
+
+  const productTitle = title?.category 
+  ? title.category.charAt(0).toUpperCase() + title.category.slice(1) 
+  : "";
 
   const totalLength = allProducts.length;
   const sortedProducts = [...allProducts];
@@ -73,11 +79,13 @@ export const ProductList = () => {
     <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">
       <Grid>
         <GridItem>
-          <Breadcrumbs />
+          <div className='mb-[-20px]'>
+            <Breadcrumbs />
+          </div>
         </GridItem>
 
         <GridItem>
-          <h1 className="text-5xl font-extrabold">Mobile phones</h1>
+          <Title title={productTitle} />
         </GridItem>
 
         <GridItem>

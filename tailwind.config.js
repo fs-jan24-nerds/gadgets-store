@@ -13,6 +13,7 @@ export default {
         'mont-bold': ['Mont-Bold', 'sans-serif'],
         'mont-regular': ['Mont-Regular', 'sans-serif'],
         'mont-semiBold': ['Mont-semiBold', 'sans-serif'],
+        'mont-Bold': ['Mont-Bold', 'sans-serif'],
       },
       spacing: {
         'max-width': '1136px',
