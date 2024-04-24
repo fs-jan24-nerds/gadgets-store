@@ -1,6 +1,7 @@
 import { FavouritesItem } from './FavouriteItem';
 import { useAppSelector } from '../../store/store';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
+import { Title } from '../Title/Title';
 
 export const FavouritesPage = () => {
   const { favouritesProducts } = useAppSelector((state) => state.favourites);
@@ -9,9 +10,7 @@ export const FavouritesPage = () => {
     <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">
       <Breadcrumbs />
 
-      <h1 className="font-Mont font-extrabold leading-14 tracking-tight  text-primary sm:text-5xl text-3xl mb-[8px]">
-        Favourites
-      </h1>
+      <Title title="Favourites" />
 
       <p className="font-Mont text-secondary mb-[40px] text-[14px]">
         {favouritesProducts.length} items

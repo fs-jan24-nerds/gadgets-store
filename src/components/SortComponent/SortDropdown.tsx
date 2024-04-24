@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
-import { SortStatus } from '../../types/enums';
+import { useEffect, useRef, useState } from 'react';
 
-interface SortDropdownProps {
-  options: SortStatus[];
-  onSelect: (selected: SortStatus) => void;
-  initialOption?: SortStatus;
+interface SortDropdownProps<T> {
+  options: T[];
+  onSelect: (selected: T) => void;
+  initialOption: T;
 }
 
-export const SortDropdown: React.FC<SortDropdownProps> = ({ options, onSelect }) => {
+export const SortDropdown = <T,>({
+  options,
+  onSelect,
+  initialOption,
+}: SortDropdownProps<T>): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [selectedOption, setSelectedOption] = useState(initialOption);
 
-  const handleSelect = (option: SortStatus) => {
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  const handleSelect = (option: T) => {
     setSelectedOption(option);
     onSelect(option);
     setIsOpen(false);
@@ -21,13 +26,30 @@ export const SortDropdown: React.FC<SortDropdownProps> = ({ options, onSelect })
     setIsOpen(!isOpen);
   };
 
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener('click', handleClickOutside);
+    } else {
+      document.removeEventListener('click', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
-    <div className="relative">
+    <div className="relative" ref={dropdownRef}>
       <button
         onClick={toggleDropdown}
-        className="w-[136px]  border border-1 border-icons  md:w-[176px]  h-10 text-sm text-left font-bold pl-3 pr-3 flex justify-between items-center hover:border-secondary focus:border-primary  "
+        className="w-full  border border-1 border-icons   h-10 text-sm text-left font-bold pl-3 pr-3 flex justify-between items-center hover:border-secondary focus:border-primary  "
       >
-        {selectedOption}
+        {String(selectedOption)}
         {isOpen ? (
           <div className="inline-flex w-2.5 h-2.5 border-solid border-elements border-l-[2px] border-t-[2px] rounded-sm rotate-45"></div>
         ) : (
@@ -36,16 +58,16 @@ export const SortDropdown: React.FC<SortDropdownProps> = ({ options, onSelect })
       </button>
       {isOpen && (
         <ul
-          className="absolute  mt-1 w-[176px] p-2 pl-3 bg-white border-2 border-elements  shadow-lg"
+          className="absolute  mt-1 w-full p-2 pl-3 bg-white border-2 border-elements  shadow-lg"
           style={{ zIndex: 1 }}
         >
           {options.map((option) => (
             <li
-              key={option}
+              key={String(option)}
               className=" h-8 flex items-center text-secondary  hover:bg-hover-bg cursor-pointer hover:text-primary"
               onClick={() => handleSelect(option)}
             >
-              {option}
+              {String(option)}
             </li>
           ))}
         </ul>

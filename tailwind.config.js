@@ -5,6 +5,7 @@ export default {
   theme: {
     extend: {
       screens: {
+        xs: '500px',
         'tablet': '640px',
         'laptop': '970px',
         'desktop':'1200px',
@@ -13,6 +14,7 @@ export default {
         'mont-bold': ['Mont-Bold', 'sans-serif'],
         'mont-regular': ['Mont-Regular', 'sans-serif'],
         'mont-semiBold': ['Mont-semiBold', 'sans-serif'],
+        'mont-Bold': ['Mont-Bold', 'sans-serif'],
       },
       spacing: {
         'max-width': '1136px',

@@ -3,22 +3,46 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Mont-Bold';
-  src: url('../public/fonts/Mont-Bold.otf') format('opentype');
+  font-family: "Mont-Bold";
+  src: url("../public/fonts/Mont-Bold.otf") format("opentype");
 }
 
 @font-face {
-  font-family: 'Mont-Regular';
-  src: url('../public/fonts/Mont-Regular.otf') format('opentype');
+  font-family: "Mont-Regular";
+  src: url("../public/fonts/Mont-Regular.otf") format("opentype");
 }
 
 @font-face {
-  font-family: 'Mont-SemiBold';
-  src: url('../public/fonts/Mont-SemiBold.otf') format('opentype');
+  font-family: "Mont-SemiBold";
+  src: url("../public/fonts/Mont-SemiBold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Mont-Bold";
+  src: url("../public/fonts/Mont-Bold.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: "Inter-Regular";
+  src: url("../public/fonts/Inter-Regular.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: "Inter-Medium";
+  src: url("../public/fonts/Inter-Medium.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: "Manrope-Regular";
+  src: url("../public/fonts/Manrope-Regular.ttf") format("opentype");
+}
+@font-face {
+  font-family: "Manrope-Bold";
+  src: url("../public/fonts/Manrope-Bold.ttf") format("opentype");
 }
 
 body {
   box-sizing: border-box;
   font-size: 12px;
-  font-family: 'Mont-Regular';
+  font-family: "Mont-Regular";
 }

@@ -9,36 +9,52 @@ import { useState } from 'react';
 import { ConfirmedOrderPage } from './components/ConfirmedOrderPage';
 
 import { BackButton } from '../BackButton/BackButton';
-
+import { motion } from 'framer-motion';
 
 const CartPage = () => {
   const { cart } = useCartProducts();
   const [isConfirmed, setIsComfirmed] = useState(false);
+  const titleAnimation = {
+    hidden: {
+      y: -120,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
 
   return (
-    <div className='max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8'>
+    <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">
       <Grid>
         <GI>
           <BackButton />
         </GI>
 
         <GI>
-          <h1 className="font-Mont font-bold leading-14 tracking-tight text-left text-primary sm:text-5xl text-3xl mb-8">
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.2, duration: 0.6 }}
+            variants={titleAnimation}
+            className="font-mont-Bold leading-14 tracking-tight text-left text-primary sm:text-5xl text-3xl mb-8"
+          >
             Cart
-          </h1>
+          </motion.h1>
         </GI>
         {isConfirmed && (
           <GI>
             <ConfirmedOrderPage />
           </GI>
         )}
-        
+
         {!isConfirmed && cart.length === 0 && (
           <GI>
             <EmptyCartMessage />
           </GI>
         )}
-        
+
         {!isConfirmed && cart.length !== 0 && (
           <>
             <GI className="col-span-4 tablet:col-span-12 laptop:col-span-8 desktop:col-span-16">
@@ -46,7 +62,7 @@ const CartPage = () => {
             </GI>
 
             <GI className="col-span-4 tablet:col-span-12 laptop:col-span-4 desktop:col-span-8">
-              <Checkout onComfirmed={setIsComfirmed}/>
+              <Checkout onComfirmed={setIsComfirmed} />
             </GI>
           </>
         )}

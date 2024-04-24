@@ -2,11 +2,12 @@ import { useParams } from 'react-router-dom';
 import { RootState, useAppSelector } from '../../store/store';
 import { getProductById } from '../../api/api';
 import { useEffect, useState } from 'react';
-import { Item } from '../../types/Product';
+import { Item, Product } from '../../types/Product';
 import { SelectedProductFilter } from '../SelectedProductFilter/SelectedProductFilter';
 import { About } from '../About';
 import { BackButton } from '../BackButton/BackButton';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
+import { SliderModels } from '../SliderModels/SliderModels';
 
 export const ProductDetails = () => {
   const { isLoaded } = useAppSelector((state: RootState) => state.products);
@@ -21,6 +22,21 @@ export const ProductDetails = () => {
       setProduct(product);
     }
   }, [id, product, isLoaded, category]);
+
+  const getPriceDifference = (product: Product) => {
+    return product.fullPrice - product.price;
+  };
+
+  const filterForRecommendedModels = (products: Product[]) => {
+    return products
+      .filter((product) => product.category === category)
+      .map((product) => ({
+        ...product,
+        priceDifference: getPriceDifference(product),
+      }))
+      .sort((a, b) => b.priceDifference - a.priceDifference)
+      .slice(0, 9);
+  };
 
   const productStyles =
     'items-center w-20 h-20 p-2 border border-#C4C4C4 cursor-pointer hover:border-primary transition-colors duration-500 ease-out';
@@ -66,6 +82,13 @@ export const ProductDetails = () => {
           <About item={product} />
         </div>
       )}
+
+      <section className="max-w-max-width mx-auto mt-20 box-content px-4 sm:px-6 lg:px-8">
+        <SliderModels
+          sectionTitle="You may also like"
+          filterFunction={filterForRecommendedModels}
+        />
+      </section>
     </div>
   );
 };

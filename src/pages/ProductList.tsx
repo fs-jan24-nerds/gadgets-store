@@ -17,6 +17,7 @@ import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs';
 import { Grid } from '../components/Grid/Grid';
 import { GridItem } from '../components/Grid/GridItem';
 import { CardItemSkeleton } from '../components/CardItem/CardItemSkeleton';
+import { Title } from '../components/Title/Title';
 
 const sortByYear = (a: Product, b: Product): number => {
   const aYear = a.year ?? 0;
@@ -33,7 +34,8 @@ export const ProductList = () => {
 
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
-  const currentPageNumber = searchParams.get('page') || 1;
+  const currentPageNumber = parseInt(searchParams.get('page') || '1', 10);
+  const itemsPerPage = parseInt(searchParams.get('perPage') || '16', 10);
 
   useEffect(() => {
     const currentSort = searchParams.get('sort') as SortStatus;
@@ -49,6 +51,11 @@ export const ProductList = () => {
   }, [isLoaded, dispatch]);
 
   const allProducts = products.filter((product) => product.category === category);
+  const title = useParams();
+
+  const productTitle = title?.category
+    ? title.category.charAt(0).toUpperCase() + title.category.slice(1)
+    : '';
 
   const totalLength = allProducts.length;
   const sortedProducts = [...allProducts];
@@ -66,17 +73,19 @@ export const ProductList = () => {
     default:
   }
 
-  const pageProductsList = slicedList(sortedProducts, +currentPageNumber, ITEMS_PER_PAGE);
+  const pageProductsList = slicedList(sortedProducts, currentPageNumber, itemsPerPage);
 
   return (
     <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">
       <Grid>
         <GridItem>
-          <Breadcrumbs />
+          <div className="mb-[-20px]">
+            <Breadcrumbs />
+          </div>
         </GridItem>
 
         <GridItem>
-          <h1 className="text-5xl font-extrabold">Mobile phones</h1>
+          <Title title={productTitle} />
         </GridItem>
 
         <GridItem>
@@ -88,30 +97,34 @@ export const ProductList = () => {
         </GridItem>
       </Grid>
 
-        {isLoaded ? (
-          <Grid>
-            {pageProductsList.map((product) => (
-              <GridItem key={product.id} className="col-span-4 tablet:col-span-6 laptop:col-span-4 desktop:col-span-6">
-                <CardItem product={product} />
-              </GridItem>
-              )) 
-            }
-          </Grid>
-        ) : (
-          <Grid>
-            {[...Array(ITEMS_PER_PAGE)].map((_, index) => (
-              <GridItem key={index} className="col-span-4 tablet:col-span-6 laptop:col-span-4 desktop:col-span-6">
-                <CardItemSkeleton />  
-              </GridItem>
-              
-            ))}
-          </Grid>
-        )}
-        
+      {isLoaded ? (
+        <Grid>
+          {pageProductsList.map((product) => (
+            <GridItem
+              key={product.id}
+              className="col-span-4 tablet:col-span-6 laptop:col-span-4 desktop:col-span-6"
+            >
+              <CardItem product={product} />
+            </GridItem>
+          ))}
+        </Grid>
+      ) : (
+        <Grid>
+          {[...Array(ITEMS_PER_PAGE)].map((_, index) => (
+            <GridItem
+              key={index}
+              className="col-span-4 tablet:col-span-6 laptop:col-span-4 desktop:col-span-6"
+            >
+              <CardItemSkeleton />
+            </GridItem>
+          ))}
+        </Grid>
+      )}
+
       <Pagination
         totalProducts={totalLength}
-        productsPerPage={ITEMS_PER_PAGE}
-        currentPageNumber={+currentPageNumber}
+        productsPerPage={itemsPerPage}
+        currentPageNumber={currentPageNumber}
       />
     </div>
   );
