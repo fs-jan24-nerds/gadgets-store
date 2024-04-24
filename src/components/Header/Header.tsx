@@ -99,7 +99,7 @@ export const Header = () => {
           </NavLink>
         </div>
       </div>
-      <div className="sm:hidden col-end-12   ml-auto"></div>
+      <div className="sm:hidden col-end-12  ml-auto"></div>
     </header>
   );
 };
