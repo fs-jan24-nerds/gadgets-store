@@ -23,7 +23,7 @@ const CartPage = () => {
         </GI>
 
         <GI>
-          <h1 className="font-Mont font-bold leading-14 tracking-tight text-left text-primary sm:text-5xl text-3xl mb-8">
+          <h1 className="font-mont-Bold leading-14 tracking-tight text-left text-primary sm:text-5xl text-3xl mb-8">
             Cart
           </h1>
         </GI>

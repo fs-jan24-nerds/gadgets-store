@@ -1,25 +1,24 @@
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 import Slider3 from '../../assets/SliderPromo/sleder3.jpeg';
 import Slider1 from '../../assets/SliderPromo/slider1.jpg';
 import Slider2 from '../../assets/SliderPromo/slider2.jpeg';
 import Slider4 from '../../assets/SliderPromo/slider4.jpg';
-
 import LeftArrow from '../../assets/SliderPromo/icons/left-arrow.svg';
 import RightArrow from '../../assets/SliderPromo/icons/right-arrow.svg';
-
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-
 import styles from './SliderPromo.module.css';
+import { Title } from '../Title/Title';
 
 const SliderPromo = () => {
   return (
     <div>
-      <h1 className="text-5xl text-left">Welcome to Nice Gadgets store!</h1>
+      <div className="px-[16px] tablet:px-[0]">
+        <Title title="Welcome to Nice Gadgets store!" />
+      </div>
 
       <div className="flex flex-col items-center max-w-full mt-6 lg:mt-8 xl:mt-14 mb-14 lg:mb-16 xl:mb-20">
         <div className="flex gap-4 w-full mb-8">
