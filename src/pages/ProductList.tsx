@@ -33,7 +33,8 @@ export const ProductList = () => {
 
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
-  const currentPageNumber = searchParams.get('page') || 1;
+  const currentPageNumber = parseInt(searchParams.get('page') || '1', 10);
+  const itemsPerPage = parseInt(searchParams.get('perPage') || '4', 10);
 
   useEffect(() => {
     const currentSort = searchParams.get('sort') as SortStatus;
@@ -66,7 +67,7 @@ export const ProductList = () => {
     default:
   }
 
-  const pageProductsList = slicedList(sortedProducts, +currentPageNumber, ITEMS_PER_PAGE);
+  const pageProductsList = slicedList(sortedProducts, currentPageNumber, itemsPerPage);
 
   return (
     <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">
@@ -88,30 +89,34 @@ export const ProductList = () => {
         </GridItem>
       </Grid>
 
-        {isLoaded ? (
-          <Grid>
-            {pageProductsList.map((product) => (
-              <GridItem key={product.id} className="col-span-4 tablet:col-span-6 laptop:col-span-4 desktop:col-span-6">
-                <CardItem product={product} />
-              </GridItem>
-              )) 
-            }
-          </Grid>
-        ) : (
-          <Grid>
-            {[...Array(ITEMS_PER_PAGE)].map((_, index) => (
-              <GridItem key={index} className="col-span-4 tablet:col-span-6 laptop:col-span-4 desktop:col-span-6">
-                <CardItemSkeleton />  
-              </GridItem>
-              
-            ))}
-          </Grid>
-        )}
-        
+      {isLoaded ? (
+        <Grid>
+          {pageProductsList.map((product) => (
+            <GridItem
+              key={product.id}
+              className="col-span-4 tablet:col-span-6 laptop:col-span-4 desktop:col-span-6"
+            >
+              <CardItem product={product} />
+            </GridItem>
+          ))}
+        </Grid>
+      ) : (
+        <Grid>
+          {[...Array(ITEMS_PER_PAGE)].map((_, index) => (
+            <GridItem
+              key={index}
+              className="col-span-4 tablet:col-span-6 laptop:col-span-4 desktop:col-span-6"
+            >
+              <CardItemSkeleton />
+            </GridItem>
+          ))}
+        </Grid>
+      )}
+
       <Pagination
         totalProducts={totalLength}
-        productsPerPage={ITEMS_PER_PAGE}
-        currentPageNumber={+currentPageNumber}
+        productsPerPage={itemsPerPage}
+        currentPageNumber={currentPageNumber}
       />
     </div>
   );

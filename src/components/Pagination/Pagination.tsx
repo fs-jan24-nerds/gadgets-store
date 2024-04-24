@@ -1,4 +1,4 @@
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useSearchParams } from 'react-router-dom';
 import { generatePagination } from '../../utils/generatePagination';
 import { getClassPaginate } from '../../utils/getClass';
 import cn from 'classnames';
@@ -18,9 +18,16 @@ export const Pagination: React.FC<Props> = ({
   const { pathname } = useLocation();
   const isFirstPage = currentPageNumber <= 1;
   const isSecondPage = currentPageNumber >= totalPages;
+  const [searchParams] = useSearchParams();
 
   const paginationRange = generatePagination(currentPageNumber, totalPages);
   const dots = '...';
+
+  const updatedParams = (newPage: string) => {
+    const updatedSearchParams = new URLSearchParams(searchParams); 
+    updatedSearchParams.set('page', newPage); 
+    return `${pathname}?${updatedSearchParams}`; 
+  };
 
   const stylePagesPagination =
     'w-8 h-8 hover:border-primary flex border-box items-center border-2 border-elements justify-center text-primary';
@@ -47,7 +54,7 @@ export const Pagination: React.FC<Props> = ({
           return (
             <NavLink
               key={`p-${i}`}
-              to={`${pathname}?page=${number}`}
+              to={updatedParams(number.toString())}
               className={getClassPaginate({ isActive: number === currentPageNumber })}
             >
               {number}
