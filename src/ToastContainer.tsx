@@ -1,5 +1,6 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
+import { Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const ToastContainerWrapper: React.FC = () => {
@@ -15,6 +16,7 @@ export const ToastContainerWrapper: React.FC = () => {
       draggable
       pauseOnHover
       theme="light"
+      transition={Slide}
     />
   );
 };

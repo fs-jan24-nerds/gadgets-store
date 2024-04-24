@@ -43,7 +43,7 @@ export const cartSlice = createSlice({
           count: 1,
           product: action.payload,
         });
-        toast.success('Товар успішно додано в корзину');
+        toast.success('The product has been successfully added to the cart');
       }
     },
     removeOneFromCart: (state, action: PayloadAction<number | string>) => {
@@ -61,7 +61,7 @@ export const cartSlice = createSlice({
     },
     removeAllFromCart: (state, action: PayloadAction<number | string>) => {
       state.cart = state.cart.filter((cartItem) => cartItem.id !== action.payload);
-      toast.warn('Товар успішно видалено з корзини');
+      toast.warn('The product has been successfully removed from the shopping cart');
     },
     clearCart: (state) => {
       state.cart =[];
