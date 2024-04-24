@@ -5,40 +5,30 @@ import classNames from 'classnames';
 import { Item, Product } from '../../types/Product';
 import { useCartProducts } from '../../hooks/useCartProducts';
 import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
-import { useAppSelector } from '../../store/store';
+import { RootState, useAppSelector } from '../../store/store';
+import { Link } from 'react-router-dom';
+import createUniqueList from '../../utils/createUniqueList';
 
 type Props = {
   product: Item;
 };
 
-function createUniqueList<T extends string | number>(
-  products: Product[],
-  propertyName: keyof Product,
-): T[] {
-  const uniqueValues = new Set<T>();
-  products.forEach((product) => {
-    const propertyValue = product[propertyName];
-    if (propertyValue) {
-      uniqueValues.add(propertyValue as T);
-    }
-  });
-
-  return Array.from(uniqueValues);
-}
-
 export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
-  const [selectedSize, setSelectedSize] = useState<number>(0);
-  const [selectedColor, setSelectedColor] = useState<number>(0);
+  const { isLoaded } = useAppSelector((state: RootState) => state.products);
+
+  const [selectedSize] = useState<string>(phone.capacity);
+  const [selectedColor] = useState<string>(phone.color);
+
   const { cart, addProductToCart, removeAllFromCartById } = useCartProducts();
   const [favouritesProducts, addToFavourites, removeFromFavourites] = useFavouritesProducts();
-
   const products = useAppSelector((state) => state.products.products);
+
   const filteredProductModel = products.filter((product) =>
     product.itemId.includes(phone.namespaceId),
   );
 
-  const selectedProduct = useAppSelector((state) =>
-    state.products.products.find((product) => product.itemId === phone.id),
+  const selectedProduct = products.find(
+    (p) => p.color === selectedColor && p.capacity === selectedSize,
   );
 
   const isLike = favouritesProducts.some((likeProduct) => likeProduct.id === selectedProduct?.id);
@@ -50,7 +40,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
 
   const itemPhone = phone as Item;
 
-  const colorMenu = (color: number) => {
+  const colorMenu = (color: string) => {
     const changeColorClasses: string = classNames(
       'flex',
       'justify-center',
@@ -69,7 +59,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
     return changeColorClasses;
   };
 
-  const sizeMenu = (size: number) => {
+  const sizeMenu = (size: string) => {
     const changeSizeClasses: string = classNames(
       'border border-icons',
       'p-[7px]',
@@ -83,6 +73,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
     );
     return changeSizeClasses;
   };
+  if (!isLoaded) return 'loading';
 
   return (
     <article className="w-full lg:w-[520px]">
@@ -92,28 +83,32 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
       </div>
       <div className="w-full md:w-[320px]">
         <div className="flex mb-[25px] gap-2">
-          {selectedProductColor.map((color, index) => (
-            <button
+          {selectedProductColor.map((color) => (
+            <Link
+              to={`/${phone.category}/${phone.namespaceId}-${phone.capacity.toLowerCase()}-${color.replace(' ', '-')}`}
               key={color}
-              className={colorMenu(index)}
-              onClick={() => setSelectedColor(index)}
+              className={colorMenu(color)}
             >
               <span
                 className="w-[20px] h-[20px] rounded-full"
                 style={{ backgroundColor: color }}
               ></span>
-            </button>
+            </Link>
           ))}
         </div>
-        <div className="w-full  h-[1px] bg-elements mb-[24px]"></div>
+        <div className="w-full h-[1px] bg-elements mb-[24px]"></div>
         <h3 className="text-xs font-medium leading-4  font-mont text-secondary mb-[8px]">
           Select capacity
         </h3>
         <div className="font-mont-semiBold flex gap-1 mb-[24px] flex-wrap">
-          {selectedProductCapacity.map((size, index) => (
-            <button className={sizeMenu(index)} key={size} onClick={() => setSelectedSize(index)}>
-              {parseInt(size)} GB
-            </button>
+          {selectedProductCapacity.map((size) => (
+            <Link
+              to={`/${phone.category}/${phone.namespaceId}-${size.toLowerCase()}-${phone.color.replace(' ', '-')}`}
+              className={sizeMenu(size)}
+              key={size}
+            >
+              {size}
+            </Link>
           ))}
         </div>
         <div className="flex mb-[16px] items-center">
@@ -172,10 +167,10 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
             <p>Screen: </p>
             <p>Resolution:</p>
             <p>Processor: </p>
-            <p> RAM:</p>
+            <p>RAM:</p>
           </div>
           <div className="flex flex-col gap-[6px] text-primary text-right">
-            <p> {itemPhone.screen}</p>
+            <p>{itemPhone.screen}</p>
             <p>{itemPhone.resolution}</p>
             <p>{itemPhone.processor}</p>
             <p>{itemPhone.ram}</p>

@@ -10,18 +10,15 @@ import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 
 export const ProductDetails = () => {
   const { isLoaded } = useAppSelector((state: RootState) => state.products);
-  const { category } = useParams();
-  const { id } = useParams();
-
+  const { category, id } = useParams();
   const [product, setProduct] = useState<Item | undefined>();
+
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
 
   useEffect(() => {
-    if (isLoaded) {
-      if (id && category) {
-        const product = getProductById(id, category);
-        setProduct(product);
-      }
+    if (isLoaded && id && category) {
+      const product = getProductById(id, category);
+      setProduct(product);
     }
   }, [id, product, isLoaded, category]);
 
