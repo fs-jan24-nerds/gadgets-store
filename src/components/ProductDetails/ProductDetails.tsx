@@ -8,6 +8,9 @@ import { About } from '../About';
 import { BackButton } from '../BackButton/BackButton';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 import { SliderModels } from '../SliderModels/SliderModels';
+import { SubTitle } from '../SubTitle/SubTitle';
+import { motion } from 'framer-motion';
+import { generateAnimation } from '../../utils/animations';
 
 export const ProductDetails = () => {
   const { isLoaded } = useAppSelector((state: RootState) => state.products);
@@ -45,17 +48,28 @@ export const ProductDetails = () => {
     <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">
       {product && (
         <div className="mx-auto max-w-screen-xl px-6">
-          <div className="mb-6">
+          <motion.div
+            initial="hidden"
+            transition={{ delay: 0.3, duration: 0.6 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            variants={generateAnimation('y', -50)}
+            className="mb-6"
+          >
             <Breadcrumbs />
 
             <BackButton />
-
-            <h1 className="font-mont-bold leading-[41px] tracking-tighter text-primary text-left mb-6 md:text-4xl text-[22px]">
-              {product?.name}
-            </h1>
-          </div>
+            <SubTitle title={product?.name} />
+          </motion.div>
           <div className="flex flex-col md:flex-row md:items-start">
-            <div className="flex md:flex-row md:w-[570px] md:h-[464px] mb-[80px] flex-col-reverse m-auto">
+            <motion.div
+              initial="hidden"
+              transition={{ delay: 0.7, duration: 0.6 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              variants={generateAnimation('x', -60)}
+              className="flex md:flex-row md:w-[570px] md:h-[464px] mb-[80px] flex-col-reverse m-auto"
+            >
               <div className="flex md:flex-col gap-2 md:gap-4 items-center">
                 {product.images.map((image, index) => {
                   return (
@@ -76,7 +90,7 @@ export const ProductDetails = () => {
                   className="p-[11px] max-h-full m-auto"
                 />
               </div>
-            </div>
+            </motion.div>
             <SelectedProductFilter product={product} />
           </div>
 

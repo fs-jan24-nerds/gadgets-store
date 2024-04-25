@@ -14,12 +14,13 @@ import styles from './SliderPromo.module.css';
 import { Title } from '../Title/Title';
 
 import { motion } from 'framer-motion';
-import { TitleAnimation } from '../../types/titleAnimation';
-type Props = {
-  sectiomAnimation: TitleAnimation;
-};
+import { generateAnimation } from '../../utils/animations';
 
-const SliderPromo: React.FC<Props> = ({ sectiomAnimation }) => {
+
+
+
+
+const SliderPromo = () => {
   return (
     <div>
       <Title title="Welcome to Nice Gadgets store!" />
@@ -29,7 +30,7 @@ const SliderPromo: React.FC<Props> = ({ sectiomAnimation }) => {
         transition={{ delay: 0.2, duration: 0.7 }}
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true }}
-        variants={sectiomAnimation}
+        variants={generateAnimation('y', -50)}
         className="flex flex-col items-center max-w-full mt-6 lg:mt-8 xl:mt-14 mb-14 lg:mb-16 xl:mb-20"
       >
         <div className="flex gap-4 w-full mb-8">
