@@ -21,8 +21,10 @@ export default {
       },
       colors: {
         accent: 'rgb(var(--color-accent) / <alpha-value>)',
+        'accent-hover': 'rgb(var(--color-accent-hover) / <alpha-value>)',
         primary: 'rgb(var(--color-primary) / <alpha-value>)',
         secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+        'surface-0': 'rgb(var(--color-surface-0) / <alpha-value>)',
         'surface-1': 'rgb(var(--color-surface-1) / <alpha-value>)',
         'surface-2': 'rgb(var(--color-surface-2) / <alpha-value>)',
         icons: 'rgb(var(--color-icons) / <alpha-value>)',

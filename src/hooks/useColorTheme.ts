@@ -12,5 +12,5 @@ export const useColorTheme = () => {
     dispatch(setThemeAction({ theme: newTheme }));
   }
 
-  return [theme, setTheme]
+  return [theme, setTheme] as [Theme, (theme: Theme) => void]
 }

@@ -1,8 +1,19 @@
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/icons/Logo.svg';
 import ToTop from '../../assets/icons/to-top-arrow.svg';
+import { useColorTheme } from '../../hooks/useColorTheme';
+import { Theme } from '../../types/theme';
 
+const handleThemeToggle = (theme: Theme, setTheme: (theme: Theme) => void) => {
+  if (theme === 'light') {
+    setTheme('dark')
+  } else {
+    setTheme('light')
+  }
+}
 export function Footer() {
+  const [theme, setTheme] = useColorTheme();
+
   return (
     <footer className="flex border border-elements mt-16 lg:mt-20  px-4 sm:px-8">
       <div className="w-max-width mx-auto md:flex md:justify-between md:items-center">
@@ -27,7 +38,9 @@ export function Footer() {
             Rights
           </Link>
         </div>
-
+        <button onClick={() => handleThemeToggle(theme, setTheme)}>
+          Swap theme
+        </button>
         <a
           className="flex gap-8 justify-center w-full md:w-auto items-center mb-8 md:mb-0 mt-8 md:mt-0 cursor-pointer"
           onClick={(e) => {
