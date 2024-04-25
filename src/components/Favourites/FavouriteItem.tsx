@@ -3,6 +3,8 @@ import dislike from '../../assets/icons/dislike.svg';
 import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
 import { Link } from 'react-router-dom';
 import { useCartProducts } from '../../hooks/useCartProducts';
+import { motion } from 'framer-motion';
+import { generateAnimation } from '../../utils/animations';
 
 type Props = {
   product: Product;
@@ -22,7 +24,14 @@ export const FavouritesItem: React.FC<Props> = ({ product }) => {
   const isInCart = cart.some((cartProduct) => cartProduct.id === id);
 
   return (
-    <article className="flex justify-between flex-col p-8 border border-1 border-elements transition-shadow duration-300 hover:shadow-3xl">
+    <motion.article
+      initial="hidden"
+      transition={{ delay: 0.4, duration: 0.8 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      variants={generateAnimation('y', -50)}
+      className="flex justify-between flex-col p-8 border border-1 border-elements transition-shadow duration-300 hover:shadow-3xl"
+    >
       <div className="flex flex-col">
         <div className="max-h-[240px] mb-[24px]">
           <Link to={`../phones/${itemId}`}>
@@ -84,6 +93,6 @@ export const FavouritesItem: React.FC<Props> = ({ product }) => {
           </button>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 };

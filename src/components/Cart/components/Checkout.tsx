@@ -3,6 +3,8 @@ import { useCartProducts } from '../../../hooks/useCartProducts';
 import { useAppDispatch } from '../../../store/store';
 import { clearCart } from '../../../store/cartSlice';
 import { MyModal } from '../../Modal/MyModal';
+import { motion } from 'framer-motion';
+import { generateAnimation } from '../../../utils/animations';
 
 type Props = {
   onComfirmed: (_: boolean) => void;
@@ -22,7 +24,14 @@ export const Checkout: React.FC<Props> = ({ onComfirmed }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center border border-gray-300 p-[24px]">
+    <motion.div
+      initial="hidden"
+      transition={{ delay: 0.6, duration: 0.8 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      variants={generateAnimation('x', 50)}
+      className="flex flex-col items-center justify-center border border-gray-300 p-[24px]"
+    >
       <p className="font-Mont font-extrabold text-3xl leading-10 tracking-tighter text-primary">
         {`$${total}`}
       </p>
@@ -60,6 +69,6 @@ export const Checkout: React.FC<Props> = ({ onComfirmed }) => {
           </div>
         </div>
       </MyModal>
-    </div>
+    </motion.div>
   );
 };

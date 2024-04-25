@@ -15,14 +15,22 @@ import 'swiper/css/navigation';
 
 import { motion } from 'framer-motion';
 
-import { HomeTitle } from '../HomeTitle/HomeTitle';
+import { SubTitle } from '../SubTitle/SubTitle';
+import { generateAnimation } from '../../utils/animations';
 
 interface Props {
   filterFunction: (products: Product[]) => Product[];
   sectionTitle: string;
+  prevButtonClass?: string;
+  nextButtonClass?: string;
 }
 
-export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) => {
+export const SliderModels: React.FC<Props> = ({
+  filterFunction,
+  sectionTitle,
+  prevButtonClass = 'slider1-prev',
+  nextButtonClass = 'slider1-next',
+}) => {
   const { products, isLoaded } = useSelector((state: RootState) => state.products);
 
   const filteredProducts = filterFunction(products);
@@ -42,36 +50,17 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
     setSliderPosition(e.progress);
   };
 
-  const sectiomAnimation = {
-    hidden: {
-      opacity: 0,
-    },
-    visible: {
-      opacity: 1,
-    },
-  };
-  const titleAnimation = {
-    hidden: {
-      y: -120,
-      opacity: 0,
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-    },
-  };
-
   return (
     <div className="mb-[56px] tablet:mb-[80px]">
       <div className="flex justify-between">
-        <HomeTitle title={sectionTitle} />
+        <SubTitle title={sectionTitle} />
 
         <motion.div
           initial="hidden"
           transition={{ delay: 0.3, duration: 0.6 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          variants={titleAnimation}
+          variants={generateAnimation('y', -50)}
           className="flex space-x-4"
         >
           <button
@@ -79,7 +68,7 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
             className={classNames(
               'border border-elements w-8 h-8 flex justify-center items-center',
               { 'border-icons hover:border-primary': sliderPosition > 0 },
-              'product-slider-button-prev',
+              prevButtonClass,
             )}
           >
             <div
@@ -95,7 +84,7 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
             className={classNames(
               'border border-elements bg-surface-2 w-8 h-8 flex justify-center items-center',
               { 'border-icons hover:border-primary': sliderPosition < 1 },
-              'product-slider-button-next',
+              nextButtonClass,
             )}
           >
             <div
@@ -113,19 +102,19 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
         transition={{ delay: 0.7, duration: 1 }}
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true }}
-        variants={sectiomAnimation}
+        variants={generateAnimation('y', -50)}
       >
         <Swiper
           modules={[Navigation, Virtual]}
           navigation={{
-            prevEl: '.product-slider-button-prev',
-            nextEl: '.product-slider-button-next',
+            prevEl: `.${prevButtonClass}`,
+            nextEl: `.${nextButtonClass}`,
           }}
           wrapperClass="swiper-wrapper"
           spaceBetween={16}
           breakpoints={{
             320: {
-              width: 240,
+              width: 320,
               slidesPerView: 1,
               spaceBetween: 16,
             },
@@ -135,7 +124,7 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
               spaceBetween: 16,
             },
             1136: {
-              width: 1072,
+              width: 1136,
               slidesPerView: 4,
               spaceBetween: 16,
             },
@@ -146,7 +135,16 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
         >
           {filteredProducts.map((product, index) => (
             <SwiperSlide key={product.id} virtualIndex={index} className="swiper-slide">
-              <CardItem product={product} />
+              <div
+                onClick={() =>
+                  window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth',
+                  })
+                }
+              >
+                <CardItem product={product} />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

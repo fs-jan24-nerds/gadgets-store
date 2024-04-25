@@ -40,7 +40,7 @@ export const SearchForm = () => {
         type="button"
         onClick={() => setShowModal(true)}
       >
-        <img src={Search} alt="favourites" className="w-6 h-6" />
+        <img src={Search} alt="favourites" className="w-4 h-4" />
       </button>
       {showModal && (
         <>

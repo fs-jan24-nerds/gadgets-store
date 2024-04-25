@@ -35,7 +35,7 @@ export const Pagination: React.FC<Props> = ({
     <div className="flex justify-center pt-10 pb-20">
       <ul className="flex gap-3">
         <Link
-          to={`${pathname}?page=${currentPageNumber - 1}`}
+          to={updatedParams((currentPageNumber - 1).toString())}
           className={cn(stylePagesPagination, 'mx-2', {
             'opacity-50 cursor-default pointer-events-none': isFirstPage,
           })}
@@ -62,7 +62,7 @@ export const Pagination: React.FC<Props> = ({
           );
         })}
         <Link
-          to={`${pathname}?page=${currentPageNumber + 1}`}
+          to={updatedParams((currentPageNumber + 1).toString())}
           className={cn(stylePagesPagination, 'mx-2', {
             'opacity-50 cursor-default pointer-events-none': isSecondPage,
           })}

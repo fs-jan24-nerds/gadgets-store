@@ -18,6 +18,8 @@ import { Grid } from '../components/Grid/Grid';
 import { GridItem } from '../components/Grid/GridItem';
 import { CardItemSkeleton } from '../components/CardItem/CardItemSkeleton';
 import { Title } from '../components/Title/Title';
+import { motion } from 'framer-motion';
+import { generateAnimation } from '../utils/animations';
 
 const sortByYear = (a: Product, b: Product): number => {
   const aYear = a.year ?? 0;
@@ -89,7 +91,16 @@ export const ProductList = () => {
         </GridItem>
 
         <GridItem>
-          <p className="text-secondary text-xs font-semibold mb-10 mt-2 ">{totalLength} models</p>
+          <motion.p
+            initial="hidden"
+            transition={{ delay: 0.3, duration: 0.6 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            variants={generateAnimation('y', -50)}
+            className="text-secondary text-xs font-semibold mb-10 mt-2 "
+          >
+            {totalLength} models
+          </motion.p>
         </GridItem>
 
         <GridItem>
