@@ -72,12 +72,12 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
   if (!isLoaded) return 'loading';
 
   return (
-    <article className="w-full lg:w-[520px]">
+    <article className="w-full lg:max-w-[520px]">
       <div className="flex justify-between text-xs font-medium leading-4 font-mont text-secondary mb-[8px]">
         <h3>Available colors</h3>
         <span className="text-icons">ID: 802390</span>
       </div>
-      <div className="w-full md:w-[320px]">
+      <div className="w-full md:max-w-[320px]">
         <div className="flex mb-[25px] gap-2">
           {selectedProductColor.map((color) => (
             <Link
