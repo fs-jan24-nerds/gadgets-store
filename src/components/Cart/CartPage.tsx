@@ -10,20 +10,14 @@ import { ConfirmedOrderPage } from './components/ConfirmedOrderPage';
 
 import { BackButton } from '../BackButton/BackButton';
 import { motion } from 'framer-motion';
+import { generateAnimation } from '../../utils/animations';
+
+
 
 const CartPage = () => {
   const { cart } = useCartProducts();
   const [isConfirmed, setIsComfirmed] = useState(false);
-  const titleAnimation = {
-    hidden: {
-      y: -120,
-      opacity: 0,
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-    },
-  };
+ 
 
   return (
     <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">
@@ -37,7 +31,7 @@ const CartPage = () => {
             initial="hidden"
             animate="visible"
             transition={{ delay: 0.2, duration: 0.6 }}
-            variants={titleAnimation}
+            variants={generateAnimation('y', -50)}
             className="font-mont-Bold leading-14 tracking-tight text-left text-primary sm:text-5xl text-3xl mb-8"
           >
             Cart

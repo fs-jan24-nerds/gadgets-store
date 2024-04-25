@@ -4,6 +4,9 @@ import like from '../../assets/icons/like.svg';
 import { useCartProducts } from '../../hooks/useCartProducts';
 import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
 import { Product } from '../../types/Product';
+import { motion } from 'framer-motion';
+import { generateAnimation } from '../../utils/animations';
+
 
 type Props = {
   product: Product;
@@ -24,7 +27,14 @@ export const CardItem: React.FC<Props> = ({ product }) => {
   };
 
   return (
-    <article className="flex justify-between bg-surface-1 flex-col p-8 border border-1 border-elements transition-shadow duration-300 hover:shadow-3xl">
+    <motion.article
+      initial="hidden"
+      transition={{ delay: 0.4, duration: 1 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      variants={generateAnimation('y', -50)}
+      className="flex justify-between flex-col p-8 border border-1 border-elements transition-shadow duration-300 hover:shadow-3xl"
+    >
       <div className="flex flex-col">
         <div className="h-[196px] mb-[24px]">
           <Link to={`/${category}/${itemId}`}>
@@ -97,6 +107,6 @@ export const CardItem: React.FC<Props> = ({ product }) => {
           )}
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 };
