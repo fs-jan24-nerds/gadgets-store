@@ -43,16 +43,6 @@ export const HomePage = () => {
       opacity: 1,
     },
   };
-  const titleAnimation = {
-    hidden: {
-      y: -120,
-      opacity: 0,
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-    },
-  };
 
   return (
     <div className="mt-6 sm:mt-8 md:mt-14">
@@ -60,23 +50,13 @@ export const HomePage = () => {
         <SliderPromo sectiomAnimation={sectiomAnimation} />
       </section>
       <section className="max-w-max-width mx-auto box-content px-4 sm:px-6 lg:px-8">
-        <SliderModels
-          sectiomAnimation={sectiomAnimation}
-          titleAnimation={titleAnimation}
-          sectionTitle="Brand new models"
-          filterFunction={filterForNewModel}
-        />
+        <SliderModels sectionTitle="Brand new models" filterFunction={filterForNewModel} />
       </section>
       <section className="max-w-max-width mx-auto box-content px-4 sm:px-6 lg:px-8">
         <Category sectiomAnimation={sectiomAnimation} />
       </section>
       <section className="max-w-max-width mx-auto box-content px-4 sm:px-6 lg:px-8">
-        <SliderModels
-          sectiomAnimation={sectiomAnimation}
-          titleAnimation={titleAnimation}
-          sectionTitle="Hot prices"
-          filterFunction={filterProductsByPriceDifference}
-        />
+        <SliderModels sectionTitle="Hot prices" filterFunction={filterProductsByPriceDifference} />
       </section>
     </div>
   );
