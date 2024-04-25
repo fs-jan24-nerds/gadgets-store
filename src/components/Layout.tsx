@@ -8,7 +8,7 @@ export const Layout: React.FC = () => {
     <div className="flex flex-col min-h-screen">
       <ToastContainerWrapper />
       <Header />
-      <main className="flex-1 bg-surface-0">
+      <main className="flex-1 bg-surface-0 pb-16 lg:pb-20">
         <Outlet />
       </main>
       <Footer />

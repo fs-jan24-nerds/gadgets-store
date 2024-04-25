@@ -30,7 +30,7 @@ const SliderPromo = () => {
         className="flex flex-col items-center max-w-full mt-6 lg:mt-8 xl:mt-14 mb-14 lg:mb-16 xl:mb-20"
       >
         <div className="flex gap-4 w-full mb-8">
-          <button className={styles.leftArrow}>
+          <button className={`${styles.leftArrow} bg-surface-2 border border-elements`}>
             <img src={LeftArrow} alt="left arrow" className="mx-auto" />
           </button>
 
@@ -72,7 +72,7 @@ const SliderPromo = () => {
             </SwiperSlide>
           </Swiper>
 
-          <button className={styles.rightArrow}>
+          <button className={`${styles.rightArrow} bg-surface-2 border border-elements`}>
             <img src={RightArrow} alt="right arrow" className="mx-auto" />
           </button>
         </div>

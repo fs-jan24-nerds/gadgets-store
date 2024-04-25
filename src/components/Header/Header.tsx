@@ -11,6 +11,7 @@ import cartIcon from '../../assets/icons/cart.svg';
 import favourites from '../../assets/icons/favourites.svg';
 import { getClassNavLink } from '../../utils/getClass';
 import { SearchForm } from '../SearchForm/SearchForm';
+import { ThemeSwitcherButton } from '../ThemeSwitcherButton/ThemeSwitcherButton';
 
 export const Header = () => {
   const location = useLocation();
@@ -37,7 +38,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="grid sticky top-0 z-10 bg-white grid-cols-10 w-full items-center border  border-elements justify-between font-mont-bold">
+    <header className="grid sticky top-0 z-10 bg-surface-0 grid-cols-10 w-full items-center border max-xs:border-transparent border-elements justify-between font-mont-bold">
       <Link
         to={{ pathname: 'home', search: location.search }}
         className="w-32 h-16 flex items-center justify-center"
@@ -53,14 +54,16 @@ export const Header = () => {
           )}
         </button>
       </div>
-
       <div
         className={`sm:grid col-start-1 col-span-12 sm:col-start-3 sm:col-span-13 justify-between hidden:sm ${isMenuOpen ? 'block border-t-2 border-elements h-screen' : 'hidden'}`}
       >
         <Navigation closeMenu={closeMenu} />
+
         <div
           className={`flex col-end-12 items-center box-border justify-stretch sm:justify-center ${isMenuOpen && 'fixed bottom-0 border-t-2 w-full border-elements'}`}
         >
+          <ThemeSwitcherButton />
+
           <SearchForm />
 
           <NavLink
@@ -104,6 +107,7 @@ export const Header = () => {
           </NavLink>
         </div>
       </div>
+
       <div className="sm:hidden col-end-12  ml-auto"></div>
     </header>
   );

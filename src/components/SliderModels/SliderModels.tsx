@@ -82,7 +82,7 @@ export const SliderModels: React.FC<Props> = ({
           <button
             disabled={sliderPosition === 1}
             className={classNames(
-              'border border-elements w-8 h-8 flex justify-center items-center',
+              'border border-elements bg-surface-2 w-8 h-8 flex justify-center items-center',
               { 'border-icons hover:border-primary': sliderPosition < 1 },
               nextButtonClass,
             )}
