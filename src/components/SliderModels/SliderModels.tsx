@@ -18,14 +18,19 @@ import { motion } from 'framer-motion';
 import { SubTitle } from '../SubTitle/SubTitle';
 import { generateAnimation } from '../../utils/animations';
 
-
-
 interface Props {
   filterFunction: (products: Product[]) => Product[];
   sectionTitle: string;
+  prevButtonClass?: string;
+  nextButtonClass?: string;
 }
 
-export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) => {
+export const SliderModels: React.FC<Props> = ({
+  filterFunction,
+  sectionTitle,
+  prevButtonClass = 'slider1-prev',
+  nextButtonClass = 'slider1-next',
+}) => {
   const { products, isLoaded } = useSelector((state: RootState) => state.products);
 
   const filteredProducts = filterFunction(products);
@@ -63,7 +68,7 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
             className={classNames(
               'border border-elements w-8 h-8 flex justify-center items-center',
               { 'border-icons hover:border-primary': sliderPosition > 0 },
-              'product-slider-button-prev',
+              prevButtonClass,
             )}
           >
             <div
@@ -79,7 +84,7 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
             className={classNames(
               'border border-elements w-8 h-8 flex justify-center items-center',
               { 'border-icons hover:border-primary': sliderPosition < 1 },
-              'product-slider-button-next',
+              nextButtonClass,
             )}
           >
             <div
@@ -102,14 +107,14 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
         <Swiper
           modules={[Navigation, Virtual]}
           navigation={{
-            prevEl: '.product-slider-button-prev',
-            nextEl: '.product-slider-button-next',
+            prevEl: `.${prevButtonClass}`,
+            nextEl: `.${nextButtonClass}`,
           }}
           wrapperClass="swiper-wrapper"
           spaceBetween={16}
           breakpoints={{
             320: {
-              width: 240,
+              width: 320,
               slidesPerView: 1,
               spaceBetween: 16,
             },
@@ -119,7 +124,7 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
               spaceBetween: 16,
             },
             1136: {
-              width: 1072,
+              width: 1136,
               slidesPerView: 4,
               spaceBetween: 16,
             },
@@ -130,7 +135,16 @@ export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) 
         >
           {filteredProducts.map((product, index) => (
             <SwiperSlide key={product.id} virtualIndex={index} className="swiper-slide">
-              <CardItem product={product} />
+              <div
+                onClick={() =>
+                  window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth',
+                  })
+                }
+              >
+                <CardItem product={product} />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

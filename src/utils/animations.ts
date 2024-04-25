@@ -1,6 +1,5 @@
-
 export const generateAnimation = (property: string, num: number) => {
-   const animation = {
+  const animation = {
     hidden: {
       opacity: 0,
       [property]: num,
@@ -10,5 +9,5 @@ export const generateAnimation = (property: string, num: number) => {
       [property]: 0,
     },
   };
-  return animation
-}
+  return animation;
+};

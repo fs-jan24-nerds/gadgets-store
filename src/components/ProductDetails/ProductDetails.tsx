@@ -104,12 +104,7 @@ export const ProductDetails = () => {
         </Grid>
       )}
 
-      <section className="max-w-max-width mx-auto mt-20 box-content px-4 sm:px-6 lg:px-8">
-        <SliderModels
-          sectionTitle="You may also like"
-          filterFunction={filterForRecommendedModels}
-        />
-      </section>
+      <SliderModels sectionTitle="You may also like" filterFunction={filterForRecommendedModels} />
     </div>
   );
 };

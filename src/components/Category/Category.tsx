@@ -6,8 +6,6 @@ import { SubTitle } from '../SubTitle/SubTitle';
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
 
-
-
 export const Category = () => {
   return (
     <div className="mb-[56px] tablet:mb-[80px]">

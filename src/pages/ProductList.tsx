@@ -21,7 +21,6 @@ import { Title } from '../components/Title/Title';
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../utils/animations';
 
-
 const sortByYear = (a: Product, b: Product): number => {
   const aYear = a.year ?? 0;
   const bYear = b.year ?? 0;
@@ -77,7 +76,6 @@ export const ProductList = () => {
   }
 
   const pageProductsList = slicedList(sortedProducts, currentPageNumber, itemsPerPage);
- 
 
   return (
     <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">

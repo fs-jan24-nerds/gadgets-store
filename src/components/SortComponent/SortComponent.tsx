@@ -8,10 +8,8 @@ import { setItemsPerPage } from '../../store/perPageSlice';
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
 
-
 const pageSizeOptions = [4, 8, 16, 24];
-
-
+// const MAX_ITEMS_PER_PAGE = pageSizeOptions[pageSizeOptions.length - 1];
 
 export const SortComponent: React.FC = () => {
   const dispatch = useDispatch();

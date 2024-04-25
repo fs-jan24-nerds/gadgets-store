@@ -16,10 +16,6 @@ import { Title } from '../Title/Title';
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
 
-
-
-
-
 const SliderPromo = () => {
   return (
     <div>

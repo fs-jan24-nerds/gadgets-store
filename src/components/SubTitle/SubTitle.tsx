@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
 
-
 type Props = {
   title: string;
 };

@@ -12,12 +12,9 @@ import { BackButton } from '../BackButton/BackButton';
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
 
-
-
 const CartPage = () => {
   const { cart } = useCartProducts();
   const [isConfirmed, setIsComfirmed] = useState(false);
- 
 
   return (
     <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">

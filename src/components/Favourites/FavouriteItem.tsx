@@ -6,8 +6,6 @@ import { useCartProducts } from '../../hooks/useCartProducts';
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
 
-
-
 type Props = {
   product: Product;
 };

@@ -3,8 +3,6 @@ import { CartItemType } from '../../../types/cart';
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../../../utils/animations';
 
-
-
 type Props = {
   cartItem: CartItemType;
 };
@@ -18,12 +16,13 @@ export const CartItem: React.FC<Props> = ({ cartItem }) => {
 
   return (
     <motion.div
-    initial="hidden"
-    transition={{ delay: 0.4, duration: 0.8 }}
-    whileInView={{ x: 0, opacity: 1 }}
-    viewport={{ once: true }}
-    variants={generateAnimation('x', -50)}
-      className="sm:flex items-center justify-between gap-[24px] p-[24px] border border-gray-300 mb-[16px]">
+      initial="hidden"
+      transition={{ delay: 0.4, duration: 0.8 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      variants={generateAnimation('x', -50)}
+      className="sm:flex items-center justify-between gap-[24px] p-[24px] border border-gray-300 mb-[16px]"
+    >
       <div className="sm:mb-0 flex gap-[24px] items-center justify-start mb-7">
         <button onClick={() => removeAllFromCartById(id)}>
           <span className="text-secondary text-base">X</span>

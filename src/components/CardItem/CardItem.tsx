@@ -7,7 +7,6 @@ import { Product } from '../../types/Product';
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
 
-
 type Props = {
   product: Product;
 };

@@ -35,7 +35,6 @@ export const HomePage = () => {
     return sortedProducts.slice(0, 15);
   };
 
-
   return (
     <div className="mt-6 sm:mt-8 md:mt-14">
       <section className="max-w-max-width mx-auto box-content px-0 sm:px-6 lg:px-8">
@@ -45,10 +44,15 @@ export const HomePage = () => {
         <SliderModels sectionTitle="Brand new models" filterFunction={filterForNewModel} />
       </section>
       <section className="max-w-max-width mx-auto box-content px-4 sm:px-6 lg:px-8">
-        <Category  />
+        <Category />
       </section>
       <section className="max-w-max-width mx-auto box-content px-4 sm:px-6 lg:px-8">
-        <SliderModels sectionTitle="Hot prices" filterFunction={filterProductsByPriceDifference} />
+        <SliderModels
+          sectionTitle="Hot prices"
+          filterFunction={filterProductsByPriceDifference}
+          prevButtonClass="slider2-prev"
+          nextButtonClass="slider2-next"
+        />
       </section>
     </div>
   );
