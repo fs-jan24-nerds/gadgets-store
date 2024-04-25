@@ -64,10 +64,11 @@ export const cartSlice = createSlice({
       toast.warn('The product has been successfully removed from the shopping cart');
     },
     clearCart: (state) => {
-      state.cart =[];
+      state.cart = [];
     },
   },
 });
 
-export const { setCart, addToCart, removeOneFromCart, removeAllFromCart, clearCart } = cartSlice.actions;
+export const { setCart, addToCart, removeOneFromCart, removeAllFromCart, clearCart } =
+  cartSlice.actions;
 export default cartSlice.reducer;

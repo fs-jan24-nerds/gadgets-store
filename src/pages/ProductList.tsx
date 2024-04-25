@@ -53,9 +53,9 @@ export const ProductList = () => {
   const allProducts = products.filter((product) => product.category === category);
   const title = useParams();
 
-  const productTitle = title?.category 
-  ? title.category.charAt(0).toUpperCase() + title.category.slice(1) 
-  : "";
+  const productTitle = title?.category
+    ? title.category.charAt(0).toUpperCase() + title.category.slice(1)
+    : '';
 
   const totalLength = allProducts.length;
   const sortedProducts = [...allProducts];
@@ -79,7 +79,7 @@ export const ProductList = () => {
     <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">
       <Grid>
         <GridItem>
-          <div className='mb-[-20px]'>
+          <div className="mb-[-20px]">
             <Breadcrumbs />
           </div>
         </GridItem>

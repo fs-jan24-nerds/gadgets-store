@@ -24,9 +24,9 @@ export const Pagination: React.FC<Props> = ({
   const dots = '...';
 
   const updatedParams = (newPage: string) => {
-    const updatedSearchParams = new URLSearchParams(searchParams); 
-    updatedSearchParams.set('page', newPage); 
-    return `${pathname}?${updatedSearchParams}`; 
+    const updatedSearchParams = new URLSearchParams(searchParams);
+    updatedSearchParams.set('page', newPage);
+    return `${pathname}?${updatedSearchParams}`;
   };
 
   const stylePagesPagination =

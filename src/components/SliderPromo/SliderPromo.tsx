@@ -13,14 +13,25 @@ import 'swiper/css/scrollbar';
 import styles from './SliderPromo.module.css';
 import { Title } from '../Title/Title';
 
-const SliderPromo = () => {
+import { motion } from 'framer-motion';
+import { TitleAnimation } from '../../types/titleAnimation';
+type Props = {
+  sectiomAnimation: TitleAnimation;
+};
+
+const SliderPromo: React.FC<Props> = ({ sectiomAnimation }) => {
   return (
     <div>
-      <div className="px-[16px] tablet:px-[0]">
-        <Title title="Welcome to Nice Gadgets store!" />
-      </div>
+      <Title title="Welcome to Nice Gadgets store!" />
 
-      <div className="flex flex-col items-center max-w-full mt-6 lg:mt-8 xl:mt-14 mb-14 lg:mb-16 xl:mb-20">
+      <motion.div
+        initial="hidden"
+        transition={{ delay: 0.2, duration: 0.7 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        variants={sectiomAnimation}
+        className="flex flex-col items-center max-w-full mt-6 lg:mt-8 xl:mt-14 mb-14 lg:mb-16 xl:mb-20"
+      >
         <div className="flex gap-4 w-full mb-8">
           <button className={styles.leftArrow}>
             <img src={LeftArrow} alt="left arrow" className="mx-auto" />
@@ -69,7 +80,7 @@ const SliderPromo = () => {
           </button>
         </div>
         <div className="pagination flex justify-center items-center gap-4"></div>
-      </div>
+      </motion.div>
     </div>
   );
 };
