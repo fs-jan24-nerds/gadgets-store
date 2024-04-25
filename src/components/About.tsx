@@ -1,4 +1,6 @@
 import { Description } from '../types/Product';
+import { motion } from 'framer-motion';
+import { generateAnimation } from '../utils/animations';
 
 interface Props {
   item: {
@@ -16,7 +18,14 @@ interface Props {
 export const About: React.FC<Props> = ({ item }) => {
   return (
     <div className="grid grid-cols-12 w-full">
-      <div className="col-span-12 md:col-span-6 mb-10">
+      <motion.div
+        initial="hidden"
+        transition={{ delay: 1, duration: 0.6 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        variants={generateAnimation('x', -60)}
+        className="col-span-12 md:col-span-6 mb-10"
+      >
         <h1 className="font-bold text-2xl md:text-3xl lg:text-xl border-b-2 border-elements">
           About
         </h1>
@@ -26,8 +35,15 @@ export const About: React.FC<Props> = ({ item }) => {
             <p className="mt-3 font-medium text-secondary">{desc.text}</p>
           </div>
         ))}
-      </div>
-      <div className="col-span-12 md:col-start-8 md:col-span-5 mb-10">
+      </motion.div>
+      <motion.div
+        initial="hidden"
+        transition={{ delay: 1, duration: 0.6 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        variants={generateAnimation('x', 60)}
+        className="col-span-12 md:col-start-8 md:col-span-5 mb-10"
+      >
         <h1 className="font-bold text-2xl md:text-3xl lg:text-xl border-b-2 border-elements">
           Tech specs
         </h1>
@@ -59,7 +75,7 @@ export const About: React.FC<Props> = ({ item }) => {
           <p className="font-medium text-secondary">Cell</p>
           <p>{item.cell}</p>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

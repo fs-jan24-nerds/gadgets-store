@@ -35,25 +35,16 @@ export const HomePage = () => {
     return sortedProducts.slice(0, 15);
   };
 
-  const sectiomAnimation = {
-    hidden: {
-      opacity: 0,
-    },
-    visible: {
-      opacity: 1,
-    },
-  };
-
   return (
     <div className="mt-6 sm:mt-8 md:mt-14">
       <section className="max-w-max-width mx-auto box-content px-0 sm:px-6 lg:px-8">
-        <SliderPromo sectiomAnimation={sectiomAnimation} />
+        <SliderPromo />
       </section>
       <section className="max-w-max-width mx-auto box-content px-4 sm:px-6 lg:px-8">
         <SliderModels sectionTitle="Brand new models" filterFunction={filterForNewModel} />
       </section>
       <section className="max-w-max-width mx-auto box-content px-4 sm:px-6 lg:px-8">
-        <Category sectiomAnimation={sectiomAnimation} />
+        <Category />
       </section>
       <section className="max-w-max-width mx-auto box-content px-4 sm:px-6 lg:px-8">
         <SliderModels

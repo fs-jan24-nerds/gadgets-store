@@ -7,6 +7,8 @@ import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
 import { RootState, useAppSelector } from '../../store/store';
 import { Link } from 'react-router-dom';
 import createUniqueList from '../../utils/createUniqueList';
+import { motion } from 'framer-motion';
+import { generateAnimation } from '../../utils/animations';
 
 type Props = {
   product: Item;
@@ -72,7 +74,14 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
   if (!isLoaded) return 'loading';
 
   return (
-    <article className="w-full lg:max-w-[520px]">
+    <motion.article
+      initial="hidden"
+      transition={{ delay: 0.7, duration: 0.6 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      variants={generateAnimation('x', 60)}
+      className="w-full lg:w-[520px]"
+    >
       <div className="flex justify-between text-xs font-medium leading-4 font-mont text-secondary mb-[8px]">
         <h3>Available colors</h3>
         <span className="text-icons">ID: 802390</span>
@@ -173,6 +182,6 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
           </div>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 };

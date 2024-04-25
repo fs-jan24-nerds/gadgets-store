@@ -8,6 +8,9 @@ import { About } from '../About';
 import { BackButton } from '../BackButton/BackButton';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 import { SliderModels } from '../SliderModels/SliderModels';
+import { SubTitle } from '../SubTitle/SubTitle';
+import { motion } from 'framer-motion';
+import { generateAnimation } from '../../utils/animations';
 import { Grid } from '../Grid/Grid';
 import { GridItem } from '../Grid/GridItem';
 
@@ -49,46 +52,50 @@ export const ProductDetails = () => {
         <Grid>
           <GridItem>
             <Breadcrumbs />
-          </GridItem>
-
-          <GridItem>
             <BackButton />
           </GridItem>
-
           <GridItem>
-            <h1 className="font-mont-bold leading-[41px] tracking-tighter text-primary text-left mb-6 md:text-4xl text-[22px]">
-              {product?.name}
-            </h1>
+            <SubTitle title={product?.name} />
           </GridItem>
+          <GridItem className="block tablet:flex">
+            <GridItem className="col-span-4 tablet:col-span-6 desktop:col-span-12">
+              <motion.div
+                initial="hidden"
+                transition={{ delay: 0.7, duration: 0.6 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                variants={generateAnimation('x', -60)}
+                className="flex md:flex-row md:w-[570px] md:h-[464px] mb-[80px] flex-col-reverse m-auto"
+              >
+                <div className="flex md:flex-row w-full flex-col-reverse m-auto">
+                  <div className="flex md:flex-col gap-2 md:gap-4 items-center">
+                    {product.images.map((image, index) => {
+                      return (
+                        <div className={`${productStyles}`} key={image}>
+                          <img
+                            src={`/gadgets-store/${image}`}
+                            alt={`${product.name} ${index + 1}`}
+                            className={'max-h-full w-auto object-contain m-auto'}
+                            onMouseOver={() => setCurrentImageIdx(index)}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
 
-          <GridItem className="col-span-4 tablet:col-span-6 desktop:col-span-12">
-            <div className="flex md:flex-row w-full flex-col-reverse m-auto">
-              <div className="flex md:flex-col gap-2 md:gap-4 items-center">
-                {product.images.map((image, index) => {
-                  return (
-                    <div className={`${productStyles}`} key={image}>
-                      <img
-                        src={`/gadgets-store/${image}`}
-                        alt={`${product.name} ${index + 1}`}
-                        className={'max-h-full w-auto object-contain m-auto'}
-                        onMouseOver={() => setCurrentImageIdx(index)}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
+                  <div className="aspect-[1/1] flex justify-center items-center">
+                    <img
+                      src={`/gadgets-store/${product?.images[currentImageIdx]}`}
+                      className="p-[11px] object-center object-scale-down h-[400px] tablet:h-[500px]"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            </GridItem>
 
-              <div className="w-full aspect-[1/1] flex justify-center items-center border border-black-1 border-1">
-                <img
-                  src={`/gadgets-store/${product?.images[currentImageIdx]}`}
-                  className="p-[11px] object-center object-scale-down h-[400px] tablet:h-[500px]"
-                />
-              </div>
-            </div>
-          </GridItem>
-
-          <GridItem className="col-span-4 tablet:col-span-6 desktop:col-span-12">
-            <SelectedProductFilter product={product} />
+            <GridItem className="col-span-4 tablet:col-span-12 desktop:col-span-12">
+              <SelectedProductFilter product={product} />
+            </GridItem>
           </GridItem>
 
           <GridItem>
