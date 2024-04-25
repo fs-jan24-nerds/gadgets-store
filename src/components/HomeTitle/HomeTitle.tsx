@@ -21,7 +21,7 @@ export const HomeTitle: React.FC<Props> = ({ title }) => {
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true }}
       variants={titleAnimation}
-      className="text-4xl  mb-6"
+      className="font-mont-Bold text-[22px] text-primary xs:text-[32px]   mb-6"
     >
       {title}
     </motion.h2>

@@ -16,21 +16,13 @@ import 'swiper/css/navigation';
 import { motion } from 'framer-motion';
 
 import { HomeTitle } from '../HomeTitle/HomeTitle';
-import { TitleAnimation } from '../../types/titleAnimation';
 
 interface Props {
   filterFunction: (products: Product[]) => Product[];
   sectionTitle: string;
-  sectiomAnimation: TitleAnimation;
-  titleAnimation: TitleAnimation;
 }
 
-export const SliderModels: React.FC<Props> = ({
-  filterFunction,
-  sectionTitle,
-  sectiomAnimation,
-  titleAnimation,
-}) => {
+export const SliderModels: React.FC<Props> = ({ filterFunction, sectionTitle }) => {
   const { products, isLoaded } = useSelector((state: RootState) => state.products);
 
   const filteredProducts = filterFunction(products);
@@ -48,6 +40,25 @@ export const SliderModels: React.FC<Props> = ({
 
   const onSlideChange = (e: SwiperType) => {
     setSliderPosition(e.progress);
+  };
+
+  const sectiomAnimation = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+    },
+  };
+  const titleAnimation = {
+    hidden: {
+      y: -120,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
   };
 
   return (
