@@ -20,7 +20,7 @@ export const CategoryItem: React.FC<Props> = ({ image, bgColor, description, tit
           <img
             src={image}
             alt={description}
-            className="object-cover w-full h-full max-w-[368px] max-h-[368px] "
+            className="object-cover w-full h-full max-w-[368px] max-h-[368px] transition-scale duration-300 hover:scale-105 hover:translate-x-[-2.5%] hover:translate-y-[-2.5%]"
           />
         </Link>
         <Link

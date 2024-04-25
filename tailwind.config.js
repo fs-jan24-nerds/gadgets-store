@@ -35,6 +35,8 @@ export default {
         red: 'rgb(var(--color-red) / <alpha-value>)',
         black: 'rgb(var(--color-black) / <alpha-value>)',
         graphite: '#4C4C4C',
+        textMain: 'rgb(var(--color-text-main) / <alpha-value>)',
+        textSecondary: 'rgb(var(--color-text-secondary) / <alpha-value>)',
       },
       boxShadow: {
         '3xl': '0px 5px 12px -1px rgba(153,153,153,0.34)',
