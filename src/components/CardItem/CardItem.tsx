@@ -24,7 +24,7 @@ export const CardItem: React.FC<Props> = ({ product }) => {
   };
 
   return (
-    <article className="flex justify-between flex-col p-8 border border-1 border-elements transition-shadow duration-300 hover:shadow-3xl">
+    <article className="flex justify-between bg-surface-1 flex-col p-8 border border-1 border-elements transition-shadow duration-300 hover:shadow-3xl">
       <div className="flex flex-col">
         <div className="h-[196px] mb-[24px]">
           <Link to={`/${category}/${itemId}`}>
@@ -57,7 +57,7 @@ export const CardItem: React.FC<Props> = ({ product }) => {
         {Object.entries(descriptionContent).map(([key, value]) => (
           <div className="mb-2 flex justify-between items-center" key={key}>
             <p className="font-bold text-xs text-secondary">{key}</p>
-            <p className="text-xs">{value}</p>
+            <p className="text-xs text-primary">{value}</p>
           </div>
         ))}
       </div>
@@ -72,7 +72,7 @@ export const CardItem: React.FC<Props> = ({ product }) => {
             </button>
           ) : (
             <button
-              className="w-[100%] h-[40px] font-bold text-sm bg-primary text-white"
+              className="w-[100%] h-[40px] font-bold text-sm bg-accent text-white"
               onClick={() => addProductToCart(product)}
             >
               Add to cart
