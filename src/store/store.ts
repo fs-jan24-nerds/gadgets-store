@@ -4,10 +4,12 @@ import favouritsReducer from './favouriteSlice';
 import cartReducer from './cartSlice';
 import sortReduser from './SortSlice';
 import perPageReduser from './perPageSlice';
+import themeReducer from './themeSlice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { saveToLocalStorage } from '../utils/localStorage';
 import { throttle } from 'lodash';
+
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +18,7 @@ export const store = configureStore({
     cart: cartReducer,
     sort: sortReduser,
     perPage: perPageReduser,
+    theme: themeReducer,
   },
 });
 
@@ -23,6 +26,7 @@ store.subscribe(
   throttle(() => {
     saveToLocalStorage('cart', store.getState().cart.cart);
     saveToLocalStorage('fav', store.getState().favourites.favouritesProducts);
+    saveToLocalStorage('theme', store.getState().theme);
   }, 500),
 );
 
