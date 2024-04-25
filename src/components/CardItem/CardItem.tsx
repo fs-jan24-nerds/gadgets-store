@@ -67,7 +67,7 @@ export const CardItem: React.FC<Props> = ({ product }) => {
         {Object.entries(descriptionContent).map(([key, value]) => (
           <div className="mb-2 flex justify-between items-center" key={key}>
             <p className="font-bold text-xs text-secondary">{key}</p>
-            <p className="text-xs">{value}</p>
+            <p className="text-xs text-primary">{value}</p>
           </div>
         ))}
       </div>
@@ -82,7 +82,7 @@ export const CardItem: React.FC<Props> = ({ product }) => {
             </button>
           ) : (
             <button
-              className="w-[100%] h-[40px] font-bold text-sm bg-primary text-white"
+              className="w-[100%] h-[40px] font-bold text-sm bg-accent text-white"
               onClick={() => addProductToCart(product)}
             >
               Add to cart

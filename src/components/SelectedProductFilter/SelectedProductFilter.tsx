@@ -86,7 +86,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
         <h3>Available colors</h3>
         <span className="text-icons">ID: 802390</span>
       </div>
-      <div className="w-full md:w-[320px]">
+      <div className="w-full md:max-w-[320px]">
         <div className="flex mb-[25px] gap-2">
           {selectedProductColor.map((color) => (
             <Link

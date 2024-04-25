@@ -29,9 +29,9 @@ export const Checkout: React.FC<Props> = ({ onComfirmed }) => {
     <motion.div
     initial="hidden"
     transition={{ delay: 0.6, duration: 0.8 }}
-    whileInView={{ y: 0, opacity: 1 }}
+    whileInView={{ x: 0, opacity: 1 }}
     viewport={{ once: true }}
-    variants={generateAnimation('y', -50)}
+    variants={generateAnimation('x', 50)}
       className="flex flex-col items-center justify-center border border-gray-300 p-[24px]">
       <p className="font-Mont font-extrabold text-3xl leading-10 tracking-tighter text-primary">
         {`$${total}`}
