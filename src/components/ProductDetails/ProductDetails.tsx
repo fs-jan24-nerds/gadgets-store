@@ -8,6 +8,8 @@ import { About } from '../About';
 import { BackButton } from '../BackButton/BackButton';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 import { SliderModels } from '../SliderModels/SliderModels';
+import { Grid } from '../Grid/Grid';
+import { GridItem } from '../Grid/GridItem';
 
 export const ProductDetails = () => {
   const { isLoaded } = useAppSelector((state: RootState) => state.products);
@@ -60,20 +62,27 @@ export const ProductDetails = () => {
     },
   };
   return (
-    <div className="max-w-max-width mx-auto box-content px-6 lg:px-8">
+    <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">
+      
       {product && (
-        <div className="mx-auto max-w-screen-xl px-6">
-          <div className="mb-6">
+        <Grid>       
+
+          <GridItem>
             <Breadcrumbs />
-
+          </GridItem>
+            
+          <GridItem>
             <BackButton />
+          </GridItem>
 
+          <GridItem>
             <h1 className="font-mont-bold leading-[41px] tracking-tighter text-primary text-left mb-6 md:text-4xl text-[22px]">
               {product?.name}
-            </h1>
-          </div>
-          <div className="flex flex-col md:flex-row md:items-start">
-            <div className="flex md:flex-row md:w-[570px] md:h-[464px] mb-[80px] flex-col-reverse m-auto">
+            </h1>          
+          </GridItem>
+
+          <GridItem className="col-span-4 tablet:col-span-6 desktop:col-span-12">
+            <div className="flex md:flex-row w-full flex-col-reverse m-auto">
               <div className="flex md:flex-col gap-2 md:gap-4 items-center">
                 {product.images.map((image, index) => {
                   return (
@@ -88,18 +97,25 @@ export const ProductDetails = () => {
                   );
                 })}
               </div>
-              <div className="md:w-[442px]">
-                <img
-                  src={`/gadgets-store/${product?.images[currentImageIdx]}`}
-                  className="p-[11px] max-h-full m-auto"
-                />
-              </div>
-            </div>
-            <SelectedProductFilter product={product} />
-          </div>
 
-          <About item={product} />
-        </div>
+                <div className="w-full aspect-[1/1] flex justify-center items-center border border-black-1 border-1">
+                  <img
+                    src={`/gadgets-store/${product?.images[currentImageIdx]}`}
+                    className="p-[11px] object-center object-scale-down h-[400px] tablet:h-[500px]" 
+                  />
+                </div>
+              </div>
+          </GridItem>
+
+          <GridItem className='col-span-4 tablet:col-span-6 desktop:col-span-12'>
+              <SelectedProductFilter product={product} />
+          </GridItem>
+          
+          <GridItem>
+            <About item={product} />
+          </GridItem>
+            
+        </Grid>
       )}
 
       <section className="max-w-max-width mx-auto mt-20 box-content px-4 sm:px-6 lg:px-8">
