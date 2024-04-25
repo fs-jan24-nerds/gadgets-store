@@ -37,7 +37,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="grid sticky top-0 z-10 bg-white grid-cols-10 w-full items-center border max-xs:border-transparent border-elements justify-between font-mont-bold">
+    <header className="grid sticky top-0 z-10 bg-white grid-cols-10 w-full items-center border  border-elements justify-between font-mont-bold">
       <Link
         to={{ pathname: 'home', search: location.search }}
         className="w-32 h-16 flex items-center justify-center"
@@ -45,11 +45,11 @@ export const Header = () => {
         <img src={logo} alt="logo" className="mx-6" />
       </Link>
       <div className="flex sm:hidden col-end-13 ml-auto justify-center border-l w-16 h-16 items-center ">
-        <button onClick={toggleMenu} className="w-6 h-6">
+        <button onClick={toggleMenu} className="w-4 h-4">
           {!isMenuOpen ? (
-            <img src={BurgerMenu} alt="menu" className="w-6 h-6" />
+            <img src={BurgerMenu} alt="menu" className="w-4 h-4" />
           ) : (
-            <img src={Close} alt="close" className="w-6 h-6" />
+            <img src={Close} alt="close" className="w-4 h-4" />
           )}
         </button>
       </div>
@@ -71,11 +71,11 @@ export const Header = () => {
             onClick={closeMenu}
           >
             <div className="relative">
-              <img src={favourites} alt="favourites" className="w-6 h-6" />
+              <img src={favourites} alt="favourites" className="w-4 h-4" />
               {favouritesProducts.length > 0 && (
                 <span
                   className="bg-red absolute rounded-full leading-none grid place-items-center
-                   text-white w-[18px] h-[18px] top-0 right-0 transform translate-x-2/4 -translate-y-2/4"
+                   text-white text-[9px] w-[14px] h-[14px] top-0 right-0 transform translate-x-2/4 -translate-y-2/4"
                 >
                   {favouritesProducts.length}
                 </span>
@@ -91,11 +91,11 @@ export const Header = () => {
             onClick={closeMenu}
           >
             <div className="relative">
-              <img src={cartIcon} alt="cart" className="w-6 h-6" />
+              <img src={cartIcon} alt="cart" className="w-4 h-4" />
               {totalItems > 0 && (
                 <span
-                  className=" bg-red absolute rounded-full leading-none grid place-items-center
-              text-white w-[18px] h-[18px] top-0 right-0 transform translate-x-2/4 -translate-y-2/4"
+                  className="bg-red absolute rounded-full leading-none grid place-items-center
+                 text-white text-[9px] w-[14px] h-[14px] top-0 right-0 transform translate-x-2/4 -translate-y-2/4"
                 >
                   {totalItems}
                 </span>

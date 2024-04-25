@@ -45,14 +45,12 @@ export const ProductDetails = () => {
 
   return (
     <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">
-      
       {product && (
-        <Grid>       
-
+        <Grid>
           <GridItem>
             <Breadcrumbs />
           </GridItem>
-            
+
           <GridItem>
             <BackButton />
           </GridItem>
@@ -60,7 +58,7 @@ export const ProductDetails = () => {
           <GridItem>
             <h1 className="font-mont-bold leading-[41px] tracking-tighter text-primary text-left mb-6 md:text-4xl text-[22px]">
               {product?.name}
-            </h1>          
+            </h1>
           </GridItem>
 
           <GridItem className="col-span-4 tablet:col-span-6 desktop:col-span-12">
@@ -80,32 +78,26 @@ export const ProductDetails = () => {
                 })}
               </div>
 
-                <div className="w-full aspect-[1/1] flex justify-center items-center border border-black-1 border-1">
-                  <img
-                    src={`/gadgets-store/${product?.images[currentImageIdx]}`}
-                    className="p-[11px] object-center object-scale-down h-[400px] tablet:h-[500px]" 
-                  />
-                </div>
+              <div className="w-full aspect-[1/1] flex justify-center items-center border border-black-1 border-1">
+                <img
+                  src={`/gadgets-store/${product?.images[currentImageIdx]}`}
+                  className="p-[11px] object-center object-scale-down h-[400px] tablet:h-[500px]"
+                />
               </div>
+            </div>
           </GridItem>
 
-          <GridItem className='col-span-4 tablet:col-span-6 desktop:col-span-12'>
-              <SelectedProductFilter product={product} />
+          <GridItem className="col-span-4 tablet:col-span-6 desktop:col-span-12">
+            <SelectedProductFilter product={product} />
           </GridItem>
-          
+
           <GridItem>
             <About item={product} />
           </GridItem>
-            
         </Grid>
       )}
 
-      <section className="max-w-max-width mx-auto mt-20 box-content px-4 sm:px-6 lg:px-8">
-        <SliderModels
-          sectionTitle="You may also like"
-          filterFunction={filterForRecommendedModels}
-        />
-      </section>
+      <SliderModels sectionTitle="You may also like" filterFunction={filterForRecommendedModels} />
     </div>
   );
 };

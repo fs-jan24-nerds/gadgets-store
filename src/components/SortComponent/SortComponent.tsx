@@ -7,6 +7,7 @@ import { useSearchParams } from 'react-router-dom';
 import { setItemsPerPage } from '../../store/perPageSlice';
 
 const pageSizeOptions = [4, 8, 16, 24];
+// const MAX_ITEMS_PER_PAGE = pageSizeOptions[pageSizeOptions.length - 1];
 
 export const SortComponent: React.FC = () => {
   const dispatch = useDispatch();

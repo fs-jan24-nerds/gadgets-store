@@ -56,7 +56,12 @@ export const HomePage = () => {
         <Category sectiomAnimation={sectiomAnimation} />
       </section>
       <section className="max-w-max-width mx-auto box-content px-4 sm:px-6 lg:px-8">
-        <SliderModels sectionTitle="Hot prices" filterFunction={filterProductsByPriceDifference} />
+        <SliderModels
+          sectionTitle="Hot prices"
+          filterFunction={filterProductsByPriceDifference}
+          prevButtonClass="slider2-prev"
+          nextButtonClass="slider2-next"
+        />
       </section>
     </div>
   );
