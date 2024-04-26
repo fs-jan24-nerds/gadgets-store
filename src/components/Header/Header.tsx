@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useCartProducts } from '../../hooks/useCartProducts';
 import { useAppSelector } from '../../store/store';
@@ -21,6 +21,22 @@ export const Header = () => {
 
   const { cart } = useCartProducts();
   const totalItems = cart.reduce((acc, cartItem) => acc + cartItem.count, 0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640 && isMenuOpen) {
+        document.body.classList.add('overflow-hidden');
+      } else {
+        closeMenu();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isMenuOpen]);
+
 
   const toggleMenu = () => {
     isMenuOpen ? closeMenu() : openMenu();
