@@ -25,7 +25,7 @@ export const CategoryItem: React.FC<Props> = ({ image, bgColor, description, tit
         </Link>
         <Link
           to={description}
-          className="font-Mont font-semibold text-base leading-[25.56px] text-left text-[#313237] mb-1 block"
+          className="font-Mont font-semibold text-base leading-[25.56px] text-left text-textMain mb-1 block"
         >
           {title}
         </Link>
