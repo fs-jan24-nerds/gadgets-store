@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
-
 import { useAppSelector } from '../../store/store';
 import { CardItem } from '../CardItem';
 import { getSearchProducts } from '../../utils/getSearchProducts';
-
 import Close from '../../assets/Close.svg';
-import Search from '../../assets/icons/search.svg';
+import { SearchIcon } from '../Icons/SearchIcon';
 
 export const SearchForm = () => {
   const [showModal, setShowModal] = React.useState(false);
@@ -40,7 +38,8 @@ export const SearchForm = () => {
         type="button"
         onClick={() => setShowModal(true)}
       >
-        <img src={Search} alt="favourites" className="w-4 h-4" />
+        {/* <img src={Search} alt="favourites" className="w-4 h-4" /> */}
+        <SearchIcon/>
       </button>
       {showModal && (
         <>
