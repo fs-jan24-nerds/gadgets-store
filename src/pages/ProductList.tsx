@@ -20,6 +20,7 @@ import { CardItemSkeleton } from '../components/CardItem/CardItemSkeleton';
 import { Title } from '../components/Title/Title';
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../utils/animations';
+import { selectItemsPerPage, setItemsPerPage } from '../store/perPageSlice';
 
 const sortByYear = (a: Product, b: Product): number => {
   const aYear = a.year ?? 0;
@@ -33,11 +34,11 @@ export const ProductList = () => {
 
   const { products, isLoaded } = useSelector((state: RootState) => state.products);
   const currentSort = useSelector(selectCurrentSort);
+  const itemsPerPage = useSelector(selectItemsPerPage);
 
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const currentPageNumber = parseInt(searchParams.get('page') || '1', 10);
-  const itemsPerPage = parseInt(searchParams.get('perPage') || '16', 10);
 
   useEffect(() => {
     const currentSort = searchParams.get('sort') as SortStatus;
@@ -45,6 +46,15 @@ export const ProductList = () => {
       dispatch(setSort(currentSort));
     }
   }, [dispatch, searchParams]);
+
+  useEffect(() => {
+    const perPageParam = parseInt(searchParams.get('perPage') || '16', 10);
+    const validatedPerPage = Math.min(24, Math.max(4, perPageParam));
+
+    if (itemsPerPage !== validatedPerPage) {
+      dispatch(setItemsPerPage(validatedPerPage));
+    }
+  }, [searchParams, dispatch, itemsPerPage]);
 
   useEffect(() => {
     if (!isLoaded) {
@@ -74,8 +84,8 @@ export const ProductList = () => {
       break;
     default:
   }
-
-  const pageProductsList = slicedList(sortedProducts, currentPageNumber, itemsPerPage);
+  const validPageNumber = isNaN(currentPageNumber) ? 1 : currentPageNumber;
+  const pageProductsList = slicedList(sortedProducts, validPageNumber, itemsPerPage);
 
   return (
     <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">
@@ -135,7 +145,7 @@ export const ProductList = () => {
       <Pagination
         totalProducts={totalLength}
         productsPerPage={itemsPerPage}
-        currentPageNumber={currentPageNumber}
+        currentPageNumber={validPageNumber}
       />
     </div>
   );
