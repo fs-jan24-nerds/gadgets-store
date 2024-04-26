@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import logo from '../../assets/icons/Logo.svg';
 import { LogoIcon } from '../Icons/LogoIcon';
-import { toTopIcon } from '../../assets/SvgIcons';
+import { toTopIcon } from '../../assets/SVGIcons';
 
 
 

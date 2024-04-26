@@ -13,7 +13,7 @@ import { Title } from '../Title/Title';
 
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
-import { sliderLeftArrow, sliderRightArrow } from '../../assets/SvgIcons';
+import { sliderLeftArrow, sliderRightArrow } from '../../assets/SVGIcons';
 
 
 const SliderPromo = () => {
