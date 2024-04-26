@@ -22,7 +22,8 @@
 .myModalContent {
    margin: 0 15px;
    padding: 25px;
-   background-color: rgb(255, 255, 255);
+   /* background-color: rgb(255, 255, 255); */
+   background-color: var(--primary);
    border-radius: 16px;
    min-width: 250px;
    display: flex;

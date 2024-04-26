@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/icons/logo.svg';
+import logo from '../../assets/icons/Logo.svg';
 import ToTop from '../../assets/icons/to-top-arrow.svg';
 import { LogoIcon } from '../Icons/LogoIcon';
 
