@@ -20,7 +20,7 @@ export const FavouritesPage = () => {
         <div className="grid grid-cols-1  gap-x-[16px] gap-y-[40px] sm:grid-cols-2 bd  md:grid-cols-3  lg:grid-cols-4">
           {favouritesProducts.map((product) => (
             // <FavouritesItem key={product.id} product={product} />
-            <CardItem key={product.id} product={product}/>
+            <CardItem key={product.id} product={product} />
           ))}
         </div>
       ) : (

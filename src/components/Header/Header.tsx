@@ -4,7 +4,6 @@ import { useCartProducts } from '../../hooks/useCartProducts';
 import { useAppSelector } from '../../store/store';
 import { Navigation } from './Navigation';
 
-
 import logo from '../../assets/icons/Logo.svg';
 // import BurgerMenu from '../../assets/icons/Menu.svg';
 import { getClassNavLink } from '../../utils/getClass';

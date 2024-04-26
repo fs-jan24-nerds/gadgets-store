@@ -135,16 +135,7 @@ export const SliderModels: React.FC<Props> = ({
         >
           {filteredProducts.map((product, index) => (
             <SwiperSlide key={product.id} virtualIndex={index} className="swiper-slide">
-              <div
-                onClick={() =>
-                  window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth',
-                  })
-                }
-              >
-                <CardItem product={product} />
-              </div>
+              <CardItem product={product} />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -1,12 +1,11 @@
 import { FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 
- export function Register() {
+export function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState<string>('');
-
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -29,7 +28,9 @@ import { Link } from 'react-router-dom';
         <h2 className="text-2xl font-semibold mb-6 text-center">Register</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700">Email:</label>
+            <label htmlFor="email" className="block text-gray-700">
+              Email:
+            </label>
             <input
               type="email"
               id="email"
@@ -40,7 +41,9 @@ import { Link } from 'react-router-dom';
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block text-gray-700">Password:</label>
+            <label htmlFor="password" className="block text-gray-700">
+              Password:
+            </label>
             <input
               type="password"
               id="password"
@@ -51,7 +54,9 @@ import { Link } from 'react-router-dom';
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="confirmPassword" className="block text-gray-700">Confirm Password:</label>
+            <label htmlFor="confirmPassword" className="block text-gray-700">
+              Confirm Password:
+            </label>
             <input
               type="password"
               id="confirmPassword"
@@ -68,10 +73,14 @@ import { Link } from 'react-router-dom';
           >
             Register
           </button>
-          <p className="mt-4 text-center">I already have an account. <Link to="/login" className="text-blue-500 hover:underline">Login</Link></p>
+          <p className="mt-4 text-center">
+            I already have an account.{' '}
+            <Link to="/login" className="text-blue-500 hover:underline">
+              Login
+            </Link>
+          </p>
         </form>
       </div>
     </div>
   );
 }
-
