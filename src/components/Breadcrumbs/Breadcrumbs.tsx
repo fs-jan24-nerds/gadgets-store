@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import Home from '../../assets/Home.svg';
 import rightArrow from '../../assets/icons/rightArrow.svg';
+import React from 'react';
 
 const preparedCategoryName = (categoryName: string) => {
   return categoryName
@@ -25,28 +26,28 @@ export const Breadcrumbs = () => {
 
       if (index === arr.length - 1) {
         return (
-          <Link to={currentURL} key={crumb} className="text-secondary cursor-default">
+          <Link to={currentURL} key={crumb} className=" text-secondary cursor-default">
             {crumb}
           </Link>
         );
       }
 
       return (
-        <div key={crumb} className="inline-block">
-          <Link to={currentURL}>{crumb}</Link>
-          <img src={rightArrow} alt="Go back" className="inline-block mx-2" />
-        </div>
+        <React.Fragment key={crumb}>
+          <Link to={currentURL} className="text-textMain">
+            {crumb}
+          </Link>
+          <img src={rightArrow} alt="Go back" className=" mx-2" />
+        </React.Fragment>
       );
     });
 
   return (
-    <div className="mb-6 md:mb-10 mt-6">
-      <div className="inline-block">
-        <Link to={'/'}>
-          <img src={Home} alt="Home page" className="inline-block" />
-        </Link>
-        <img src={rightArrow} alt="Go back" className="inline-block mx-2" />
-      </div>
+    <div className="flex items-center mb-6 md:mb-10 mt-6 font-inter-regular">
+      <Link to={'/'} className="block">
+        <img src={Home} alt="Home page" />
+      </Link>
+      <img src={rightArrow} alt="Go back" className=" mx-2" />
       {breadcrumbs}
     </div>
   );

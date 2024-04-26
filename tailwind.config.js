@@ -15,6 +15,8 @@ export default {
         'mont-regular': ['Mont-Regular', 'sans-serif'],
         'mont-semiBold': ['Mont-semiBold', 'sans-serif'],
         'mont-Bold': ['Mont-Bold', 'sans-serif'],
+        'inter-regular': ['Inter-Regular', 'sans-serif'],
+        'monrope-regular': ['Manrope-Regular', 'sans-serif'],
       },
       spacing: {
         'max-width': '1136px',
