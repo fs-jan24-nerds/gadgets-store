@@ -5,7 +5,9 @@
   --color-surface-0: 255 255 255;
   --color-surface-1: 255 255 255;
   --color-surface-2: 255 255 255;
+  --color-surface-3: 215 215 215;
   --color-secondary: 137 147 154;
+  --color-bg-main: #ffffff;
   /* For text */
   --color-icons: 180 189 195;
   --color-elements: 226 231 233;
@@ -25,11 +27,13 @@
 .dark {
   --color-accent: 144 91 255;
   --color-primary: 255 255 255;
+  --color-bg-main: #0F1121;
   /* For main text */
   --color-secondary: 117 118 127;
   --color-surface-0: 15 17 33;
   --color-surface-1: 22 24 40;
   --color-surface-2: 59 62 74;
+  --color-surface-3: 15 17 33;
   --color-icons: 74 77 88;
   --color-elements: 59 62 74;
   --color-hover-bg: 250 251 252;
@@ -40,7 +44,7 @@
   --color-accent-hover: 163 120 255;
   --color-text-main: 255 255 255;
   --color-text-secondary: 255 255 255;
-  --color-header-icons: #F1F2F9;
+  --color-header-icons: #f1f2f9;
   --color-button-text-success: 255 255 255;
   --color-interface-border: 22 24 40;
 }

@@ -13,7 +13,16 @@ const perPageSlice = createSlice({
   initialState,
   reducers: {
     setItemsPerPage: (state, action: PayloadAction<number>) => {
-      state.itemsPerPage = action.payload;
+      const MAX_ITEMS_PER_PAGE = 24; // Максимально дозволене значення
+      const MIN_ITEMS_PER_PAGE = 4; // Мінімально дозволене значення
+
+      // Обмежуємо значення в межах дозволеного діапазону
+      const validItemsPerPage = Math.max(
+        MIN_ITEMS_PER_PAGE,
+        Math.min(MAX_ITEMS_PER_PAGE, action.payload),
+      );
+
+      state.itemsPerPage = validItemsPerPage; // Оновлюємо з перевіреним значенням
     },
   },
 });

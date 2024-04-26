@@ -9,7 +9,8 @@ import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
 
 const pageSizeOptions = [4, 8, 16, 24];
-// const MAX_ITEMS_PER_PAGE = pageSizeOptions[pageSizeOptions.length - 1];
+const MAX_ITEMS_PER_PAGE = pageSizeOptions[pageSizeOptions.length - 1];
+const MIN_ITEMS_PER_PAGE = pageSizeOptions[0];
 
 export const SortComponent: React.FC = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,13 @@ export const SortComponent: React.FC = () => {
 
   const currentSort = searchParams.get('sort') as SortStatus | null;
 
-  const currentPerPage = searchParams.get('perPage') as number | null;
+  let currentPerPage = searchParams.get('perPage') as number | null;
+
+  if (currentPerPage) {
+    if (currentPerPage > MAX_ITEMS_PER_PAGE) {
+      currentPerPage = MAX_ITEMS_PER_PAGE;
+    }
+  }
 
   const handleFilterChange = (selectedSort: SortStatus) => {
     dispatch(setSort(selectedSort));
@@ -28,10 +35,15 @@ export const SortComponent: React.FC = () => {
   };
 
   const handlePerPageChange = (selectedPerPage: number) => {
-    dispatch(setItemsPerPage(selectedPerPage));
+    const validatedPerPage = Math.min(
+      MAX_ITEMS_PER_PAGE,
+      Math.max(MIN_ITEMS_PER_PAGE, selectedPerPage),
+    );
+
+    dispatch(setItemsPerPage(validatedPerPage)); // Надсилаємо в Redux
     setSearchParams({
       ...Object.fromEntries(searchParams),
-      perPage: selectedPerPage.toString(),
+      perPage: validatedPerPage.toString(), // Оновлюємо в URL параметрах
     });
   };
 

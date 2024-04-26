@@ -1,6 +1,6 @@
 import { Link, NavLink, useLocation, useSearchParams } from 'react-router-dom';
 import { generatePagination } from '../../utils/generatePagination';
-import { getClassPaginate } from '../../utils/getClass';
+import { getClassPaginate, stylePagesPagination } from '../../utils/getClass';
 import cn from 'classnames';
 
 type Props = {
@@ -29,16 +29,18 @@ export const Pagination: React.FC<Props> = ({
     return `${pathname}?${updatedSearchParams}`;
   };
 
-  const stylePagesPagination =
-    'w-8 h-8 hover:border-primary flex border-box items-center border-2 border-elements justify-center text-primary';
   return (
     <div className="flex justify-center pt-10 pb-20">
       <ul className="flex gap-3">
         <Link
           to={updatedParams((currentPageNumber - 1).toString())}
-          className={cn(stylePagesPagination, 'mx-2', {
-            'opacity-50 cursor-default pointer-events-none': isFirstPage,
-          })}
+          className={cn(
+            'flex justify-center items-center w-8 h-8 border border-elements bg-surface-2',
+            'mx-2',
+            {
+              'opacity-50 cursor-default pointer-events-none text-primary': isFirstPage,
+            },
+          )}
         >
           &lt;
         </Link>
@@ -46,7 +48,13 @@ export const Pagination: React.FC<Props> = ({
           const isDots = number === dots;
           if (isDots) {
             return (
-              <span key={`p-${i}`} className={stylePagesPagination}>
+              <span
+                key={`p-${i}`}
+                className={
+                  stylePagesPagination +
+                  'border-elements bg-surface-1 text-primary hover:text-white'
+                }
+              >
                 {dots}
               </span>
             );
@@ -63,9 +71,14 @@ export const Pagination: React.FC<Props> = ({
         })}
         <Link
           to={updatedParams((currentPageNumber + 1).toString())}
-          className={cn(stylePagesPagination, 'mx-2', {
-            'opacity-50 cursor-default pointer-events-none': isSecondPage,
-          })}
+          className={cn(
+            'flex justify-center items-center w-8 h-8 border border-elements bg-surface-2',
+            'mx-2',
+            {
+              'opacity-50 cursor-default pointer-events-none bg-surface-2 text-primary':
+                isSecondPage,
+            },
+          )}
         >
           &gt;
         </Link>

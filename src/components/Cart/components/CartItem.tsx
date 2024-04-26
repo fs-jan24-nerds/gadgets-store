@@ -52,6 +52,7 @@ export const CartItem: React.FC<Props> = ({ cartItem }) => {
 
           <button
             className="border border-gray-300 bg-surface-2 px-3 py-1"
+
             onClick={() => addProductToCart(product)}
           >
             +
