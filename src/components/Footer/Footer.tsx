@@ -1,12 +1,16 @@
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/icons/Logo.svg';
+import logo from '../../assets/icons/logo.svg';
 import ToTop from '../../assets/icons/to-top-arrow.svg';
+import { LogoIcon } from '../Icons/LogoIcon';
 
 export function Footer() {
   return (
-    <footer className="flex bg-surface-0 border border-elements px-4 sm:px-8">
+    <footer className="flex items-center bg-surface-0 border border-elements px-4 sm:px-8">
       <div className="w-max-width mx-auto md:flex md:justify-between md:items-center">
-        <img src={Logo} alt="Logo" className="mt-8 mr-0 md:mr-0 md:mb-4 mb-7" />
+        <div className="relative mt-8 mr-0 md:mr-0 md:mb-4 mb-7">
+          <LogoIcon />
+          <img src={logo} alt="logo" className="absolute bottom-[16px] left-[19px] mx-6" />
+        </div>
 
         <div className="md:flex md:items-center">
           <Link

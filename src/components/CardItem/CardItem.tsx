@@ -28,7 +28,7 @@ export const CardItem: React.FC<Props> = ({ product }) => {
   return (
     <motion.article
       initial="hidden"
-      transition={{ delay: 0.4, duration: 1 }}
+      transition={{ delay: 0.2, duration: 0.5 }}
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true }}
       variants={generateAnimation('y', -50)}

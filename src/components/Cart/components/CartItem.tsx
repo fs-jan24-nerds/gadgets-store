@@ -17,7 +17,7 @@ export const CartItem: React.FC<Props> = ({ cartItem }) => {
   return (
     <motion.div
       initial="hidden"
-      transition={{ delay: 0.4, duration: 0.8 }}
+      transition={{ delay: 0.4, duration: 0.5 }}
       whileInView={{ x: 0, opacity: 1 }}
       viewport={{ once: true }}
       variants={generateAnimation('x', -50)}
