@@ -57,7 +57,7 @@ export const SliderModels: React.FC<Props> = ({
 
         <motion.div
           initial="hidden"
-          transition={{ delay: 0.3, duration: 0.6 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           variants={generateAnimation('y', -50)}

@@ -3,15 +3,14 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useCartProducts } from '../../hooks/useCartProducts';
 import { useAppSelector } from '../../store/store';
 import { Navigation } from './Navigation';
-
-import logo from '../../assets/icons/Logo.svg';
-// import BurgerMenu from '../../assets/icons/Menu.svg';
+import logo from '../../assets/icons/logo.svg';
 import { getClassNavLink } from '../../utils/getClass';
 import { SearchForm } from '../SearchForm/SearchForm';
 import { ThemeSwitcherButton } from '../ThemeSwitcherButton/ThemeSwitcherButton';
 import { FavoritsIcon } from '../Icons/FavoritsIcon';
 import { CartIcon } from '../Icons/CartIcon';
 import { BurgerIcon } from '../Icons/BurgerIcon';
+import { LogoIcon } from '../Icons/LogoIcon';
 
 export const Header = () => {
   const location = useLocation();
@@ -43,7 +42,12 @@ export const Header = () => {
         to={{ pathname: 'home', search: location.search }}
         className="w-32 h-16 flex items-center justify-center"
       >
-        <img src={logo} alt="logo" className="mx-6" />
+        <div className="relative">
+          <LogoIcon />
+          <img src={logo} alt="logo" className="absolute bottom-[16px] left-[19px] mx-6" />
+        </div>
+
+    
       </Link>
       <div className="flex sm:hidden col-end-13 ml-auto justify-center border-l w-16 h-16 items-center ">
         <button onClick={toggleMenu} className="w-4 h-4">
