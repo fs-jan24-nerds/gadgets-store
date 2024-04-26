@@ -18,7 +18,7 @@ export const ToastContainerWrapper: React.FC = () => {
       pauseOnFocusLoss
       draggable
       pauseOnHover
-      theme={theme}
+      theme={theme === 'dark' ? 'dark' : 'light'}
       transition={Slide}
     />
   );

@@ -2,6 +2,7 @@ import { useCartProducts } from '../../../hooks/useCartProducts';
 import { CartItemType } from '../../../types/cart';
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../../../utils/animations';
+import classNames from 'classnames';
 
 type Props = {
   cartItem: CartItemType;
@@ -9,10 +10,15 @@ type Props = {
 
 export const CartItem: React.FC<Props> = ({ cartItem }) => {
   const { count, id, product } = cartItem;
-
   const { image, name, price } = product;
 
   const { addProductToCart, removeOneFromCartById, removeAllFromCartById } = useCartProducts();
+
+  const handleRemoveOne = () => {
+    if (count > 1) {
+      removeOneFromCartById(id);
+    }
+  }
 
   return (
     <motion.div
@@ -21,7 +27,7 @@ export const CartItem: React.FC<Props> = ({ cartItem }) => {
       whileInView={{ x: 0, opacity: 1 }}
       viewport={{ once: true }}
       variants={generateAnimation('x', -50)}
-      className="sm:flex items-center justify-between gap-[24px] p-[24px] border border-gray-300 mb-[16px]"
+      className="sm:flex items-center bg-surface-1 justify-between gap-[24px] p-[24px] border border-interface-border mb-[16px]"
     >
       <div className="sm:mb-0 flex gap-[24px] items-center justify-start mb-7">
         <button onClick={() => removeAllFromCartById(id)}>
@@ -33,11 +39,11 @@ export const CartItem: React.FC<Props> = ({ cartItem }) => {
         </div>
         <p className="font-Mont text-base font-semibold leading-6 text-primary">{name}</p>
       </div>
-      <div className="flex gap-[24px] justify-center">
+      <div className="flex gap-[24px] justify-between px-10 sm:px-0">
         <div className="flex items-center gap-2 font-Mont text-base font-semibold text-primary">
           <button
-            className="border border-gray-300 px-3 py-1"
-            onClick={() => removeOneFromCartById(id)}
+            className={classNames("border border-gray-300 bg-surface-2 px-3 py-1", { 'opacity-50 cursor-default': count === 1 })}
+            onClick={handleRemoveOne}
           >
             -
           </button>
@@ -45,7 +51,7 @@ export const CartItem: React.FC<Props> = ({ cartItem }) => {
           <span className="text-base text-primary">{count}</span>
 
           <button
-            className="border border-gray-300 px-3 py-1"
+            className="border border-gray-300 bg-surface-2 px-3 py-1"
             onClick={() => addProductToCart(product)}
           >
             +

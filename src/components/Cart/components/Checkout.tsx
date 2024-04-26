@@ -30,7 +30,7 @@ export const Checkout: React.FC<Props> = ({ onComfirmed }) => {
       whileInView={{ x: 0, opacity: 1 }}
       viewport={{ once: true }}
       variants={generateAnimation('x', 50)}
-      className="flex flex-col items-center justify-center border border-gray-300 p-[24px]"
+      className="flex flex-col items-center justify-center border border-elements p-[24px]"
     >
       <p className="font-Mont font-extrabold text-3xl leading-10 tracking-tighter text-primary">
         {`$${total}`}
@@ -43,7 +43,7 @@ export const Checkout: React.FC<Props> = ({ onComfirmed }) => {
       <div className="bg-secondary w-full h-1 mb-[24px]"></div>
 
       <button
-        className="w-full h-12 bg-primary text-white font-Mont font-bold text-base leading-6 text-center"
+        className="w-full h-12 bg-accent hover:bg-accent-hover text-white font-Mont font-bold text-base leading-6 text-center"
         onClick={() => setIsModal(true)}
       >
         Checkout

@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
-import dislike from '../../assets/icons/dislike.svg';
-import like from '../../assets/icons/like.svg';
+import unfav from '../../assets/icons/dislike.svg';
+import fav from '../../assets/icons/like.svg';
+import favDark from '../../assets/icons/fav-dark.svg'
 import { useCartProducts } from '../../hooks/useCartProducts';
 import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
 import { Product } from '../../types/Product';
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
+import { useColorTheme } from '../../hooks/useColorTheme';
 
 type Props = {
   product: Product;
@@ -14,11 +16,13 @@ type Props = {
 export const CardItem: React.FC<Props> = ({ product }) => {
   const { id, image, name, price, fullPrice, screen, ram, capacity, itemId, category } = product;
   const { cart, addProductToCart, removeAllFromCartById } = useCartProducts();
-
+  const [theme] = useColorTheme();
   const [favouritesProducts, addToFavourites, removeFromFavourites] = useFavouritesProducts();
+  
   const isDiscountActive = fullPrice !== price;
   const isInCart = cart.some((cartProduct) => cartProduct.id === id);
-  const isLike = favouritesProducts.some((likeProduct) => likeProduct.id === id);
+  const isFavourite = favouritesProducts.some((favouriteProduct) => favouriteProduct.id === id);
+  
   const descriptionContent = {
     Screen: screen,
     RAM: ram,
@@ -32,7 +36,7 @@ export const CardItem: React.FC<Props> = ({ product }) => {
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true }}
       variants={generateAnimation('y', -50)}
-      className="flex justify-between flex-col p-8 border border-1 border-elements transition-shadow duration-300 hover:shadow-3xl"
+      className="flex justify-between flex-col p-8 bg-surface-1 border border-1 border-elements transition-shadow duration-300 hover:shadow-3xl"
     >
       <div
         onClick={() =>
@@ -83,14 +87,14 @@ export const CardItem: React.FC<Props> = ({ product }) => {
         <div className="w-[100%]">
           {isInCart ? (
             <button
-              className="w-[100%] h-[40px] font-bold text-sm bg-surface-2 border border-1 border-elements text-green"
+              className="w-[100%] h-[40px] font-bold text-sm bg-surface-2 border border-1 border-elements text-button-text-success"
               onClick={() => removeAllFromCartById(id)}
             >
               Added to cart
             </button>
           ) : (
             <button
-              className="w-[100%] h-[40px] font-bold text-sm bg-accent text-white"
+              className="w-[100%] h-[40px] font-bold text-sm bg-accent hover:bg-accent-hover duration-300 text-white"
               onClick={() => addProductToCart(product)}
             >
               Add to cart
@@ -98,19 +102,26 @@ export const CardItem: React.FC<Props> = ({ product }) => {
           )}
         </div>
         <div>
-          {isLike ? (
+          {isFavourite ? (
             <button
-              className="flex items-center justify-center text-sm w-[40px] h-[40px] border border-1 border-elements"
+              className="flex items-center justify-center text-sm w-[40px] h-[40px] border border-1 bg-surface-2 border-elements"
               onClick={() => removeFromFavourites(id)}
             >
-              <img src={dislike} alt="like" />
+              <img src={unfav} alt="unfavour" />
             </button>
           ) : (
             <button
-              className="flex items-center justify-center text-sm w-[40px] h-[40px] border border-1 border-elements"
+              className="flex items-center justify-center text-sm w-[40px] h-[40px] border border-1 bg-surface-2 border-elements"
               onClick={() => addToFavourites(product)}
             >
-              <img src={like} alt="dislike" />
+              {
+                theme === 'light' ? (
+                  <img src={fav} alt="favour" />
+                ) : (
+                  <img src={favDark} alt="favour" />
+                )
+              }
+              
             </button>
           )}
         </div>
