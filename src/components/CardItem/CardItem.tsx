@@ -74,7 +74,7 @@ export const CardItem: React.FC<Props> = ({ product }) => {
         <div className="w-[100%]">
           {isInCart ? (
             <button
-              className="w-[100%] h-[40px] font-bold text-sm bg-white border border-1 border-elements text-green"
+              className="w-[100%] h-[40px] font-bold text-sm bg-surface-2 border border-1 border-elements text-green"
               onClick={() => removeAllFromCartById(id)}
             >
               Added to cart
