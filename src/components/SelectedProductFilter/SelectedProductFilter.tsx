@@ -5,10 +5,11 @@ import { Item, Product } from '../../types/Product';
 import { useCartProducts } from '../../hooks/useCartProducts';
 import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
 import { RootState, useAppSelector } from '../../store/store';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import createUniqueList from '../../utils/createUniqueList';
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
+import { getProductById } from '../../api/api';
 
 type Props = {
   product: Item;
@@ -16,14 +17,26 @@ type Props = {
 
 export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
   const { isLoaded } = useAppSelector((state: RootState) => state.products);
+  const { category = 'phones' } = useParams();
 
   const { cart, addProductToCart, removeAllFromCartById } = useCartProducts();
   const [favouritesProducts, addToFavourites, removeFromFavourites] = useFavouritesProducts();
   const products = useAppSelector((state) => state.products.products);
 
-  const filteredProductModel = products.filter((product) =>
-    product.itemId.includes(phone.namespaceId),
-  );
+  const productsAll = products
+    .filter((product) => product.itemId.startsWith(phone.namespaceId))
+    .map((p) => {
+      const product = getProductById(p.itemId, category);
+      return { ...p, item: product };
+    })
+    .filter((p) => p?.item?.namespaceId === phone.namespaceId);
+
+  const filteredProductModel =
+    productsAll && productsAll.length
+      ? productsAll.filter((p) => p?.capacity === phone.capacity)
+      : [];
+  const filteredProductModelCap =
+    productsAll && productsAll.length ? productsAll.filter((p) => p?.color === phone.color) : [];
 
   const selectedProduct = products.find(
     (p) => p.color === phone.color && p.capacity === phone.capacity,
@@ -34,7 +47,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
   const isDiscountActive = selectedProduct?.fullPrice !== selectedProduct?.price;
 
   const selectedProductColor: string[] = createUniqueList(filteredProductModel, 'color');
-  const selectedProductCapacity: string[] = createUniqueList(filteredProductModel, 'capacity');
+  const selectedProductCapacity: string[] = createUniqueList(filteredProductModelCap, 'capacity');
 
   const itemPhone = phone as Item;
 
@@ -96,7 +109,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
             >
               <span
                 className="w-[20px] h-[20px] rounded-full"
-                style={{ backgroundColor: color.replace(' ', '-') }}
+                style={{ backgroundColor: color }}
               ></span>
             </Link>
           ))}
