@@ -53,7 +53,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="grid sticky top-0 z-10 bg-surface-0 grid-cols-10 w-full items-center border max-xs:border-transparent border-elements justify-between font-mont-bold">
+    <header className="grid sticky top-0 z-10 bg-surface-0 grid-cols-10 w-full items-center border border-elements justify-between font-mont-bold">
       <Link
         to={{ pathname: 'home', search: location.search }}
         className="w-32 h-16 flex items-center justify-center"
@@ -83,7 +83,7 @@ export const Header = () => {
           <SearchForm />
 
           <NavLink
-            to={{ pathname: 'favorites', search: location.search }}
+            to={{ pathname: 'favourites', search: location.search }}
             className={(props) =>
               `${getClassNavLink(props)} hover:border-b-primary border-l border-l-elements flex w-16 h-16 items-center flex-1 justify-center`
             }
