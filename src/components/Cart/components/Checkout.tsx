@@ -43,11 +43,12 @@ export const Checkout: React.FC<Props> = ({ onComfirmed }) => {
       <div className="bg-secondary w-full h-1 mb-[24px]"></div>
 
       <button
-        className="w-full h-12 bg-primary text-white font-Mont font-bold text-base leading-6 text-center"
+        className="w-full h-12 bg-accent text-white font-Mont font-bold text-base leading-6 text-center"
         onClick={() => setIsModal(true)}
       >
         Checkout
       </button>
+{/* dfdf */}
       <MyModal visible={isModal} changeVisible={setIsModal}>
         <div className="text-primary text-center">
           <h1 className="font-extrabold text-[25px] text-primary md:text-[30px] mb-[35px]">
