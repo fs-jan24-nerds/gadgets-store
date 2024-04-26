@@ -7,6 +7,7 @@
   --color-surface-2: 255 255 255;
   --color-surface-3: 215 215 215;
   --color-secondary: 137 147 154;
+  --color-bg-main: #ffffff;
   /* For text */
   --color-icons: 180 189 195;
   --color-elements: 226 231 233;
@@ -24,6 +25,7 @@
 .dark {
   --color-accent: 144 91 255;
   --color-primary: 255 255 255;
+  --color-bg-main: #0F1121;
   /* For main text */
   --color-secondary: 117 118 127;
   --color-surface-0: 15 17 33;
