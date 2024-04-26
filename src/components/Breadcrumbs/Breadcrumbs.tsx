@@ -35,6 +35,7 @@ export const Breadcrumbs = () => {
         <div key={crumb} className="inline-block">
           <Link to={currentURL}>{crumb}</Link>
           <img src={rightArrow} alt="Go back" className="inline-block mx-2" />
+          
         </div>
       );
     });
@@ -42,6 +43,7 @@ export const Breadcrumbs = () => {
   return (
     <div className="mb-6 md:mb-10 mt-6">
       <div className="inline-block">
+        
         <Link to={'/'}>
           <img src={Home} alt="Home page" className="inline-block" />
         </Link>
