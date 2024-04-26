@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useCartProducts } from '../../hooks/useCartProducts';
 import { useAppSelector } from '../../store/store';
 import { Navigation } from './Navigation';
-import logo from '../../assets/icons/logo.svg';
+import logo from '../../assets/icons/Logo.svg';
 import { getClassNavLink } from '../../utils/getClass';
 import { SearchForm } from '../SearchForm/SearchForm';
 import { ThemeSwitcherButton } from '../ThemeSwitcherButton/ThemeSwitcherButton';

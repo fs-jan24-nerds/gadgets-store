@@ -50,18 +50,19 @@ export const Checkout: React.FC<Props> = ({ onComfirmed }) => {
       </button>
       <MyModal visible={isModal} changeVisible={setIsModal}>
         <div className="text-primary text-center">
-          <h1 className="font-extrabold text-[25px] md:text-[30px] mb-[35px]">
+          <h1 className="font-extrabold text-[25px] text-primary md:text-[30px] mb-[35px]">
             Do you want to confirm the order?
           </h1>
           <div className="flex items-center justify-between gap-3">
             <button
-              className="flex items-center justify-center w-full h-[40px] bg-primary text-white font-Mont font-bold text-base leading-6"
+              className="flex items-center justify-center w-full h-[40px] bg-accent text-white font-Mont font-bold text-base leading-6"
+   
               onClick={orderСonfirmedAction}
             >
               Yes
             </button>
             <button
-              className="w-full h-[40px] bg-primary text-white font-Mont font-bold text-base leading-6 text-center"
+              className="w-full h-[40px] bg-accent text-white font-Mont font-bold text-base leading-6 text-center"
               onClick={() => setIsModal(false)}
             >
               No
