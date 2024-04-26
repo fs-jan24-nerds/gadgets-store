@@ -21,8 +21,10 @@ export default {
       },
       colors: {
         accent: 'rgb(var(--color-accent) / <alpha-value>)',
+        'accent-hover': 'rgb(var(--color-accent-hover) / <alpha-value>)',
         primary: 'rgb(var(--color-primary) / <alpha-value>)',
         secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+        'surface-0': 'rgb(var(--color-surface-0) / <alpha-value>)',
         'surface-1': 'rgb(var(--color-surface-1) / <alpha-value>)',
         'surface-2': 'rgb(var(--color-surface-2) / <alpha-value>)',
         icons: 'rgb(var(--color-icons) / <alpha-value>)',
@@ -33,6 +35,8 @@ export default {
         red: 'rgb(var(--color-red) / <alpha-value>)',
         black: 'rgb(var(--color-black) / <alpha-value>)',
         graphite: '#4C4C4C',
+        textMain: 'rgb(var(--color-text-main) / <alpha-value>)',
+        textSecondary: 'rgb(var(--color-text-secondary) / <alpha-value>)',
       },
       boxShadow: {
         '3xl': '0px 5px 12px -1px rgba(153,153,153,0.34)',

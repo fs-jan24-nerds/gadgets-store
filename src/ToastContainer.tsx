@@ -2,8 +2,11 @@ import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import { Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useColorTheme } from './hooks/useColorTheme';
 
 export const ToastContainerWrapper: React.FC = () => {
+  const [theme] = useColorTheme();
+
   return (
     <ToastContainer
       position="bottom-right"
@@ -15,7 +18,7 @@ export const ToastContainerWrapper: React.FC = () => {
       pauseOnFocusLoss
       draggable
       pauseOnHover
-      theme="light"
+      theme={theme}
       transition={Slide}
     />
   );

@@ -7,7 +7,6 @@
 .rightArrow {
   width: 32px;
   flex-shrink: 0;
-  border: 1px solid #b4bdc3;
 }
 
 .bullet {
