@@ -3,8 +3,6 @@ import logo from '../../assets/icons/Logo.svg';
 import { LogoIcon } from '../Icons/LogoIcon';
 import { toTopIcon } from '../../assets/SVGIcons';
 
-
-
 export function Footer() {
   return (
     <footer className="flex items-center bg-surface-0 border border-elements px-4 sm:px-8">

@@ -15,7 +15,6 @@ import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
 import { sliderLeftArrow, sliderRightArrow } from '../../assets/SVGIcons';
 
-
 const SliderPromo = () => {
   return (
     <div>

@@ -37,7 +37,6 @@ export const Header = () => {
     };
   }, [isMenuOpen]);
 
-
   const toggleMenu = () => {
     isMenuOpen ? closeMenu() : openMenu();
   };
@@ -62,8 +61,6 @@ export const Header = () => {
           <LogoIcon />
           <img src={logo} alt="logo" className="absolute bottom-[16px] left-[19px] mx-6" />
         </div>
-
-    
       </Link>
       <div className="flex sm:hidden col-end-13 ml-auto justify-center border-l w-16 h-16 items-center ">
         <button onClick={toggleMenu} className="w-4 h-4">
