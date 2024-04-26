@@ -6,7 +6,8 @@ export default function createUniqueList<T extends string | number>(
 ): T[] {
   const uniqueValues = new Set<T>();
   products.forEach((product) => {
-    const propertyValue = product[propertyName];
+    // const propertyValue = product[propertyName];
+    const propertyValue = product.item?.[propertyName];
     if (propertyValue) {
       uniqueValues.add(propertyValue as T);
     }
