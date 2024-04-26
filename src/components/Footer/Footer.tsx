@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import logo from '../../assets/icons/Logo.svg';
-import ToTop from '../../assets/icons/to-top-arrow.svg';
 import { LogoIcon } from '../Icons/LogoIcon';
+import { toTopIcon } from '../../assets/SvgIcons';
+
+
 
 export function Footer() {
   return (
@@ -43,7 +45,7 @@ export function Footer() {
         >
           <p className="text-textMain">Back to top</p>
           <div className="flex justify-center items-center bg-surface-2 w-8 h-8 border border-elements">
-            <img src={ToTop} alt="back to top" />
+            {toTopIcon}
           </div>
         </a>
       </div>
