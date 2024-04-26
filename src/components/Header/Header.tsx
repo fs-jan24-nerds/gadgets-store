@@ -4,14 +4,15 @@ import { useCartProducts } from '../../hooks/useCartProducts';
 import { useAppSelector } from '../../store/store';
 import { Navigation } from './Navigation';
 
-import Close from '../../assets/Close.svg';
+
 import logo from '../../assets/icons/Logo.svg';
-import BurgerMenu from '../../assets/icons/Menu.svg';
-import cartIcon from '../../assets/icons/cart.svg';
-import favourites from '../../assets/icons/favourites.svg';
+// import BurgerMenu from '../../assets/icons/Menu.svg';
 import { getClassNavLink } from '../../utils/getClass';
 import { SearchForm } from '../SearchForm/SearchForm';
 import { ThemeSwitcherButton } from '../ThemeSwitcherButton/ThemeSwitcherButton';
+import { FavoritsIcon } from '../Icons/FavoritsIcon';
+import { CartIcon } from '../Icons/CartIcon';
+import { BurgerIcon } from '../Icons/BurgerIcon';
 
 export const Header = () => {
   const location = useLocation();
@@ -47,11 +48,7 @@ export const Header = () => {
       </Link>
       <div className="flex sm:hidden col-end-13 ml-auto justify-center border-l w-16 h-16 items-center ">
         <button onClick={toggleMenu} className="w-4 h-4">
-          {!isMenuOpen ? (
-            <img src={BurgerMenu} alt="menu" className="w-4 h-4" />
-          ) : (
-            <img src={Close} alt="close" className="w-4 h-4" />
-          )}
+          {!isMenuOpen ? <BurgerIcon /> : <span className="text-primary text-[16px]">X</span>}
         </button>
       </div>
       <div
@@ -74,7 +71,7 @@ export const Header = () => {
             onClick={closeMenu}
           >
             <div className="relative">
-              <img src={favourites} alt="favourites" className="w-4 h-4" />
+              <FavoritsIcon />
               {favouritesProducts.length > 0 && (
                 <span
                   className="bg-red absolute rounded-full leading-none grid place-items-center
@@ -94,7 +91,7 @@ export const Header = () => {
             onClick={closeMenu}
           >
             <div className="relative">
-              <img src={cartIcon} alt="cart" className="w-4 h-4" />
+              <CartIcon />
               {totalItems > 0 && (
                 <span
                   className="bg-red absolute rounded-full leading-none grid place-items-center

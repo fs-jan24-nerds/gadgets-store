@@ -1,7 +1,7 @@
-import { FavouritesItem } from './FavouriteItem';
 import { useAppSelector } from '../../store/store';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 import { Title } from '../Title/Title';
+import { CardItem } from '../CardItem';
 
 export const FavouritesPage = () => {
   const { favouritesProducts } = useAppSelector((state) => state.favourites);
@@ -19,7 +19,8 @@ export const FavouritesPage = () => {
       {favouritesProducts.length > 0 ? (
         <div className="grid grid-cols-1  gap-x-[16px] gap-y-[40px] sm:grid-cols-2 bd  md:grid-cols-3  lg:grid-cols-4">
           {favouritesProducts.map((product) => (
-            <FavouritesItem key={product.id} product={product} />
+            // <FavouritesItem key={product.id} product={product} />
+            <CardItem key={product.id} product={product}/>
           ))}
         </div>
       ) : (
