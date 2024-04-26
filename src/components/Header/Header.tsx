@@ -38,7 +38,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="grid sticky top-0 z-10 bg-surface-0 grid-cols-10 w-full items-center border max-xs:border-transparent border-elements justify-between font-mont-bold">
+    <header className="grid sticky top-0 z-10 bg-surface-0 grid-cols-10 w-full items-center border max-xs:border-t-transparent border-elements justify-between font-mont-bold">
       <Link
         to={{ pathname: 'home', search: location.search }}
         className="w-32 h-16 flex items-center justify-center"

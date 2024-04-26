@@ -65,7 +65,7 @@ export const ProductDetails = () => {
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 variants={generateAnimation('x', -60)}
-                className="flex md:flex-row md:w-[570px] md:h-[464px] mb-[80px] flex-col-reverse m-auto"
+                className="flex md:flex-row mb-[40px] md:w-[570px] md:h-[464px] md:mb-[80px] flex-col-reverse m-auto"
               >
                 <div className="flex md:flex-row w-full flex-col-reverse m-auto">
                   <div className="flex md:flex-col gap-2 md:gap-4 items-center">
