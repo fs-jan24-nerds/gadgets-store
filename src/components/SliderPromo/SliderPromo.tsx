@@ -4,8 +4,6 @@ import Slider3 from '../../assets/SliderPromo/sleder3.jpeg';
 import Slider1 from '../../assets/SliderPromo/slider1.jpg';
 import Slider2 from '../../assets/SliderPromo/slider2.jpeg';
 import Slider4 from '../../assets/SliderPromo/slider4.jpg';
-import LeftArrow from '../../assets/SliderPromo/icons/left-arrow.svg';
-import RightArrow from '../../assets/SliderPromo/icons/right-arrow.svg';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -15,6 +13,8 @@ import { Title } from '../Title/Title';
 
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
+import { sliderLeftArrow, sliderRightArrow } from '../../assets/SvgIcons';
+
 
 const SliderPromo = () => {
   return (
@@ -30,8 +30,10 @@ const SliderPromo = () => {
         className="flex flex-col items-center max-w-full mt-6 lg:mt-8 xl:mt-14 mb-14 lg:mb-16 xl:mb-20"
       >
         <div className="flex gap-4 w-full mb-8">
-          <button className={`${styles.leftArrow} bg-surface-2 border border-elements`}>
-            <img src={LeftArrow} alt="left arrow" className="mx-auto" />
+          <button
+            className={`${styles.leftArrow} flex items-center justify-center  bg-surface-2 border border-elements`}
+          >
+            {sliderLeftArrow}
           </button>
 
           <Swiper
@@ -72,8 +74,10 @@ const SliderPromo = () => {
             </SwiperSlide>
           </Swiper>
 
-          <button className={`${styles.rightArrow} bg-surface-2 border border-elements`}>
-            <img src={RightArrow} alt="right arrow" className="mx-auto" />
+          <button
+            className={`${styles.rightArrow} flex items-center justify-center bg-surface-2 border border-elements`}
+          >
+            {sliderRightArrow}
           </button>
         </div>
         <div className="pagination flex justify-center items-center gap-4"></div>
