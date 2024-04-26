@@ -16,7 +16,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="home" element={<Navigate replace to="/" />} />
-        <Route path="favorites" element={<FavouritesPage />} />
+        <Route path="favourites" element={<FavouritesPage />} />
         <Route path="cart" element={<CartPage />} />
         <Route path=":category">
           <Route index element={<ProductList />} />

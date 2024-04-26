@@ -15,6 +15,8 @@ export default {
         'mont-regular': ['Mont-Regular', 'sans-serif'],
         'mont-semiBold': ['Mont-semiBold', 'sans-serif'],
         'mont-Bold': ['Mont-Bold', 'sans-serif'],
+        'inter-regular': ['Inter-Regular', 'sans-serif'],
+        'monrope-regular': ['Manrope-Regular', 'sans-serif'],
       },
       spacing: {
         'max-width': '1136px',
@@ -27,6 +29,7 @@ export default {
         'surface-0': 'rgb(var(--color-surface-0) / <alpha-value>)',
         'surface-1': 'rgb(var(--color-surface-1) / <alpha-value>)',
         'surface-2': 'rgb(var(--color-surface-2) / <alpha-value>)',
+        'surface-3': 'rgb(var(--color-surface-3) / <alpha-value>)',
         icons: 'rgb(var(--color-icons) / <alpha-value>)',
         elements: 'rgb(var(--color-elements) / <alpha-value>)',
         'hover-bg': 'rgb(var(--color-hover-bg) / <alpha-value>)',

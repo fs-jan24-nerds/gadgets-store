@@ -17,11 +17,11 @@ export const CartItem: React.FC<Props> = ({ cartItem }) => {
   return (
     <motion.div
       initial="hidden"
-      transition={{ delay: 0.4, duration: 0.8 }}
+      transition={{ delay: 0.4, duration: 0.5 }}
       whileInView={{ x: 0, opacity: 1 }}
       viewport={{ once: true }}
       variants={generateAnimation('x', -50)}
-      className="sm:flex items-center justify-between gap-[24px] p-[24px] border border-gray-300 mb-[16px]"
+      className="sm:flex items-center justify-between gap-[24px] p-[24px] border border-surface-3 mb-[16px] bg-surface-1"
     >
       <div className="sm:mb-0 flex gap-[24px] items-center justify-start mb-7">
         <button onClick={() => removeAllFromCartById(id)}>
@@ -36,7 +36,7 @@ export const CartItem: React.FC<Props> = ({ cartItem }) => {
       <div className="flex gap-[24px] justify-center">
         <div className="flex items-center gap-2 font-Mont text-base font-semibold text-primary">
           <button
-            className="border border-gray-300 px-3 py-1"
+            className="border border-gray-500 px-3 py-1"
             onClick={() => removeOneFromCartById(id)}
           >
             -
@@ -45,7 +45,7 @@ export const CartItem: React.FC<Props> = ({ cartItem }) => {
           <span className="text-base text-primary">{count}</span>
 
           <button
-            className="border border-gray-300 px-3 py-1"
+            className="border border-gray-500 px-3 py-1"
             onClick={() => addProductToCart(product)}
           >
             +

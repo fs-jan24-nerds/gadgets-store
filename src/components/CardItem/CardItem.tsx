@@ -28,38 +28,46 @@ export const CardItem: React.FC<Props> = ({ product }) => {
   return (
     <motion.article
       initial="hidden"
-      transition={{ delay: 0.4, duration: 1 }}
+      transition={{ delay: 0.2, duration: 0.5 }}
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true }}
       variants={generateAnimation('y', -50)}
       className="flex justify-between flex-col p-8 border border-1 border-elements transition-shadow duration-300 hover:shadow-3xl"
     >
-      <div className="flex flex-col">
-        <div className="h-[196px] mb-[24px]">
-          <Link to={`/${category}/${itemId}`}>
-            <img
-              className="object-scale-down w-full max-h-full transition-scale duration-300 hover:scale-105"
-              src={image}
-            />
+      <div
+        onClick={() =>
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          })
+        }
+      >
+        <div className="flex flex-col">
+          <div className="h-[196px] mb-[24px]">
+            <Link to={`/${category}/${itemId}`}>
+              <img
+                className="object-scale-down w-full max-h-full transition-scale duration-300 hover:scale-105"
+                src={image}
+              />
+            </Link>
+          </div>
+          <Link to={`${itemId}`}>
+            <h3 className="grow mt-2 text-sm leading-5 h-[2.5rem] overflow-hidden font-semibold text-primary">
+              {name}
+            </h3>
           </Link>
         </div>
-        <Link to={`${itemId}`}>
-          <h3 className="grow mt-2 text-sm leading-5 h-[2.5rem] overflow-hidden font-semibold text-primary">
-            {name}
-          </h3>
-        </Link>
+        <div className="flex text-2xl">
+          {isDiscountActive ? (
+            <>
+              <p className="mr-2 font-extrabold text-primary">{`${price}$`}</p>
+              <p className="line-through font-semibold text-secondary">{`${fullPrice}$`}</p>
+            </>
+          ) : (
+            <p className="font-extrabold text-primary">{`${fullPrice}$`}</p>
+          )}
+        </div>
       </div>
-      <div className="flex text-2xl">
-        {isDiscountActive ? (
-          <>
-            <p className="mr-2 font-extrabold text-primary">{`${price}$`}</p>
-            <p className="line-through font-semibold text-secondary">{`${fullPrice}$`}</p>
-          </>
-        ) : (
-          <p className="font-extrabold text-primary">{`${fullPrice}$`}</p>
-        )}
-      </div>
-
       <div className="block my-2 h-[1px] w-full bg-elements" />
 
       <div>
@@ -70,11 +78,12 @@ export const CardItem: React.FC<Props> = ({ product }) => {
           </div>
         ))}
       </div>
+
       <div className="flex justify-between gap-x-1 items-start">
         <div className="w-[100%]">
           {isInCart ? (
             <button
-              className="w-[100%] h-[40px] font-bold text-sm bg-white border border-1 border-elements text-green"
+              className="w-[100%] h-[40px] font-bold text-sm bg-surface-2 border border-1 border-elements text-green"
               onClick={() => removeAllFromCartById(id)}
             >
               Added to cart

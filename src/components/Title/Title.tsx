@@ -13,7 +13,7 @@ export const Title: React.FC<Props> = ({ title }) => {
     <motion.h1
       initial="hidden"
       animate="visible"
-      transition={{ delay: 0.1, duration: 0.6 }}
+      transition={{ delay: 0.1, duration: 0.5 }}
       variants={generateAnimation('y', -50)}
       className={`${titleStyles}`}
     >

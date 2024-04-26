@@ -1,17 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useCartProducts } from '../../hooks/useCartProducts';
 import { useAppSelector } from '../../store/store';
 import { Navigation } from './Navigation';
-
-import Close from '../../assets/Close.svg';
 import logo from '../../assets/icons/Logo.svg';
-import BurgerMenu from '../../assets/icons/Menu.svg';
-import cartIcon from '../../assets/icons/cart.svg';
-import favourites from '../../assets/icons/favourites.svg';
 import { getClassNavLink } from '../../utils/getClass';
 import { SearchForm } from '../SearchForm/SearchForm';
 import { ThemeSwitcherButton } from '../ThemeSwitcherButton/ThemeSwitcherButton';
+import { FavoritsIcon } from '../Icons/FavoritsIcon';
+import { CartIcon } from '../Icons/CartIcon';
+import { BurgerIcon } from '../Icons/BurgerIcon';
+import { LogoIcon } from '../Icons/LogoIcon';
 
 export const Header = () => {
   const location = useLocation();
@@ -22,6 +21,21 @@ export const Header = () => {
 
   const { cart } = useCartProducts();
   const totalItems = cart.reduce((acc, cartItem) => acc + cartItem.count, 0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640 && isMenuOpen) {
+        document.body.classList.add('overflow-hidden');
+      } else {
+        closeMenu();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isMenuOpen]);
 
   const toggleMenu = () => {
     isMenuOpen ? closeMenu() : openMenu();
@@ -38,24 +52,23 @@ export const Header = () => {
   };
 
   return (
-    <header className="grid sticky top-0 z-10 bg-surface-0 grid-cols-10 w-full items-center border max-xs:border-t-transparent border-elements justify-between font-mont-bold">
+    <header className="grid sticky top-0 z-10 bg-surface-0 grid-cols-10 w-full items-center border border-elements justify-between font-mont-bold">
       <Link
         to={{ pathname: 'home', search: location.search }}
         className="w-32 h-16 flex items-center justify-center"
       >
-        <img src={logo} alt="logo" className="mx-6" />
+        <div className="relative">
+          <LogoIcon />
+          <img src={logo} alt="logo" className="absolute bottom-[16px] left-[19px] mx-6" />
+        </div>
       </Link>
       <div className="flex sm:hidden col-end-13 ml-auto justify-center border-l w-16 h-16 items-center ">
         <button onClick={toggleMenu} className="w-4 h-4">
-          {!isMenuOpen ? (
-            <img src={BurgerMenu} alt="menu" className="w-4 h-4" />
-          ) : (
-            <img src={Close} alt="close" className="w-4 h-4" />
-          )}
+          {!isMenuOpen ? <BurgerIcon /> : <span className="text-primary text-[16px]">X</span>}
         </button>
       </div>
       <div
-        className={`sm:grid col-start-1 col-span-12 sm:col-start-3 sm:col-span-13 justify-between hidden:sm ${isMenuOpen ? 'block border-t-2 border-elements h-screen' : 'hidden'}`}
+        className={`sm:grid col-start-1 col-span-12 sm:col-start-3 sm:col-span-13 transition-opacity duration-1000 sm:visible sm:opacity-100 sm:h-auto justify-between ${isMenuOpen ? 'border-t-2 border-elements h-screen' : 'invisible opacity-0 h-0'}`}
       >
         <Navigation closeMenu={closeMenu} />
 
@@ -67,14 +80,14 @@ export const Header = () => {
           <SearchForm />
 
           <NavLink
-            to={{ pathname: 'favorites', search: location.search }}
+            to={{ pathname: 'favourites', search: location.search }}
             className={(props) =>
               `${getClassNavLink(props)} hover:border-b-primary border-l border-l-elements flex w-16 h-16 items-center flex-1 justify-center`
             }
             onClick={closeMenu}
           >
             <div className="relative">
-              <img src={favourites} alt="favourites" className="w-4 h-4" />
+              <FavoritsIcon />
               {favouritesProducts.length > 0 && (
                 <span
                   className="bg-red absolute rounded-full leading-none grid place-items-center
@@ -94,7 +107,7 @@ export const Header = () => {
             onClick={closeMenu}
           >
             <div className="relative">
-              <img src={cartIcon} alt="cart" className="w-4 h-4" />
+              <CartIcon />
               {totalItems > 0 && (
                 <span
                   className="bg-red absolute rounded-full leading-none grid place-items-center
