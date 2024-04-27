@@ -7,12 +7,14 @@
   --color-surface-2: 255 255 255;
   --color-surface-3: 215 215 215;
   --color-secondary: 137 147 154;
-  --color-bg-main: #ffffff;
+  --color-bg-main: 255 255 255;
+  --color-bg-black: 59 62 74;
   /* For text */
   --color-icons: 180 189 195;
   --color-elements: 226 231 233;
   --color-hover-bg: 250 251 252;
   --color-white: 255 255 255;
+  --color-active-white: 255 255 255;
   --color-green: 39 174 96;
   --color-red: 235 87 87;
   --color-black: 59 62 74;
@@ -27,7 +29,8 @@
 .dark {
   --color-accent: 144 91 255;
   --color-primary: 255 255 255;
-  --color-bg-main: #0F1121;
+  --color-bg-main: #0f1121;
+  --color-bg-black: 255 255 255;
   /* For main text */
   --color-secondary: 117 118 127;
   --color-surface-0: 15 17 33;
@@ -38,6 +41,7 @@
   --color-elements: 59 62 74;
   --color-hover-bg: 250 251 252;
   --color-white: 241 242 249;
+  --color-active-white: 59 62 74;
   --color-green: 39 174 96;
   --color-red: 235 87 87;
   --color-black: 59 62 74;
@@ -47,4 +51,5 @@
   --color-header-icons: #f1f2f9;
   --color-button-text-success: 255 255 255;
   --color-interface-border: 22 24 40;
+  /* --color-active-black: 59 62 74; */
 }
