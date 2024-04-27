@@ -68,7 +68,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
       'hover:scale-110',
       'transition duration-300',
       {
-        'border-[3px] border-blackBg': phone.color === color,
+        'border-[3px] border-textMain': phone.color === color,
       },
     );
     return changeColorClasses;
