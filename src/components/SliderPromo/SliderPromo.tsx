@@ -18,7 +18,9 @@ import { sliderLeftArrow, sliderRightArrow } from '../../assets/SVGIcons';
 const SliderPromo = () => {
   return (
     <div>
-      <Title title="Welcome to Nice Gadgets store!" />
+      <div className="ml-4 sm:ml-0">
+        <Title title="Welcome to Nice Gadgets store!" />
+      </div>
 
       <motion.div
         initial="hidden"

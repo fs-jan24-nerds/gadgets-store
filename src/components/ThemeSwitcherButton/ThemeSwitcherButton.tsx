@@ -14,10 +14,13 @@ const handleThemeToggle = (theme: Theme, setTheme: (theme: Theme) => void) => {
 export const ThemeSwitcherButton = () => {
   const [theme, setTheme] = useColorTheme();
 
-  // return <button onClick={() => handleThemeToggle(theme, setTheme)}>{theme === 'light' ? 'Dark' : 'Light'}</button>;
   return (
     <label className="toggle-switch mx-6">
-      <input type="checkbox" onChange={() => handleThemeToggle(theme, setTheme)} />
+      <input
+        type="checkbox"
+        checked={theme === 'dark'}
+        onChange={() => handleThemeToggle(theme, setTheme)}
+      />
       <div className="toggle-switch-background">
         <div className="toggle-switch-handle"></div>
       </div>
