@@ -7,7 +7,7 @@ export const ConfirmedOrderPage = () => {
   return (
     <motion.div
       initial="hidden"
-      transition={{ delay: 0.4, duration: 0.5 }}
+      transition={{ delay: 0.2, duration: 0.5 }}
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true }}
       variants={generateAnimation('y', -50)}

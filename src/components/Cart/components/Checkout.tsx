@@ -56,13 +56,13 @@ export const Checkout: React.FC<Props> = ({ onComfirmed }) => {
           </h1>
           <div className="flex items-center justify-between gap-3">
             <button
-              className="flex items-center justify-center w-full h-[40px] bg-accent text-white font-Mont font-bold text-base leading-6  tablet:w-[170px]"
+              className="flex items-center justify-center w-full h-[40px] bg-accent text-white font-Mont font-bold text-base leading-6 transition-all duration-300 hover:shadow-3xl hover:bg-accent-hover  tablet:w-[170px]"
               onClick={orderСonfirmedAction}
             >
               Yes
             </button>
             <button
-              className="w-full h-[40px] bg-accent text-white font-Mont font-bold text-base leading-6 text-center tablet:w-[170px]"
+              className="w-full h-[40px] bg-accent text-white font-Mont font-bold text-base leading-6 text-center tablet:w-[170px] transition-all duration-300 hover:shadow-3xl hover:bg-accent-hover"
               onClick={() => setIsModal(false)}
             >
               No

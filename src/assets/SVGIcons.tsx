@@ -1,4 +1,4 @@
-export const sliderLeftArrow = (
+export const leftArrow = (
   <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"
@@ -9,7 +9,7 @@ export const sliderLeftArrow = (
   </svg>
 );
 
-export const sliderRightArrow = (
+export const rightArrow = (
   <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"
