@@ -2,6 +2,7 @@ import { useAppSelector } from '../../store/store';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 import { Title } from '../Title/Title';
 import { CardItem } from '../CardItem';
+import { EmptyFavourites } from './EmptyFavourites';
 
 export const FavouritesPage = () => {
   const { favouritesProducts } = useAppSelector((state) => state.favourites);
@@ -12,7 +13,7 @@ export const FavouritesPage = () => {
 
       <Title title="Favourites" />
 
-      <p className="font-Mont text-secondary mb-[40px] text-[14px]">
+      <p className="font-Mont text-secondary mb-[20px]  tablet:mb-[30px] text-[14px]">
         {favouritesProducts.length} items
       </p>
 
@@ -24,7 +25,7 @@ export const FavouritesPage = () => {
           ))}
         </div>
       ) : (
-        <div>Not founded</div>
+        <div><EmptyFavourites/></div>
       )}
     </div>
   );
