@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import logo from '../../assets/icons/Logo.svg';
 import { useCartProducts } from '../../hooks/useCartProducts';
 import { useAppSelector } from '../../store/store';
-import { Navigation } from './Navigation';
-import logo from '../../assets/icons/Logo.svg';
 import { getClassNavLink } from '../../utils/getClass';
+import { BurgerIcon } from '../Icons/BurgerIcon';
+import { CartIcon } from '../Icons/CartIcon';
+import { FavoritsIcon } from '../Icons/FavoritsIcon';
+import { LogoIcon } from '../Icons/LogoIcon';
 import { SearchForm } from '../SearchForm/SearchForm';
 import { ThemeSwitcherButton } from '../ThemeSwitcherButton/ThemeSwitcherButton';
-import { FavoritsIcon } from '../Icons/FavoritsIcon';
-import { CartIcon } from '../Icons/CartIcon';
-import { BurgerIcon } from '../Icons/BurgerIcon';
-import { LogoIcon } from '../Icons/LogoIcon';
+import { Navigation } from './Navigation';
 
 export const Header = () => {
   const location = useLocation();
@@ -24,7 +24,7 @@ export const Header = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 640 && isMenuOpen) {
+      if (window.innerWidth < 700 && isMenuOpen) {
         document.body.classList.add('overflow-hidden');
       } else {
         closeMenu();
@@ -62,18 +62,22 @@ export const Header = () => {
           <img src={logo} alt="logo" className="absolute bottom-[16px] left-[19px] mx-6" />
         </div>
       </Link>
-      <div className="flex sm:hidden col-end-13 ml-auto justify-center border-l w-16 h-16 items-center ">
+      <div className="flex tabletLarge:hidden col-end-13 ml-auto justify-center border-l border-l-elements w-16 h-16 items-center">
         <button onClick={toggleMenu} className="w-4 h-4">
-          {!isMenuOpen ? <BurgerIcon /> : <span className="text-primary text-[16px]">X</span>}
+          {!isMenuOpen ? (
+            <BurgerIcon />
+          ) : (
+            <span className="text-primary font-inter-regular text-[16px]">X</span>
+          )}
         </button>
       </div>
       <div
-        className={`sm:grid col-start-1 col-span-12 sm:col-start-3 sm:col-span-13 transition-opacity duration-1000 sm:visible sm:opacity-100 sm:h-auto justify-between ${isMenuOpen ? 'border-t-2 border-elements h-screen' : 'invisible opacity-0 h-0'}`}
+        className={`tabletLarge:grid col-start-1 col-span-12 tabletLarge:col-start-3 tabletLarge:col-span-13 transition-opacity duration-1000 tabletLarge:visible tabletLarge:opacity-100 tabletLarge:h-auto justify-between ${isMenuOpen ? 'border-t-2 border-elements h-screen' : 'invisible opacity-0 h-0'}`}
       >
         <Navigation closeMenu={closeMenu} />
 
         <div
-          className={`flex col-end-12 items-center box-border justify-stretch sm:justify-center ${isMenuOpen && 'fixed bottom-0 border-t-2 w-full border-elements'}`}
+          className={`flex col-end-12 items-center box-border justify-stretch tabletLarge:justify-center ${isMenuOpen && 'fixed bottom-0 border-t-2 w-full border-elements'}`}
         >
           <ThemeSwitcherButton />
 
@@ -121,7 +125,7 @@ export const Header = () => {
         </div>
       </div>
 
-      <div className="sm:hidden col-end-12  ml-auto"></div>
+      <div className="md:hidden col-end-12  ml-auto"></div>
     </header>
   );
 };
