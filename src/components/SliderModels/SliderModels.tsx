@@ -66,14 +66,14 @@ export const SliderModels: React.FC<Props> = ({
           <button
             disabled={sliderPosition === 0}
             className={classNames(
-              'border border-elements w-8 h-8 flex justify-center items-center',
-              { 'border-icons hover:border-primary': sliderPosition > 0 },
+              'border border-elements w-8 h-8 flex ',
+              { 'border-icons bg-surface-2 hover:border-primary': sliderPosition > 0 },
               prevButtonClass,
             )}
           >
             <div
               className={classNames(
-                'inline-flex w-3 h-3 border-solid border-elements border-l-[3px] border-t-[3px] rounded-sm -rotate-45',
+                'inline-flex w-2 h-2 m-auto ml-3 border-solid border-elements border-l-[2px] border-t-[2px] rounded-sm -rotate-45',
                 { 'border-primary': sliderPosition > 0 },
               )}
             ></div>
@@ -82,14 +82,14 @@ export const SliderModels: React.FC<Props> = ({
           <button
             disabled={sliderPosition === 1}
             className={classNames(
-              'border border-elements bg-surface-2 w-8 h-8 flex justify-center items-center',
-              { 'border-icons hover:border-primary': sliderPosition < 1 },
+              'border border-elements  w-8 h-8 flex ',
+              { 'border-icons bg-surface-2 hover:border-primary ': sliderPosition < 1 },
               nextButtonClass,
             )}
           >
             <div
               className={classNames(
-                'inline-flex w-3 h-3 border-solid border-elements border-r-[3px] border-t-[3px] rounded-sm rotate-45',
+                'inline-flex m-auto mr-3 w-2 h-2 border-solid border-elements border-r-[2px] border-t-[2px] rounded-sm rotate-45',
                 { 'border-primary': sliderPosition < 1 },
               )}
             ></div>
