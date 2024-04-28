@@ -63,7 +63,7 @@ export const Header = () => {
         </div>
       </Link>
       <div className="flex tabletLarge:hidden col-end-13 ml-auto justify-center border-l border-l-elements w-16 h-16 items-center">
-        <button onClick={toggleMenu} className="w-4 h-4">
+        <button onClick={toggleMenu} className="w-4">
           {!isMenuOpen ? (
             <BurgerIcon />
           ) : (

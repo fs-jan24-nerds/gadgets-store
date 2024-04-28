@@ -6,8 +6,9 @@ export default {
     extend: {
       screens: {
         xs: '500px',
-        tablet: '640px',
+        tablet: '660px',
         tabletLarge: '700px',
+        pdt: '849px',
         laptop: '970px',
         desktop: '1200px',
       },

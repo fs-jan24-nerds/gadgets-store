@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
 import { getProductById } from '../../api/api';
 import { useColorTheme } from '../../hooks/useColorTheme';
-import likeDark from '../../assets/icons/fav-dark.svg'
+import likeDark from '../../assets/icons/fav-dark.svg';
 
 type Props = {
   product: Item;
@@ -73,7 +73,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
     );
     return changeColorClasses;
   };
-  
+
   const sizeMenu = (size: string) => {
     const changeSizeClasses: string = classNames(
       'border border-icons',
@@ -97,7 +97,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
       whileInView={{ x: 0, opacity: 1 }}
       viewport={{ once: true }}
       variants={generateAnimation('x', 60)}
-      className="w-full lg:w-[520px]"
+      className=""
     >
       <div className="flex justify-between text-xs font-medium leading-4 font-mont text-secondary mb-[8px]">
         <h3>Available colors</h3>

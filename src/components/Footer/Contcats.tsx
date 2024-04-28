@@ -15,7 +15,7 @@ export const ContactForm = () => {
       <form id="contact-form" onSubmit={handleSubmit}>
         <div className="contact-form flex flex-col items-center">
           <div className="mb-4 w-full md:w-[50%]">
-            <label className="block font-bold mb-2" htmlFor="name">
+            <label className="block font-bold mb-2 text-textMain" htmlFor="name">
               Name
             </label>
             <input
@@ -29,7 +29,7 @@ export const ContactForm = () => {
           </div>
 
           <div className="mb-4 w-full md:w-[50%]">
-            <label className="block font-bold mb-2" htmlFor="email">
+            <label className="block font-bold mb-2 text-textMain" htmlFor="email">
               Email
             </label>
             <input
@@ -43,7 +43,7 @@ export const ContactForm = () => {
           </div>
 
           <div className="mb-4 w-full md:w-[50%]">
-            <label className="block font-bold mb-2" htmlFor="message">
+            <label className="block font-bold mb-2 text-textMain" htmlFor="message">
               Message
             </label>
             <textarea
@@ -65,13 +65,13 @@ export const ContactForm = () => {
         </div>
       </form>
       <div className="mt-8 text-center">
-        <p className="mt-4">Phone</p>
+        <p className="mt-4 text-textMain">Phone</p>
         <p className="text-secondary mb-1">+1 234 5555-55-55</p>
 
-        <p className="mt-4">Email</p>
+        <p className="mt-4 text-textMain">Email</p>
         <p className="text-secondary mb-1">hello@nothing.com</p>
 
-        <p className="mt-4">Adress</p>
+        <p className="mt-4 text-textMain">Adress</p>
         <address className="not-italic">
           <a href="https://www.google.com/maps?q=400+first+ave.+suite+700+Minneapolis,+MN+55401">
             <p className="text-secondary mb-1">400 first ave.</p>
