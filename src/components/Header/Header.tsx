@@ -11,6 +11,7 @@ import { LogoIcon } from '../Icons/LogoIcon';
 import { SearchForm } from '../SearchForm/SearchForm';
 import { ThemeSwitcherButton } from '../ThemeSwitcherButton/ThemeSwitcherButton';
 import { Navigation } from './Navigation';
+import { CloseIcon } from '../Icons/CloseIcon';
 
 export const Header = () => {
   const location = useLocation();
@@ -67,7 +68,9 @@ export const Header = () => {
           {!isMenuOpen ? (
             <BurgerIcon />
           ) : (
-            <span className="text-primary font-inter-regular text-[16px]">X</span>
+            <span className="text-primary font-inter-regular text-[16px]">
+              <CloseIcon />
+            </span>
           )}
         </button>
       </div>

@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { useAppSelector } from '../../store/store';
 import { CardItem } from '../CardItem';
 import { getSearchProducts } from '../../utils/getSearchProducts';
-import Close from '../../assets/Close.svg';
 import { SearchIcon } from '../Icons/SearchIcon';
 
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
+import { CloseIcon } from '../Icons/CloseIcon';
 
 export const SearchForm = () => {
   const [showModal, setShowModal] = React.useState(false);
@@ -75,7 +75,7 @@ export const SearchForm = () => {
                     onClick={closedModal}
                   >
                     <span className="bg-transparent text-primary  h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      <img src={Close} alt="close" className="w-6 h-6" />
+                      <CloseIcon />
                     </span>
                   </button>
                 </div>
