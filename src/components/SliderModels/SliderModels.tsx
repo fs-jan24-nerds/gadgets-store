@@ -67,7 +67,7 @@ export const SliderModels: React.FC<Props> = ({
             disabled={sliderPosition === 0}
             className={classNames(
               'border border-elements w-8 h-8 flex ',
-              { 'border-icons bg-surface-2 hover:border-primary': sliderPosition > 0 },
+              { 'border-icons bg-surface-2 hover:border-surface-4 hover:bg-surface-5': sliderPosition > 0 },
               prevButtonClass,
             )}
           >
@@ -83,7 +83,7 @@ export const SliderModels: React.FC<Props> = ({
             disabled={sliderPosition === 1}
             className={classNames(
               'border border-elements  w-8 h-8 flex ',
-              { 'border-icons bg-surface-2 hover:border-primary ': sliderPosition < 1 },
+              { 'border-icons bg-surface-2 hover:border-surface-4  hover:bg-surface-5': sliderPosition < 1 },
               nextButtonClass,
             )}
           >
