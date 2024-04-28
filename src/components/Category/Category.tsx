@@ -13,7 +13,7 @@ export const Category = () => {
       <motion.div
         className="grid sm:flex gap-4"
         initial="hidden"
-        transition={{ delay: 0.7, duration: 1 }}
+        transition={{ delay: 0.5, duration: 0.6 }}
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true }}
         variants={generateAnimation('y', -50)}

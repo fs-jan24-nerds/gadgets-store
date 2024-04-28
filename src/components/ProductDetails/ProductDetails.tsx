@@ -11,7 +11,6 @@ import { SliderModels } from '../SliderModels/SliderModels';
 import { SubTitle } from '../SubTitle/SubTitle';
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
-import { Grid } from '../Grid/Grid';
 import { GridItem } from '../Grid/GridItem';
 
 export const ProductDetails = () => {
@@ -44,12 +43,12 @@ export const ProductDetails = () => {
   };
 
   const productStyles =
-    'items-center w-20 h-20 p-2 border border-#C4C4C4 cursor-pointer hover:border-primary transition-colors duration-500 ease-out';
+    'items-center w-20 h-20 p-2 border border-elements cursor-pointer hover:border-primary transition-colors duration-500 ease-out';
 
   return (
-    <div className="max-w-max-width mx-auto box-content px-0 md:px-6 lg:px-8">
+    <div className="max-w-max-width mx-auto box-content px-4 md:px-6 lg:px-8">
       {product && (
-        <Grid>
+        <div>
           <GridItem>
             <Breadcrumbs />
             <BackButton />
@@ -58,17 +57,17 @@ export const ProductDetails = () => {
             <SubTitle title={product?.name} />
           </GridItem>
           <GridItem className="block tablet:flex">
-            <GridItem className="col-span-4 tablet:col-span-6 desktop:col-span-12">
+            <GridItem className="col-span-4 tablet:col-span-4 desktop:col-span-12">
               <motion.div
                 initial="hidden"
-                transition={{ delay: 0.7, duration: 0.6 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 variants={generateAnimation('x', -60)}
-                className="flex md:flex-row mb-[40px] md:w-[570px] md:h-[464px] md:mb-[80px] flex-col-reverse m-auto"
+                className="flex md:flex-row tablet:w-[430px] md:h-[464px] flex-col-reverse"
               >
-                <div className="flex md:flex-row w-full flex-col-reverse m-auto">
-                  <div className="flex md:flex-col gap-2 md:gap-4 items-center">
+                <div className="flex tablet:flex-row w-full flex-col-reverse m-auto">
+                  <div className="flex justify-center tablet:flex-col gap-2 md:gap-4 mr-4 items-center">
                     {product.images.map((image, index) => {
                       return (
                         <div className={`${productStyles}`} key={image}>
@@ -83,7 +82,7 @@ export const ProductDetails = () => {
                     })}
                   </div>
 
-                  <div className="aspect-[1/1] flex justify-center items-center">
+                  <div className="flex justify-center items-center">
                     <img
                       src={`/gadgets-store/${product?.images[currentImageIdx]}`}
                       className="p-[11px] object-center object-scale-down h-[400px] tablet:h-[500px]"
@@ -93,7 +92,7 @@ export const ProductDetails = () => {
               </motion.div>
             </GridItem>
 
-            <GridItem className="col-span-4 tablet:col-span-12 desktop:col-span-12">
+            <GridItem className=" w-full max-w-[450px] mx-auto">
               <SelectedProductFilter product={product} />
             </GridItem>
           </GridItem>
@@ -101,7 +100,7 @@ export const ProductDetails = () => {
           <GridItem>
             <About item={product} />
           </GridItem>
-        </Grid>
+        </div>
       )}
 
       <SliderModels sectionTitle="You may also like" filterFunction={filterForRecommendedModels} />
