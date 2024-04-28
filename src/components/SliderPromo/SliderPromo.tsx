@@ -13,7 +13,7 @@ import { Title } from '../Title/Title';
 
 import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
-import { sliderLeftArrow, sliderRightArrow } from '../../assets/SVGIcons';
+import { leftArrow, rightArrow } from '../../assets/SVGIcons';
 
 const SliderPromo = () => {
   return (
@@ -34,7 +34,7 @@ const SliderPromo = () => {
           <button
             className={`${styles.leftArrow} flex items-center justify-center  bg-surface-2 border border-elements`}
           >
-            {sliderLeftArrow}
+            {leftArrow}
           </button>
 
           <Swiper
@@ -78,7 +78,7 @@ const SliderPromo = () => {
           <button
             className={`${styles.rightArrow} flex items-center justify-center bg-surface-2 border border-elements`}
           >
-            {sliderRightArrow}
+            {rightArrow}
           </button>
         </div>
         <div className="pagination flex justify-center items-center gap-4"></div>

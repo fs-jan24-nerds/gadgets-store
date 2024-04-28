@@ -26,12 +26,12 @@ export const About: React.FC<Props> = ({ item }) => {
         variants={generateAnimation('x', -60)}
         className="col-span-12 md:col-span-6 mb-10"
       >
-        <h1 className="font-bold text-2xl md:text-3xl lg:text-xl border-b-2 border-elements">
+        <h1 className="font-bold text-2xl md:text-3xl text-primary lg:text-xl border-b-2 border-elements">
           About
         </h1>
         {item.description.map((desc: Description, index: number) => (
           <div key={index}>
-            <h2 className="font-bold text-xl md:text-2xl lg:text-xl mt-6">{desc.title}</h2>
+            <h2 className="font-bold text-xl md:text-2xl lg:text-xl mt-6 text-primary" >{desc.title}</h2>
             <p className="mt-3 font-medium text-secondary">{desc.text}</p>
           </div>
         ))}
@@ -44,36 +44,36 @@ export const About: React.FC<Props> = ({ item }) => {
         variants={generateAnimation('x', 60)}
         className="col-span-12 md:col-start-8 md:col-span-5 mb-10"
       >
-        <h1 className="font-bold text-2xl md:text-3xl lg:text-xl border-b-2 border-elements">
+        <h1 className="font-bold text-2xl md:text-3xl lg:text-xl border-b-2 border-elements text-primary">
           Tech specs
         </h1>
         <div className="flex justify-between mt-3 ">
           <p className="font-medium text-secondary">Screen</p>
-          <p>{item.screen}</p>
+          <p className='text-primary'>{item.screen}</p>
         </div>
         <div className="flex justify-between mt-3 ">
-          <p className="font-medium text-secondary">Resolution</p>
-          <p>{item.resolution}</p>
+          <p className="font-medium text-secondary text-primary">Resolution</p>
+          <p className='text-primary'>{item.resolution}</p>
         </div>
         <div className="flex justify-between mt-3 ">
           <p className="font-medium text-secondary">Processor</p>
-          <p>{item.processor}</p>
+          <p className='text-primary'>{item.processor}</p>
         </div>
         <div className="flex justify-between mt-3 ">
           <p className="font-medium text-secondary">Ram</p>
-          <p>{item.ram}</p>
+          <p className='text-primary'>{item.ram}</p>
         </div>
         <div className="flex justify-between mt-3 ">
           <p className="font-medium text-secondary">Camera</p>
-          <p>{item.camera}</p>
+          <p className='text-primary'>{item.camera}</p>
         </div>
         <div className="flex justify-between mt-3 ">
           <p className="font-medium text-secondary">Zoom</p>
-          <p>{item.zoom}</p>
+          <p className='text-primary'>{item.zoom}</p>
         </div>
         <div className="flex justify-between mt-3 ">
           <p className="font-medium text-secondary">Cell</p>
-          <p>{item.cell}</p>
+          <p className='text-primary'>{item.cell}</p>
         </div>
       </motion.div>
     </div>
