@@ -32,6 +32,8 @@ export default {
         'surface-1': 'rgb(var(--color-surface-1) / <alpha-value>)',
         'surface-2': 'rgb(var(--color-surface-2) / <alpha-value>)',
         'surface-3': 'rgb(var(--color-surface-3) / <alpha-value>)',
+        'surface-4': 'rgb(var(--color-surface-4) / <alpha-value>)',
+        'surface-5': 'rgb(var(--color-surface-5) / <alpha-value>)',
         icons: 'rgb(var(--color-icons) / <alpha-value>)',
         elements: 'rgb(var(--color-elements) / <alpha-value>)',
         'hover-bg': 'rgb(var(--color-hover-bg) / <alpha-value>)',
