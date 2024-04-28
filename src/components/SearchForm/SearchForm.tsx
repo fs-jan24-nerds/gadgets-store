@@ -62,7 +62,7 @@ export const SearchForm = () => {
                 <div className="sticky top-0 z-10 bg-surface-0 flex items-center justify-between gap-6 p-5 border-b border-solid border-elements rounded-t">
                   <input
                     id="search-bg"
-                    className="w-full outline-none text-textMain border boreder-secondary hover:border-primary active:border-primary focus:border-primary font-normal h-12 px-3 text-xl placeholder-blueGray-300 bg-surface-1 rounded"
+                    className="w-full outline-none text-textMain border boreder-secondary hover:border-primary active:border-primary focus:border-elements font-normal h-12 px-3 text-xl placeholder-blueGray-300 bg-surface-1 rounded"
                     type="text"
                     placeholder="Search..."
                     value={query}
