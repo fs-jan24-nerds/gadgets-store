@@ -48,7 +48,6 @@ export const Checkout: React.FC<Props> = ({ onComfirmed }) => {
       >
         Checkout
       </button>
-      {/* dfdf */}
       <MyModal visible={isModal} changeVisible={setIsModal}>
         <div className="text-primary text-center">
           <h1 className="font-extrabold text-[25px] text-primary md:text-[30px] mb-[30px] desktop:mb-[50px]">
@@ -56,16 +55,16 @@ export const Checkout: React.FC<Props> = ({ onComfirmed }) => {
           </h1>
           <div className="flex items-center justify-between gap-3">
             <button
-              className="flex items-center justify-center w-full h-[40px] bg-accent text-white font-Mont font-bold text-base leading-6 transition-all duration-300 hover:shadow-3xl hover:bg-accent-hover  tablet:w-[170px]"
-              onClick={orderСonfirmedAction}
-            >
-              Yes
-            </button>
-            <button
               className="w-full h-[40px] bg-accent text-white font-Mont font-bold text-base leading-6 text-center tablet:w-[170px] transition-all duration-300 hover:shadow-3xl hover:bg-accent-hover"
               onClick={() => setIsModal(false)}
             >
               No
+            </button>
+            <button
+              className="flex items-center justify-center w-full h-[40px] bg-accent text-white font-Mont font-bold text-base leading-6 transition-all duration-300 hover:shadow-3xl hover:bg-accent-hover  tablet:w-[170px]"
+              onClick={orderСonfirmedAction}
+            >
+              Yes
             </button>
           </div>
         </div>
