@@ -57,7 +57,7 @@ export const CardItem: React.FC<Props> = ({ product }) => {
               />
             </Link>
           </div>
-          <Link to={`${itemId}`}>
+          <Link to={`/${category}/${itemId}`}>
             <h3 className="grow mt-2 text-sm leading-5 h-[2.5rem] overflow-hidden font-semibold text-primary">
               {name}
             </h3>
