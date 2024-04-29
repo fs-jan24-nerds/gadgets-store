@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import notfound404 from '../../public/img/page-not-found.png';
+
+import notfound404 from '../assets/product-not-found.png';
 
 export const NotFoundPage = () => {
   const navigate = useNavigate();

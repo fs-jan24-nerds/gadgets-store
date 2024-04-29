@@ -1,14 +1,16 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import './index.css';
-import { Layout } from './components/Layout';
-import { HomePage } from './pages/HomePage';
-import { NotFoundPage } from './pages/NotFoundPage';
+
 import { FavouritesPage } from './components/Favourites/FavouritesPage';
-import CartPage from './components/Cart/CartPage';
-import { ProductList } from './pages/ProductList';
-import { ProductDetails } from './components/ProductDetails/ProductDetails';
 import { ContactForm } from './components/Footer/Contcats';
 import { Rights } from './components/Footer/Rights';
+import { Layout } from './components/Layout';
+import { ProductDetails } from './components/ProductDetails/ProductDetails';
+import CartPage from './pages/CartPage';
+import { HomePage } from './pages/HomePage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { ProductList } from './pages/ProductList';
+
+import './index.css';
 
 function App() {
   return (

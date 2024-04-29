@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/icons/Logo.svg';
-import { LogoIcon } from '../Icons/LogoIcon';
+
 import { toTopIcon } from '../../assets/SVGIcons';
+import { LogoIcon } from '../Icons/LogoIcon';
+
+import logo from '../../assets/icons/Logo.svg';
 
 export function Footer() {
   return (

@@ -1,19 +1,23 @@
+import { motion } from 'framer-motion';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { Title } from '../Title/Title';
+
+import { leftArrow, rightArrow } from '../../assets/SVGIcons';
+import { generateAnimation } from '../../utils/animations';
+
+import styles from './SliderPromo.module.css';
+
 import Slider3 from '../../assets/SliderPromo/sleder3.jpeg';
 import Slider1 from '../../assets/SliderPromo/slider1.jpg';
 import Slider2 from '../../assets/SliderPromo/slider2.jpeg';
 import Slider4 from '../../assets/SliderPromo/slider4.jpg';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import styles from './SliderPromo.module.css';
-import { Title } from '../Title/Title';
-
-import { motion } from 'framer-motion';
-import { generateAnimation } from '../../utils/animations';
-import { leftArrow, rightArrow } from '../../assets/SVGIcons';
 
 const SliderPromo = () => {
   return (

@@ -1,10 +1,12 @@
-import { useState } from 'react';
-import { useCartProducts } from '../../../hooks/useCartProducts';
-import { useAppDispatch } from '../../../store/store';
-import { clearCart } from '../../../store/cartSlice';
-import { MyModal } from '../../Modal/MyModal';
 import { motion } from 'framer-motion';
-import { generateAnimation } from '../../../utils/animations';
+import { useState } from 'react';
+
+import { MyModal } from '../Modal/MyModal';
+
+import { useCartProducts } from '../../hooks/useCartProducts';
+import { clearCart } from '../../store/cartSlice';
+import { useAppDispatch } from '../../store/store';
+import { generateAnimation } from '../../utils/animations';
 
 type Props = {
   onComfirmed: (_: boolean) => void;

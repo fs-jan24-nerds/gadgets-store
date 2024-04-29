@@ -1,7 +1,8 @@
+import cn from 'classnames';
 import { Link, NavLink, useLocation, useSearchParams } from 'react-router-dom';
+
 import { generatePagination } from '../../utils/generatePagination';
 import { getClassPaginate, stylePagesPagination } from '../../utils/getClass';
-import cn from 'classnames';
 
 type Props = {
   totalProducts: number;

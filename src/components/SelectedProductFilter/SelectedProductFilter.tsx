@@ -1,17 +1,19 @@
-import like from '../../assets/icons/like.svg';
-import dislike from '../../assets/icons/dislike.svg';
 import classNames from 'classnames';
-import { Item, Product } from '../../types/Product';
+import { motion } from 'framer-motion';
+import { Link, NavLink, useParams } from 'react-router-dom';
+
+import { getProductById } from '../../api/api';
 import { useCartProducts } from '../../hooks/useCartProducts';
+import { useColorTheme } from '../../hooks/useColorTheme';
 import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
 import { RootState, useAppSelector } from '../../store/store';
-import { Link, NavLink, useParams } from 'react-router-dom';
-import createUniqueList from '../../utils/createUniqueList';
-import { motion } from 'framer-motion';
+import { Item, Product } from '../../types/Product';
 import { generateAnimation } from '../../utils/animations';
-import { getProductById } from '../../api/api';
-import { useColorTheme } from '../../hooks/useColorTheme';
+import createUniqueList from '../../utils/createUniqueList';
+
+import dislike from '../../assets/icons/dislike.svg';
 import likeDark from '../../assets/icons/fav-dark.svg';
+import like from '../../assets/icons/like.svg';
 
 type Props = {
   product: Item;
