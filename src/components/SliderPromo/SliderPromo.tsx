@@ -36,7 +36,7 @@ const SliderPromo = () => {
       >
         <div className="flex gap-4 w-full mb-8">
           <button
-            className={`${styles.leftArrow} flex items-center justify-center  bg-surface-2 border border-elements`}
+            className={`${styles.leftArrow} items-center justify-center  bg-surface-2 border border-elements`}
           >
             {leftArrow}
           </button>
@@ -80,7 +80,7 @@ const SliderPromo = () => {
           </Swiper>
 
           <button
-            className={`${styles.rightArrow} flex items-center justify-center bg-surface-2 border border-elements`}
+            className={`${styles.rightArrow} items-center justify-center bg-surface-2 border border-elements`}
           >
             {rightArrow}
           </button>
