@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { About } from '../../pages/About';
 import { BackButton } from '../BackButton/BackButton';
@@ -18,14 +18,26 @@ import { generateAnimation } from '../../utils/animations';
 
 export const ProductDetails = () => {
   const { isLoaded } = useAppSelector((state: RootState) => state.products);
+
+  const navigate = useNavigate();
+
+  console.log({ isLoaded });
+
   const { category, id } = useParams();
   const [product, setProduct] = useState<Item | undefined>();
 
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
 
   useEffect(() => {
+    console.log({ isLoaded });
     if (isLoaded && id && category) {
       const product = getProductById(id, category);
+      if (!product) {
+        navigate('/not-found');
+        return;
+      }
+
+      console.log({ isLoaded });
       setProduct(product);
     }
   }, [id, product, isLoaded, category]);

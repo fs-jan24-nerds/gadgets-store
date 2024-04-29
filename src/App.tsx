@@ -11,6 +11,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { ProductList } from './pages/ProductList';
 
 import './index.css';
+import { CategoryValidator } from './pages/CategoryValidator';
 
 function App() {
   return (
@@ -20,13 +21,13 @@ function App() {
         <Route path="home" element={<Navigate replace to="/" />} />
         <Route path="favourites" element={<FavouritesPage />} />
         <Route path="cart" element={<CartPage />} />
-        <Route path=":category">
+        <Route path=":category" element={<CategoryValidator />}>
           <Route index element={<ProductList />} />
           <Route path=":id" element={<ProductDetails />} />
         </Route>
         <Route path="contacts" element={<ContactForm />} />
         <Route path="rights" element={<Rights />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="not-found" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );
