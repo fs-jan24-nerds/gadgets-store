@@ -1,9 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { loadFromLocalStorage } from '../utils/localStorage';
-import { CartItemType } from '../types/cart';
-import { Product } from '../types/Product';
+import { createSlice } from '@reduxjs/toolkit';
+
 import { toast } from 'react-toastify';
+import { Product } from '../types/Product';
+import { CartItemType } from '../types/cart';
+import { loadFromLocalStorage } from '../utils/localStorage';
 
 export interface CartState {
   cart: CartItemType[];

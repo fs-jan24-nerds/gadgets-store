@@ -1,6 +1,7 @@
 import { Category } from '../components/Category/Category';
 import { SliderModels } from '../components/SliderModels/SliderModels';
 import SliderPromo from '../components/SliderPromo/SliderPromo';
+
 import { Product } from '../types/Product';
 
 const sortByYear = (a: Product, b: Product): number => {

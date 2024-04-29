@@ -4,19 +4,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigation, Virtual } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
+
+import { CardItem } from '../CardItem';
+
 import { getProducts } from '../../api/api';
 import { setProducts } from '../../store/productsSlice';
 import { RootState } from '../../store/store';
 import { Product } from '../../types/Product';
-import { CardItem } from '../CardItem';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 
 import { motion } from 'framer-motion';
 
-import { SubTitle } from '../SubTitle/SubTitle';
 import { generateAnimation } from '../../utils/animations';
+import { SubTitle } from '../SubTitle/SubTitle';
 
 interface Props {
   filterFunction: (products: Product[]) => Product[];
@@ -67,7 +69,10 @@ export const SliderModels: React.FC<Props> = ({
             disabled={sliderPosition === 0}
             className={classNames(
               'border border-elements w-8 h-8 flex ',
-              { 'border-icons bg-surface-2 hover:border-surface-4 hover:bg-surface-5': sliderPosition > 0 },
+              {
+                'border-icons bg-surface-2 hover:border-surface-4 hover:bg-surface-5':
+                  sliderPosition > 0,
+              },
               prevButtonClass,
             )}
           >
@@ -83,7 +88,10 @@ export const SliderModels: React.FC<Props> = ({
             disabled={sliderPosition === 1}
             className={classNames(
               'border border-elements  w-8 h-8 flex ',
-              { 'border-icons bg-surface-2 hover:border-surface-4  hover:bg-surface-5': sliderPosition < 1 },
+              {
+                'border-icons bg-surface-2 hover:border-surface-4  hover:bg-surface-5':
+                  sliderPosition < 1,
+              },
               nextButtonClass,
             )}
           >

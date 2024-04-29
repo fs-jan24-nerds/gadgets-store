@@ -1,26 +1,27 @@
+import { motion } from 'framer-motion';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { getProducts } from '../api/api';
-import { CardItem } from '../components/CardItem';
-import { RootState } from '../store/store';
-import { useDispatch } from 'react-redux';
-import { setProducts } from '../store/productsSlice';
-import { Pagination } from '../components/Pagination/Pagination';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { slicedList } from '../utils/generatePagination';
-import { ITEMS_PER_PAGE } from '../types/constants';
-import { Product } from '../types/Product';
-import { selectCurrentSort, setSort } from '../store/SortSlice';
-import { SortStatus } from '../types/enums';
-import { SortComponent } from '../components/SortComponent/SortComponent';
+
 import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs';
+import { CardItem } from '../components/CardItem';
+import { CardItemSkeleton } from '../components/CardItem/CardItemSkeleton';
 import { Grid } from '../components/Grid/Grid';
 import { GridItem } from '../components/Grid/GridItem';
-import { CardItemSkeleton } from '../components/CardItem/CardItemSkeleton';
+import { Pagination } from '../components/Pagination/Pagination';
+import { SortComponent } from '../components/SortComponent/SortComponent';
 import { Title } from '../components/Title/Title';
-import { motion } from 'framer-motion';
-import { generateAnimation } from '../utils/animations';
+
+import { getProducts } from '../api/api';
+import { selectCurrentSort, setSort } from '../store/SortSlice';
 import { selectItemsPerPage, setItemsPerPage } from '../store/perPageSlice';
+import { setProducts } from '../store/productsSlice';
+import { RootState } from '../store/store';
+import { Product } from '../types/Product';
+import { ITEMS_PER_PAGE } from '../types/constants';
+import { SortStatus } from '../types/enums';
+import { generateAnimation } from '../utils/animations';
+import { slicedList } from '../utils/generatePagination';
 
 const sortByYear = (a: Product, b: Product): number => {
   const aYear = a.year ?? 0;

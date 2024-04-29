@@ -1,8 +1,9 @@
-import { useAppSelector } from '../../store/store';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
-import { Title } from '../Title/Title';
 import { CardItem } from '../CardItem';
+import { Title } from '../Title/Title';
 import { EmptyFavourites } from './EmptyFavourites';
+
+import { useAppSelector } from '../../store/store';
 
 export const FavouritesPage = () => {
   const { favouritesProducts } = useAppSelector((state) => state.favourites);

@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
-import { generateAnimation } from '../../../utils/animations';
 import { Link } from 'react-router-dom';
-import emptyCart from '../img/emptyCart.png';
+
+import { generateAnimation } from '../../utils/animations';
+
+import emptyCart from '../../assets/emptyCart.png';
 
 export const EmptyCartMessage = () => (
   <div>

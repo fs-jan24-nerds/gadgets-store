@@ -1,7 +1,8 @@
 import { Outlet } from 'react-router-dom';
-import { Header } from './Header/Header';
-import { Footer } from './Footer/Footer';
+
 import { ToastContainerWrapper } from '../ToastContainer';
+import { Footer } from './Footer/Footer';
+import { Header } from './Header/Header';
 
 export const Layout: React.FC = () => {
   return (

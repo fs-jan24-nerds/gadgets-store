@@ -1,8 +1,8 @@
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+
 import { NavMenu } from '../../types/enums';
 import { getClassNavLink } from '../../utils/getClass';
-
-import React, { useEffect, useState } from 'react';
 
 interface NavigationProps {
   closeMenu: () => void;

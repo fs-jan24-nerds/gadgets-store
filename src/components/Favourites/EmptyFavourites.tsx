@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom';
-import emptyFav from '../../assets/emptyFav.png';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
 import { generateAnimation } from '../../utils/animations';
+
+import emptyFav from '../../assets/emptyFav.png';
 
 export const EmptyFavourites = () => {
   return (

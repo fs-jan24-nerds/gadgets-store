@@ -1,9 +1,11 @@
-import { useCartProducts } from '../../../hooks/useCartProducts';
-import { CartItemType } from '../../../types/cart';
-import { motion } from 'framer-motion';
-import { generateAnimation } from '../../../utils/animations';
 import classNames from 'classnames';
-import { CloseIcon } from '../../Icons/CloseIcon';
+import { motion } from 'framer-motion';
+
+import { useCartProducts } from '../../hooks/useCartProducts';
+import { CartItemType } from '../../types/cart';
+import { generateAnimation } from '../../utils/animations';
+
+import { CloseIcon } from '../Icons/CloseIcon';
 
 type Props = {
   cartItem: CartItemType;

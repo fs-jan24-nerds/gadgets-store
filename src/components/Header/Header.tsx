@@ -1,17 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import logo from '../../assets/icons/Logo.svg';
-import { useCartProducts } from '../../hooks/useCartProducts';
-import { useAppSelector } from '../../store/store';
-import { getClassNavLink } from '../../utils/getClass';
+
 import { BurgerIcon } from '../Icons/BurgerIcon';
 import { CartIcon } from '../Icons/CartIcon';
+import { CloseIcon } from '../Icons/CloseIcon';
 import { FavoritsIcon } from '../Icons/FavoritsIcon';
 import { LogoIcon } from '../Icons/LogoIcon';
 import { SearchForm } from '../SearchForm/SearchForm';
 import { ThemeSwitcherButton } from '../ThemeSwitcherButton/ThemeSwitcherButton';
 import { Navigation } from './Navigation';
-import { CloseIcon } from '../Icons/CloseIcon';
+
+import { useCartProducts } from '../../hooks/useCartProducts';
+import { useAppSelector } from '../../store/store';
+import { getClassNavLink } from '../../utils/getClass';
+
+import logo from '../../assets/icons/Logo.svg';
 
 export const Header = () => {
   const location = useLocation();

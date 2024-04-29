@@ -1,9 +1,9 @@
-import { Product } from '../types/Product';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { addToCart, removeAllFromCart, removeOneFromCart } from '../store/cartSlice';
 import { RootState } from '../store/store';
-import { useDispatch } from 'react-redux';
 import { CartItemType } from '../types/cart';
+import { Product } from '../types/Product';
 
 type HookType = {
   cart: CartItemType[];

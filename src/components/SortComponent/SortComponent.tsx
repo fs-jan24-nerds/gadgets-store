@@ -1,11 +1,12 @@
-import { useDispatch } from 'react-redux';
-import { setSort } from '../../store/SortSlice';
-
-import { SortStatus } from '../../types/enums';
-import { SortDropdown } from './SortDropdown';
-import { useSearchParams } from 'react-router-dom';
-import { setItemsPerPage } from '../../store/perPageSlice';
 import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
+
+import { SortDropdown } from './SortDropdown';
+
+import { setSort } from '../../store/SortSlice';
+import { setItemsPerPage } from '../../store/perPageSlice';
+import { SortStatus } from '../../types/enums';
 import { generateAnimation } from '../../utils/animations';
 
 const pageSizeOptions = [4, 8, 16, 24];

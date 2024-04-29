@@ -1,12 +1,13 @@
+import { motion } from 'framer-motion';
 import React, { useEffect } from 'react';
-import { useAppSelector } from '../../store/store';
+
 import { CardItem } from '../CardItem';
-import { getSearchProducts } from '../../utils/getSearchProducts';
+import { CloseIcon } from '../Icons/CloseIcon';
 import { SearchIcon } from '../Icons/SearchIcon';
 
-import { motion } from 'framer-motion';
+import { useAppSelector } from '../../store/store';
 import { generateAnimation } from '../../utils/animations';
-import { CloseIcon } from '../Icons/CloseIcon';
+import { getSearchProducts } from '../../utils/getSearchProducts';
 
 export const SearchForm = () => {
   const [showModal, setShowModal] = React.useState(false);

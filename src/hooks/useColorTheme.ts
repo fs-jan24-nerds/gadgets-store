@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+
 import { useAppSelector } from '../store/store';
 import { setTheme as setThemeAction } from '../store/themeSlice';
 import { Theme } from '../types/theme';
