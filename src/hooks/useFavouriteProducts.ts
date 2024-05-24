@@ -1,6 +1,6 @@
-import { Product } from '../types/Product';
-import { useAppDispatch, useAppSelector } from '../store/store';
 import { addFavourites, removeFavourite } from '../store/favouriteSlice';
+import { useAppDispatch, useAppSelector } from '../store/store';
+import { Product } from '../types/Product';
 
 export const useFavouritesProducts = (): [
   Product[],

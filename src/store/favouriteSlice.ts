@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+
 import { Product } from '../types/Product';
 import { loadFromLocalStorage } from '../utils/localStorage';
 

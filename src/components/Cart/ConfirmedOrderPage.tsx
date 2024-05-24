@@ -1,9 +1,20 @@
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import successIcon from '../img/success.gif';
+
+import { generateAnimation } from '../../utils/animations';
+
+import successIcon from '../../assets/success.gif';
 
 export const ConfirmedOrderPage = () => {
   return (
-    <div className="flex flex-col w-full  items-center">
+    <motion.div
+      initial="hidden"
+      transition={{ delay: 0.2, duration: 0.5 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      variants={generateAnimation('y', -50)}
+      className="flex flex-col w-full  items-center"
+    >
       <h1 className="font-extrabold text-[25px] mb-[20px] text-primary sm:text-[32px]">
         Order is confirmed!
       </h1>
@@ -16,6 +27,6 @@ export const ConfirmedOrderPage = () => {
       >
         Continue shopping
       </Link>
-    </div>
+    </motion.div>
   );
 };

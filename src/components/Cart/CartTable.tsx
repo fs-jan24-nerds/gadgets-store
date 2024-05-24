@@ -1,5 +1,6 @@
-import { useCartProducts } from '../../../hooks/useCartProducts';
 import { CartItem } from './CartItem';
+
+import { useCartProducts } from '../../hooks/useCartProducts';
 
 export const CartTable: React.FC = () => {
   const { cart } = useCartProducts();

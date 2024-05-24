@@ -1,8 +1,8 @@
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import Home from '../../assets/Home.svg';
 import rightArrow from '../../assets/icons/rightArrow.svg';
-import React from 'react';
+import { homeIcon } from '../../assets/SVGIcons';
 
 const preparedCategoryName = (categoryName: string) => {
   return categoryName
@@ -45,7 +45,7 @@ export const Breadcrumbs = () => {
   return (
     <div className="flex items-center mb-6 md:mb-10 mt-6 font-inter-regular">
       <Link to={'/'} className="block">
-        <img src={Home} alt="Home page" />
+        {homeIcon}
       </Link>
       <img src={rightArrow} alt="Go back" className=" mx-2" />
       {breadcrumbs}

@@ -1,15 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import productsReducer from './productsSlice';
-import favouritsReducer from './favouriteSlice';
-import cartReducer from './cartSlice';
-import sortReduser from './SortSlice';
-import perPageReduser from './perPageSlice';
-import themeReducer from './themeSlice';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { saveToLocalStorage } from '../utils/localStorage';
 import { throttle } from 'lodash';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { saveToLocalStorage } from '../utils/localStorage';
+import sortReduser from './SortSlice';
+import cartReducer from './cartSlice';
+import favouritsReducer from './favouriteSlice';
+import perPageReduser from './perPageSlice';
+import productsReducer from './productsSlice';
+import themeReducer from './themeSlice';
 
 export const store = configureStore({
   reducer: {

@@ -1,13 +1,15 @@
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import unfav from '../../assets/icons/dislike.svg';
-import fav from '../../assets/icons/like.svg';
-import favDark from '../../assets/icons/fav-dark.svg'
+
 import { useCartProducts } from '../../hooks/useCartProducts';
+import { useColorTheme } from '../../hooks/useColorTheme';
 import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
 import { Product } from '../../types/Product';
-import { motion } from 'framer-motion';
 import { generateAnimation } from '../../utils/animations';
-import { useColorTheme } from '../../hooks/useColorTheme';
+
+import unfav from '../../assets/icons/dislike.svg';
+import favDark from '../../assets/icons/fav-dark.svg';
+import fav from '../../assets/icons/like.svg';
 
 type Props = {
   product: Product;
@@ -18,11 +20,11 @@ export const CardItem: React.FC<Props> = ({ product }) => {
   const { cart, addProductToCart, removeAllFromCartById } = useCartProducts();
   const [theme] = useColorTheme();
   const [favouritesProducts, addToFavourites, removeFromFavourites] = useFavouritesProducts();
-  
+
   const isDiscountActive = fullPrice !== price;
   const isInCart = cart.some((cartProduct) => cartProduct.id === id);
   const isFavourite = favouritesProducts.some((favouriteProduct) => favouriteProduct.id === id);
-  
+
   const descriptionContent = {
     Screen: screen,
     RAM: ram,
@@ -55,7 +57,7 @@ export const CardItem: React.FC<Props> = ({ product }) => {
               />
             </Link>
           </div>
-          <Link to={`${itemId}`}>
+          <Link to={`/${category}/${itemId}`}>
             <h3 className="grow mt-2 text-sm leading-5 h-[2.5rem] overflow-hidden font-semibold text-primary">
               {name}
             </h3>
@@ -114,14 +116,11 @@ export const CardItem: React.FC<Props> = ({ product }) => {
               className="flex items-center justify-center text-sm w-[40px] h-[40px] border border-1 bg-surface-2 border-elements"
               onClick={() => addToFavourites(product)}
             >
-              {
-                theme === 'light' ? (
-                  <img src={fav} alt="favour" />
-                ) : (
-                  <img src={favDark} alt="favour" />
-                )
-              }
-              
+              {theme === 'light' ? (
+                <img src={fav} alt="favour" />
+              ) : (
+                <img src={favDark} alt="favour" />
+              )}
             </button>
           )}
         </div>

@@ -1,15 +1,19 @@
-import like from '../../assets/icons/like.svg';
-import dislike from '../../assets/icons/dislike.svg';
 import classNames from 'classnames';
-import { Item, Product } from '../../types/Product';
+import { motion } from 'framer-motion';
+import { Link, NavLink, useParams } from 'react-router-dom';
+
+import { getProductById } from '../../api/api';
 import { useCartProducts } from '../../hooks/useCartProducts';
+import { useColorTheme } from '../../hooks/useColorTheme';
 import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
 import { RootState, useAppSelector } from '../../store/store';
-import { Link, useParams } from 'react-router-dom';
-import createUniqueList from '../../utils/createUniqueList';
-import { motion } from 'framer-motion';
+import { Item, Product } from '../../types/Product';
 import { generateAnimation } from '../../utils/animations';
-import { getProductById } from '../../api/api';
+import createUniqueList from '../../utils/createUniqueList';
+
+import dislike from '../../assets/icons/dislike.svg';
+import likeDark from '../../assets/icons/fav-dark.svg';
+import like from '../../assets/icons/like.svg';
 
 type Props = {
   product: Item;
@@ -51,6 +55,8 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
 
   const itemPhone = phone as Item;
 
+  const [theme] = useColorTheme();
+
   const colorMenu = (color: string) => {
     const changeColorClasses: string = classNames(
       'flex',
@@ -64,7 +70,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
       'hover:scale-110',
       'transition duration-300',
       {
-        'border-[2px] border-primary': phone.color === color,
+        'border-[3px] border-textMain': phone.color === color,
       },
     );
     return changeColorClasses;
@@ -79,7 +85,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
       'transition duration-300',
       'hover:border-primary',
       {
-        'bg-primary text-white': phone.capacity === size,
+        'bg-blackBg text-whiteActive': phone.capacity === size,
       },
     );
     return changeSizeClasses;
@@ -93,7 +99,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
       whileInView={{ x: 0, opacity: 1 }}
       viewport={{ once: true }}
       variants={generateAnimation('x', 60)}
-      className="w-full lg:w-[520px]"
+      className=""
     >
       <div className="flex justify-between text-xs font-medium leading-4 font-mont text-secondary mb-[8px]">
         <h3>Available colors</h3>
@@ -120,13 +126,14 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
         </h3>
         <div className="font-mont-semiBold flex gap-1 mb-[24px] flex-wrap">
           {selectedProductCapacity.map((size) => (
-            <Link
+            <NavLink
               to={`/${phone.category}/${phone.namespaceId}-${size.toLowerCase()}-${phone.color.replace(' ', '-')}`}
               className={sizeMenu(size)}
+              // className={getCapacityClass}
               key={size}
             >
               {size}
-            </Link>
+            </NavLink>
           ))}
         </div>
         <div className="flex mb-[16px] items-center">
@@ -148,34 +155,40 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
         <div className="flex justify-start gap-x-1 items-start mb-[32px]">
           {isInCart ? (
             <button
-              className="w-full h-[48px] font-bold text-sm bg-white border border-1 border-elements text-green"
+              className="w-[100%] h-[40px] font-bold text-sm bg-surface-2 border border-1 border-elements text-button-text-success"
               onClick={() => removeAllFromCartById((selectedProduct as Product)?.id)}
             >
               Added to cart
             </button>
           ) : (
             <button
-              className="w-full h-[48px] font-bold text-sm bg-primary text-white"
+              className="w-[100%] h-[40px] font-bold text-sm bg-accent hover:bg-accent-hover duration-300 text-white"
               onClick={() => addProductToCart(selectedProduct as Product)}
             >
               Add to cart
             </button>
           )}
+
           {isLike ? (
             <button
-              className="flex items-center justify-center text-sm w-[40px] h-[48px] border border-1 border-elements"
+              // className="flex items-center justify-center text-sm w-[40px] h-[48px] border border-1 border-elements"
+              className="flex items-center justify-center text-sm w-[40px] h-[40px] border border-1 bg-surface-2 border-elements"
               onClick={() => removeFromFavourites((selectedProduct as Product)?.id)}
             >
               <img src={dislike} alt="dislike" />
             </button>
           ) : (
             <button
-              className="flex items-center justify-center text-sm w-[40px] h-[48px] border border-1 border-elements"
+              className="flex items-center justify-center text-sm w-[40px] h-[40px] border border-1 bg-surface-2 border-elements"
               onClick={() => {
                 addToFavourites(selectedProduct as Product);
               }}
             >
-              <img src={like} alt="like" />
+              {theme === 'light' ? (
+                <img src={like} alt="favour" />
+              ) : (
+                <img src={likeDark} alt="favour" />
+              )}
             </button>
           )}
         </div>

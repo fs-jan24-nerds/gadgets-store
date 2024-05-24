@@ -1,21 +1,26 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/icons/Logo.svg';
-import { LogoIcon } from '../Icons/LogoIcon';
+
 import { toTopIcon } from '../../assets/SVGIcons';
+import { LogoIcon } from '../Icons/LogoIcon';
+
+import logo from '../../assets/icons/Logo.svg';
 
 export function Footer() {
   return (
     <footer className="flex items-center bg-surface-0 border border-elements px-4 sm:px-8">
       <div className="w-max-width mx-auto md:flex md:justify-between md:items-center">
-        <div className="relative mt-8 mr-0 md:mr-0 md:mb-4 mb-7">
-          <LogoIcon />
-          <img src={logo} alt="logo" className="absolute bottom-[16px] left-[19px] mx-6" />
-        </div>
+        <Link to={{ pathname: 'home', search: location.search }} className="">
+          <div className="relative mt-8 mr-0 md:mr-0 md:mb-4 mb-7">
+            <LogoIcon />
+            <img src={logo} alt="logo" className="absolute bottom-[16px] left-[19px] mx-6" />
+          </div>
+        </Link>
 
         <div className="md:flex md:items-center">
           <Link
             to="https://github.com/fs-jan24-nerds/gadgets-store"
             className="block mb-0 text-textSecondary mr-24"
+            target="_blank"
           >
             GitHub
           </Link>

@@ -1,10 +1,13 @@
-import phones from './img/phones.png';
-import tablets from './img/tablets.png';
-import accessories from './img/Accessories.png';
-import { CategoryItem } from './CategoryItem';
-import { SubTitle } from '../SubTitle/SubTitle';
 import { motion } from 'framer-motion';
+
+import { SubTitle } from '../SubTitle/SubTitle';
+import { CategoryItem } from './CategoryItem';
+
 import { generateAnimation } from '../../utils/animations';
+
+import accessories from '../../assets/Accessories.png';
+import phones from '../../assets/phones.png';
+import tablets from '../../assets/tablets.png';
 
 export const Category = () => {
   return (
@@ -13,7 +16,7 @@ export const Category = () => {
       <motion.div
         className="grid sm:flex gap-4"
         initial="hidden"
-        transition={{ delay: 0.7, duration: 1 }}
+        transition={{ delay: 0.5, duration: 0.6 }}
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true }}
         variants={generateAnimation('y', -50)}

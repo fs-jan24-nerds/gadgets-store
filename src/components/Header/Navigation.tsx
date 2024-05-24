@@ -1,19 +1,19 @@
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+
 import { NavMenu } from '../../types/enums';
 import { getClassNavLink } from '../../utils/getClass';
-
-import React, { useEffect, useState } from 'react';
 
 interface NavigationProps {
   closeMenu: () => void;
 }
 
 export const Navigation: React.FC<NavigationProps> = ({ closeMenu }) => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 640);
+      setIsMobile(window.innerWidth < 700);
     };
 
     window.addEventListener('resize', handleResize);

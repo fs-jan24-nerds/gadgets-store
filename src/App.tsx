@@ -1,14 +1,18 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import './index.css';
-import { Layout } from './components/Layout';
-import { HomePage } from './pages/HomePage';
-import { NotFoundPage } from './pages/NotFoundPage';
+
 import { FavouritesPage } from './components/Favourites/FavouritesPage';
-import CartPage from './components/Cart/CartPage';
-import { ProductList } from './pages/ProductList';
-import { ProductDetails } from './components/ProductDetails/ProductDetails';
 import { ContactForm } from './components/Footer/Contcats';
 import { Rights } from './components/Footer/Rights';
+import { Layout } from './components/Layout';
+import { ProductDetails } from './components/ProductDetails/ProductDetails';
+import CartPage from './pages/CartPage';
+import { HomePage } from './pages/HomePage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { ProductList } from './pages/ProductList';
+
+import './index.css';
+import { CategoryValidator } from './pages/CategoryValidator';
+
 import MainForm from './components/Reg/main-form';
 
 function App() {
@@ -19,7 +23,7 @@ function App() {
         <Route path="home" element={<Navigate replace to="/" />} />
         <Route path="favourites" element={<FavouritesPage />} />
         <Route path="cart" element={<CartPage />} />
-        <Route path=":category">
+        <Route path=":category" element={<CategoryValidator />}>
           <Route index element={<ProductList />} />
           <Route path=":id" element={<ProductDetails />} />
         </Route>
@@ -27,6 +31,7 @@ function App() {
         <Route path="rights" element={<Rights />} />
         <Route path="/auth" element={<MainForm />} />
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="not-found" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );

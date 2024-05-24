@@ -1,12 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { loadFromLocalStorage } from '../utils/localStorage';
+import { createSlice } from '@reduxjs/toolkit';
 import { Theme } from 'react-toastify';
+
+import { loadFromLocalStorage } from '../utils/localStorage';
 
 export interface ThemeState {
   theme: Theme;
 }
-
 
 const persistedState = loadFromLocalStorage<ThemeState>('theme');
 

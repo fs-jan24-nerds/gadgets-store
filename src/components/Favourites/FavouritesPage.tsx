@@ -1,7 +1,9 @@
-import { useAppSelector } from '../../store/store';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
-import { Title } from '../Title/Title';
 import { CardItem } from '../CardItem';
+import { Title } from '../Title/Title';
+import { EmptyFavourites } from './EmptyFavourites';
+
+import { useAppSelector } from '../../store/store';
 
 export const FavouritesPage = () => {
   const { favouritesProducts } = useAppSelector((state) => state.favourites);
@@ -12,19 +14,20 @@ export const FavouritesPage = () => {
 
       <Title title="Favourites" />
 
-      <p className="font-Mont text-secondary mb-[40px] text-[14px]">
+      <p className="font-Mont text-secondary mb-[20px]  tablet:mb-[30px] text-[14px]">
         {favouritesProducts.length} items
       </p>
 
       {favouritesProducts.length > 0 ? (
         <div className="grid grid-cols-1  gap-x-[16px] gap-y-[40px] sm:grid-cols-2 bd  md:grid-cols-3  lg:grid-cols-4">
           {favouritesProducts.map((product) => (
-            // <FavouritesItem key={product.id} product={product} />
             <CardItem key={product.id} product={product} />
           ))}
         </div>
       ) : (
-        <div>Not founded</div>
+        <div>
+          <EmptyFavourites />
+        </div>
       )}
     </div>
   );

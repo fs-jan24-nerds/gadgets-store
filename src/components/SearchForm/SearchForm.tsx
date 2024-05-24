@@ -1,12 +1,13 @@
+import { motion } from 'framer-motion';
 import React, { useEffect } from 'react';
-import { useAppSelector } from '../../store/store';
+
 import { CardItem } from '../CardItem';
-import { getSearchProducts } from '../../utils/getSearchProducts';
-import Close from '../../assets/Close.svg';
+import { CloseIcon } from '../Icons/CloseIcon';
 import { SearchIcon } from '../Icons/SearchIcon';
 
-import { motion } from 'framer-motion';
+import { useAppSelector } from '../../store/store';
 import { generateAnimation } from '../../utils/animations';
+import { getSearchProducts } from '../../utils/getSearchProducts';
 
 export const SearchForm = () => {
   const [showModal, setShowModal] = React.useState(false);
@@ -62,7 +63,7 @@ export const SearchForm = () => {
                 <div className="sticky top-0 z-10 bg-surface-0 flex items-center justify-between gap-6 p-5 border-b border-solid border-elements rounded-t">
                   <input
                     id="search-bg"
-                    className="w-full outline-none text-textMain border boreder-secondary hover:border-primary active:border-primary focus:border-primary font-normal h-12 px-3 text-xl placeholder-blueGray-300 bg-surface-1 rounded"
+                    className="w-full outline-none text-textMain border boreder-secondary hover:border-primary active:border-primary focus:border-elements font-normal h-12 px-3 text-xl placeholder-blueGray-300 bg-surface-1 rounded"
                     type="text"
                     placeholder="Search..."
                     value={query}
@@ -75,7 +76,7 @@ export const SearchForm = () => {
                     onClick={closedModal}
                   >
                     <span className="bg-transparent text-primary  h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      <img src={Close} alt="close" className="w-6 h-6" />
+                      <CloseIcon />
                     </span>
                   </button>
                 </div>

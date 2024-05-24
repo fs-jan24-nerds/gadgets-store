@@ -4,19 +4,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigation, Virtual } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
+
+import { CardItem } from '../CardItem';
+
 import { getProducts } from '../../api/api';
 import { setProducts } from '../../store/productsSlice';
 import { RootState } from '../../store/store';
 import { Product } from '../../types/Product';
-import { CardItem } from '../CardItem';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 
 import { motion } from 'framer-motion';
 
-import { SubTitle } from '../SubTitle/SubTitle';
 import { generateAnimation } from '../../utils/animations';
+import { SubTitle } from '../SubTitle/SubTitle';
 
 interface Props {
   filterFunction: (products: Product[]) => Product[];
@@ -66,14 +68,17 @@ export const SliderModels: React.FC<Props> = ({
           <button
             disabled={sliderPosition === 0}
             className={classNames(
-              'border border-elements w-8 h-8 flex justify-center items-center',
-              { 'border-icons hover:border-primary': sliderPosition > 0 },
+              'border border-elements w-8 h-8 flex ',
+              {
+                'border-icons bg-surface-2 hover:border-surface-4 hover:bg-surface-5':
+                  sliderPosition > 0,
+              },
               prevButtonClass,
             )}
           >
             <div
               className={classNames(
-                'inline-flex w-3 h-3 border-solid border-elements border-l-[3px] border-t-[3px] rounded-sm -rotate-45',
+                'inline-flex w-2 h-2 m-auto ml-3 border-solid border-elements border-l-[2px] border-t-[2px] rounded-sm -rotate-45',
                 { 'border-primary': sliderPosition > 0 },
               )}
             ></div>
@@ -82,14 +87,17 @@ export const SliderModels: React.FC<Props> = ({
           <button
             disabled={sliderPosition === 1}
             className={classNames(
-              'border border-elements bg-surface-2 w-8 h-8 flex justify-center items-center',
-              { 'border-icons hover:border-primary': sliderPosition < 1 },
+              'border border-elements  w-8 h-8 flex ',
+              {
+                'border-icons bg-surface-2 hover:border-surface-4  hover:bg-surface-5':
+                  sliderPosition < 1,
+              },
               nextButtonClass,
             )}
           >
             <div
               className={classNames(
-                'inline-flex w-3 h-3 border-solid border-elements border-r-[3px] border-t-[3px] rounded-sm rotate-45',
+                'inline-flex m-auto mr-3 w-2 h-2 border-solid border-elements border-r-[2px] border-t-[2px] rounded-sm rotate-45',
                 { 'border-primary': sliderPosition < 1 },
               )}
             ></div>
@@ -99,7 +107,7 @@ export const SliderModels: React.FC<Props> = ({
 
       <motion.div
         initial="hidden"
-        transition={{ delay: 0.7, duration: 1 }}
+        transition={{ delay: 0.5, duration: 0.6 }}
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true }}
         variants={generateAnimation('y', -50)}
