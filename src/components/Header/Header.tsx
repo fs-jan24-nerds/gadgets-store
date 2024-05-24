@@ -11,6 +11,7 @@ import { FavoritsIcon } from '../Icons/FavoritsIcon';
 import { CartIcon } from '../Icons/CartIcon';
 import { BurgerIcon } from '../Icons/BurgerIcon';
 import { LogoIcon } from '../Icons/LogoIcon';
+import { FaUserPlus } from 'react-icons/fa';
 
 export const Header = () => {
   const location = useLocation();
@@ -76,6 +77,16 @@ export const Header = () => {
           className={`flex col-end-12 items-center box-border justify-stretch sm:justify-center ${isMenuOpen && 'fixed bottom-0 border-t-2 w-full border-elements'}`}
         >
           <ThemeSwitcherButton />
+
+          <NavLink
+            className={(props) =>
+              `${getClassNavLink(props)} hover:border-b-primary border-l border-l-elements flex w-16 h-16 items-center flex-1 justify-center`
+            }
+            to="/auth"
+          >
+            {' '}
+            <FaUserPlus />{' '}
+          </NavLink>
 
           <SearchForm />
 
