@@ -13,6 +13,8 @@ import { ProductList } from './pages/ProductList';
 import './index.css';
 import { CategoryValidator } from './pages/CategoryValidator';
 
+import MainForm from './components/Reg/main-form';
+
 function App() {
   return (
     <Routes>
@@ -27,6 +29,8 @@ function App() {
         </Route>
         <Route path="contacts" element={<ContactForm />} />
         <Route path="rights" element={<Rights />} />
+        <Route path="/auth" element={<MainForm />} />
+        <Route path="*" element={<NotFoundPage />} />
         <Route path="not-found" element={<NotFoundPage />} />
       </Route>
     </Routes>

@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
-import { BurgerIcon } from '../Icons/BurgerIcon';
-import { CartIcon } from '../Icons/CartIcon';
-import { CloseIcon } from '../Icons/CloseIcon';
-import { FavoritsIcon } from '../Icons/FavoritsIcon';
-import { LogoIcon } from '../Icons/LogoIcon';
-import { SearchForm } from '../SearchForm/SearchForm';
-import { ThemeSwitcherButton } from '../ThemeSwitcherButton/ThemeSwitcherButton';
-import { Navigation } from './Navigation';
-
 import { useCartProducts } from '../../hooks/useCartProducts';
 import { useAppSelector } from '../../store/store';
 import { getClassNavLink } from '../../utils/getClass';
 
 import logo from '../../assets/icons/Logo.svg';
+import { SearchForm } from '../SearchForm/SearchForm';
+import { ThemeSwitcherButton } from '../ThemeSwitcherButton/ThemeSwitcherButton';
+import { FavoritsIcon } from '../Icons/FavoritsIcon';
+import { CartIcon } from '../Icons/CartIcon';
+import { BurgerIcon } from '../Icons/BurgerIcon';
+import { LogoIcon } from '../Icons/LogoIcon';
+import { FaUserPlus } from 'react-icons/fa';
+import { CloseIcon } from '../Icons/CloseIcon';
+import { Navigation } from './Navigation';
 
 export const Header = () => {
   const location = useLocation();
@@ -86,6 +86,16 @@ export const Header = () => {
           className={`flex col-end-12 items-center box-border justify-stretch tabletLarge:justify-center ${isMenuOpen && 'fixed bottom-0 border-t-2 w-full border-elements'}`}
         >
           <ThemeSwitcherButton />
+
+          <NavLink
+            className={(props) =>
+              `${getClassNavLink(props)} hover:border-b-primary border-l border-l-elements flex w-16 h-16 items-center flex-1 justify-center`
+            }
+            to="/auth"
+          >
+            {' '}
+            <FaUserPlus />{' '}
+          </NavLink>
 
           <SearchForm />
 
