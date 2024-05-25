@@ -14,6 +14,8 @@ import createUniqueList from '../../utils/createUniqueList';
 import dislike from '../../assets/icons/dislike.svg';
 import likeDark from '../../assets/icons/fav-dark.svg';
 import like from '../../assets/icons/like.svg';
+import SkeletonDescribe from '../ProductDetails/SkeleletonDescribe';
+import { useEffect, useState } from 'react';
 
 type Props = {
   product: Item;
@@ -21,11 +23,15 @@ type Props = {
 
 export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
   const { isLoaded } = useAppSelector((state: RootState) => state.products);
+  const [isLoading, setIsLoading] = useState(true);
+
   const { category = 'phones' } = useParams();
 
   const { cart, addProductToCart, removeAllFromCartById } = useCartProducts();
   const [favouritesProducts, addToFavourites, removeFromFavourites] = useFavouritesProducts();
   const products = useAppSelector((state) => state.products.products);
+
+  // const [isLoading, setIsLoading] = useState(false);
 
   const productsAll = products
     .filter((product) => product.itemId.startsWith(phone.namespaceId))
@@ -76,6 +82,12 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
     return changeColorClasses;
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
+
   const sizeMenu = (size: string) => {
     const changeSizeClasses: string = classNames(
       'border border-icons',
@@ -101,113 +113,119 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
       variants={generateAnimation('x', 60)}
       className=""
     >
-      <div className="flex justify-between text-xs font-medium leading-4 font-mont text-secondary mb-[8px]">
-        <h3>Available colors</h3>
-        <span className="text-icons">ID: 802390</span>
-      </div>
-      <div className="w-full md:max-w-[320px]">
-        <div className="flex mb-[25px] gap-2">
-          {selectedProductColor.map((color) => (
-            <Link
-              to={`/${phone.category}/${phone.namespaceId}-${phone.capacity.toLowerCase()}-${color.replace(' ', '-')}`}
-              key={color}
-              className={colorMenu(color)}
-            >
-              <span
-                className="w-[20px] h-[20px] rounded-full"
-                style={{ backgroundColor: color }}
-              ></span>
-            </Link>
-          ))}
-        </div>
-        <div className="w-full h-[1px] bg-elements mb-[24px]"></div>
-        <h3 className="text-xs font-medium leading-4  font-mont text-secondary mb-[8px]">
-          Select capacity
-        </h3>
-        <div className="font-mont-semiBold flex gap-1 mb-[24px] flex-wrap">
-          {selectedProductCapacity.map((size) => (
-            <NavLink
-              to={`/${phone.category}/${phone.namespaceId}-${size.toLowerCase()}-${phone.color.replace(' ', '-')}`}
-              className={sizeMenu(size)}
-              // className={getCapacityClass}
-              key={size}
-            >
-              {size}
-            </NavLink>
-          ))}
-        </div>
-        <div className="flex mb-[16px] items-center">
-          {isDiscountActive ? (
-            <>
-              <p className="font-mont-bold mr-2 font-extrabold text-[32px] text-primary">
-                ${itemPhone.priceDiscount}
-              </p>
-              <p className="font-mont-semiBold line-through  text-[22px] text-secondary">
-                ${itemPhone.priceRegular}
-              </p>
-            </>
-          ) : (
-            <p className="font-mont-bold text-primary text-[32px]">${itemPhone.priceRegular}</p>
-          )}
-        </div>
-
-        <div className="w-full  h-[1px] bg-elements mb-[24px]"></div>
-        <div className="flex justify-start gap-x-1 items-start mb-[32px]">
-          {isInCart ? (
-            <button
-              className="w-[100%] h-[40px] font-bold text-sm bg-surface-2 border border-1 border-elements text-button-text-success"
-              onClick={() => removeAllFromCartById((selectedProduct as Product)?.id)}
-            >
-              Added to cart
-            </button>
-          ) : (
-            <button
-              className="w-[100%] h-[40px] font-bold text-sm bg-accent hover:bg-accent-hover duration-300 text-white"
-              onClick={() => addProductToCart(selectedProduct as Product)}
-            >
-              Add to cart
-            </button>
-          )}
-
-          {isLike ? (
-            <button
-              // className="flex items-center justify-center text-sm w-[40px] h-[48px] border border-1 border-elements"
-              className="flex items-center justify-center text-sm w-[40px] h-[40px] border border-1 bg-surface-2 border-elements"
-              onClick={() => removeFromFavourites((selectedProduct as Product)?.id)}
-            >
-              <img src={dislike} alt="dislike" />
-            </button>
-          ) : (
-            <button
-              className="flex items-center justify-center text-sm w-[40px] h-[40px] border border-1 bg-surface-2 border-elements"
-              onClick={() => {
-                addToFavourites(selectedProduct as Product);
-              }}
-            >
-              {theme === 'light' ? (
-                <img src={like} alt="favour" />
+      {isLoading ? (
+        <SkeletonDescribe />
+      ) : (
+        <>
+          <div className="flex justify-between text-xs font-medium leading-4 font-mont text-secondary mb-[8px]">
+            <h3>Available colors</h3>
+            <span className="text-icons">ID: 802390</span>
+          </div>
+          <div className="w-full md:max-w-[320px]">
+            <div className="flex mb-[25px] gap-2">
+              {selectedProductColor.map((color) => (
+                <Link
+                  to={`/${phone.category}/${phone.namespaceId}-${phone.capacity.toLowerCase()}-${color.replace(' ', '-')}`}
+                  key={color}
+                  className={colorMenu(color)}
+                >
+                  <span
+                    className="w-[20px] h-[20px] rounded-full"
+                    style={{ backgroundColor: color }}
+                  ></span>
+                </Link>
+              ))}
+            </div>
+            <div className="w-full h-[1px] bg-elements mb-[24px]"></div>
+            <h3 className="text-xs font-medium leading-4  font-mont text-secondary mb-[8px]">
+              Select capacity
+            </h3>
+            <div className="font-mont-semiBold flex gap-1 mb-[24px] flex-wrap">
+              {selectedProductCapacity.map((size) => (
+                <NavLink
+                  to={`/${phone.category}/${phone.namespaceId}-${size.toLowerCase()}-${phone.color.replace(' ', '-')}`}
+                  className={sizeMenu(size)}
+                  // className={getCapacityClass}
+                  key={size}
+                >
+                  {size}
+                </NavLink>
+              ))}
+            </div>
+            <div className="flex mb-[16px] items-center">
+              {isDiscountActive ? (
+                <>
+                  <p className="font-mont-bold mr-2 font-extrabold text-[32px] text-primary">
+                    ${itemPhone.priceDiscount}
+                  </p>
+                  <p className="font-mont-semiBold line-through  text-[22px] text-secondary">
+                    ${itemPhone.priceRegular}
+                  </p>
+                </>
               ) : (
-                <img src={likeDark} alt="favour" />
+                <p className="font-mont-bold text-primary text-[32px]">${itemPhone.priceRegular}</p>
               )}
-            </button>
-          )}
-        </div>
+            </div>
 
-        <div className="flex justify-between items-start font-mont-semiBold text-[12px] leading-4 ">
-          <div className="flex flex-col gap-[6px] text-secondary">
-            <p>Screen: </p>
-            <p>Resolution:</p>
-            <p>Processor: </p>
-            <p>RAM:</p>
+            <div className="w-full  h-[1px] bg-elements mb-[24px]"></div>
+            <div className="flex justify-start gap-x-1 items-start mb-[32px]">
+              {isInCart ? (
+                <button
+                  className="w-[100%] h-[40px] font-bold text-sm bg-surface-2 border border-1 border-elements text-button-text-success"
+                  onClick={() => removeAllFromCartById((selectedProduct as Product)?.id)}
+                >
+                  Added to cart
+                </button>
+              ) : (
+                <button
+                  className="w-[100%] h-[40px] font-bold text-sm bg-accent hover:bg-accent-hover duration-300 text-white"
+                  onClick={() => addProductToCart(selectedProduct as Product)}
+                >
+                  Add to cart
+                </button>
+              )}
+
+              {isLike ? (
+                <button
+                  // className="flex items-center justify-center text-sm w-[40px] h-[48px] border border-1 border-elements"
+                  className="flex items-center justify-center text-sm w-[40px] h-[40px] border border-1 bg-surface-2 border-elements"
+                  onClick={() => removeFromFavourites((selectedProduct as Product)?.id)}
+                >
+                  <img src={dislike} alt="dislike" />
+                </button>
+              ) : (
+                <button
+                  className="flex items-center justify-center text-sm w-[40px] h-[40px] border border-1 bg-surface-2 border-elements"
+                  onClick={() => {
+                    addToFavourites(selectedProduct as Product);
+                  }}
+                >
+                  {theme === 'light' ? (
+                    <img src={like} alt="favour" />
+                  ) : (
+                    <img src={likeDark} alt="favour" />
+                  )}
+                </button>
+              )}
+            </div>
+
+            <div className="flex justify-between items-start font-mont-semiBold text-[12px] leading-4 ">
+              <div className="flex flex-col gap-[6px] text-secondary">
+                <p>Screen: </p>
+                <p>Resolution:</p>
+                <p>Processor: </p>
+                <p>RAM:</p>
+              </div>
+              <div className="flex flex-col gap-[6px] text-primary text-right">
+                <p>{itemPhone.screen}</p>
+                <p>{itemPhone.resolution}</p>
+                <p>{itemPhone.processor}</p>
+                <p>{itemPhone.ram}</p>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-col gap-[6px] text-primary text-right">
-            <p>{itemPhone.screen}</p>
-            <p>{itemPhone.resolution}</p>
-            <p>{itemPhone.processor}</p>
-            <p>{itemPhone.ram}</p>
-          </div>
-        </div>
-      </div>
+        </>
+      )}
     </motion.article>
   );
 };

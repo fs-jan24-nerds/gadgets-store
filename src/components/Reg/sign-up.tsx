@@ -1,12 +1,8 @@
 import { useState } from 'react';
 
 function SignUp() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [gender, setGender] = useState('Male');
-  const [birth, setBirth] = useState('');
-  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
 
   // const handleSubmit = async (event: { preventDefault: () => void }) => {
@@ -41,55 +37,19 @@ function SignUp() {
       <div className="mb-4">
         <input
           type="text"
-          placeholder="First Name"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
+          placeholder="Full Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           className="w-full p-2 border border-gray-300 rounded"
         />
       </div>
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Last Name"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
-        />
-      </div>
+
       <div className="mb-4">
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
-        />
-      </div>
-      <div className="mb-4">
-        <select
-          value={gender}
-          onChange={(e) => setGender(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
-        >
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
-      </div>
-      <div className="mb-4">
-        <input
-          type="date"
-          placeholder="Дата народження"
-          value={birth}
-          onChange={(e) => setBirth(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
-        />
-      </div>
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Phone number"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
           className="w-full p-2 border border-gray-300 rounded"
         />
       </div>
