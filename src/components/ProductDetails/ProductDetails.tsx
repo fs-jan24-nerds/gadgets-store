@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { RootState, useAppSelector } from '../../store/store';
-import { getProductById } from '../../api/api';
+import { asyncGetAndSet, getItemAndProductById, getProducts } from '../../api/api';
 import { useEffect, useState } from 'react';
 import { Item, Product } from '../../types/Product';
 import { SelectedProductFilter } from '../SelectedProductFilter/SelectedProductFilter';
@@ -14,97 +13,99 @@ import { generateAnimation } from '../../utils/animations';
 import { GridItem } from '../Grid/GridItem';
 import { Grid } from '../Grid/Grid';
 
-export const ProductDetails = () => {
-  const { isLoaded } = useAppSelector((state: RootState) => state.products);
-  const { category, id } = useParams();
-  const [product, setProduct] = useState<Item | undefined>();
+const getter = async () => {
+  return (await getProducts({})).products;
+};
 
+export const ProductDetails = () => {
+  const { id } = useParams();
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
+  const [pageProduct, setPageProduct] = useState<{
+    isLoaded: boolean;
+    item?: Item;
+    product?: Product;
+  }>({ isLoaded: false });
+
+  const { product, item, isLoaded } = pageProduct;
+
+  const loadPageProduct = ([loadedItem, loadedProduct]: [Item, Product]) => {
+    setPageProduct({
+      isLoaded: true,
+      product: loadedProduct,
+      item: loadedItem,
+    });
+  };
 
   useEffect(() => {
-    if (isLoaded && id && category) {
-      const product = getProductById(id, category);
-      setProduct(product);
+    if (id) {
+      asyncGetAndSet(getItemAndProductById, loadPageProduct)({ itemId: id, productId: id });
     }
-  }, [id, product, isLoaded, category]);
-
-  const getPriceDifference = (product: Product) => {
-    return product.fullPrice - product.price;
-  };
-
-  const filterForRecommendedModels = (products: Product[]) => {
-    return products
-      .filter((product) => product.category === category)
-      .map((product) => ({
-        ...product,
-        priceDifference: getPriceDifference(product),
-      }))
-      .sort((a, b) => b.priceDifference - a.priceDifference)
-      .slice(0, 9);
-  };
+  }, [id, item?.id, product?.itemId]);
 
   const productStyles =
     'items-center w-20 h-20 p-2 border border-elements cursor-pointer hover:border-primary transition-colors duration-500 ease-out';
 
-  return (
-    <div className="max-w-max-width mx-auto box-content px-4">
-      {product && (
-        <div className='mb-8'>
-        <Grid>
-          <GridItem>
-            <Breadcrumbs />
-            <BackButton />
-          </GridItem>
+  if (isLoaded) {
+    const { name, images } = item as Item;
 
-          <GridItem>
-            <SubTitle title={product?.name} />
-          </GridItem>
+    return (
+      <div className="max-w-max-width mx-auto box-content px-4">
+        <div className="mb-[56px] tablet:mb-[64px] laptop:mb-[80px]">
+          <Grid>
+            <GridItem>
+              <Breadcrumbs />
+              <BackButton />
+            </GridItem>
 
-          <GridItem className="mb-8 col-start-1 col-end-5 tablet:col-end-9 desktop:col-end-13">
-            <motion.div
-              initial="hidden"
-              transition={{ delay: 0.6, duration: 0.6 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              variants={generateAnimation('x', -60)}
-              className=""
-            >
-              <div className="flex flex-col-reverse tablet:flex-row items-center">
-                <div className="mt-4 gap-1 tablet:mt-0 flex tablet:flex-col">
-                  {product.images.map((image, index) => {
-                    return (
-                      <div className={`${productStyles}`} key={image}>
-                        <img
-                          src={`/gadgets-store/${image}`}
-                          alt={`${product.name} ${index + 1}`}
-                          className={'object-scale-down w-full h-full'}
-                          onMouseOver={() => setCurrentImageIdx(index)}
-                        />
-                      </div>
-                    );
-                  })}
+            <GridItem>
+              <SubTitle title={name} />
+            </GridItem>
+
+            <GridItem className="mb-8 col-start-1 col-end-5 tablet:col-end-9 desktop:col-end-13">
+              <motion.div
+                initial="hidden"
+                transition={{ delay: 0.6, duration: 0.6 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                variants={generateAnimation('x', -60)}
+                className=""
+              >
+                <div className="flex flex-col-reverse tablet:flex-row items-center">
+                  <div className="mt-4 gap-1 tablet:mt-0 flex tablet:flex-col">
+                    {images.map((image, index) => {
+                      return (
+                        <div className={`${productStyles}`} key={image}>
+                          <img
+                            src={`/gadgets-store/${image}`}
+                            alt={`${name} ${index + 1}`}
+                            className={'object-scale-down w-full h-full'}
+                            onMouseOver={() => setCurrentImageIdx(index)}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div className="w-full tablet:w-[450px] flex justify-center items-center">
+                    <img
+                      src={`/gadgets-store/${item?.images[currentImageIdx]}`}
+                      className="object-scale-down tablet:object-cover h-[400px]"
+                    />
+                  </div>
                 </div>
+              </motion.div>
+            </GridItem>
 
-                <div className="w-full tablet:w-[450px] flex justify-center items-center">
-                  <img
-                    src={`/gadgets-store/${product?.images[currentImageIdx]}`}
-                    className="object-scale-down tablet:object-cover h-[400px]"
-                  />
-                </div>
-              </div>
-            </motion.div>
-          </GridItem>
+            <GridItem className="mb-8 col-start-1 col-end-5 tablet:col-start-9 tablet:col-end-13 desktop:col-start-17 desktop:col-end-25">
+              <SelectedProductFilter product={product as Product} item={item as Item} />
+            </GridItem>
 
-          <GridItem className="mb-8 col-start-1 col-end-5 tablet:col-start-9 tablet:col-end-13 desktop:col-start-17 desktop:col-end-25">
-            <SelectedProductFilter product={product} />
-          </GridItem>
+            <About item={item as Item} />
+          </Grid>
 
-          <About item={product} />
-        </Grid>
+          <SliderModels sectionTitle="You may also like" getter={getter} />
         </div>
-      )}
-
-      <SliderModels sectionTitle="You may also like" filterFunction={filterForRecommendedModels} />
-    </div>
-  );
+      </div>
+    );
+  }
 };
