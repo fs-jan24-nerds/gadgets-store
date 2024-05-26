@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom';
-import successIcon from '../img/success.gif';
 import { motion } from 'framer-motion';
-import { generateAnimation } from '../../../utils/animations';
+import { Link } from 'react-router-dom';
+
+import { generateAnimation } from '../../utils/animations';
+
+import successIcon from '../../assets/success.gif';
 
 export const ConfirmedOrderPage = () => {
   return (

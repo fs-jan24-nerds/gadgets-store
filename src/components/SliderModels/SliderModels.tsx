@@ -4,16 +4,17 @@ import { Navigation, Virtual } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
 import { asyncGetAndSet, getter } from '../../api/api';
+
 import { Product } from '../../types/Product';
-import { CardItem } from '../CardItem';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 
 import { motion } from 'framer-motion';
 
-import { SubTitle } from '../SubTitle/SubTitle';
 import { generateAnimation } from '../../utils/animations';
+import { SubTitle } from '../SubTitle/SubTitle';
+import { CardItem } from '../CardItem';
 
 interface Props {
   getter: getter<Product[]>;

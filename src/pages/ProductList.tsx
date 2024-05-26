@@ -1,23 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { asyncGetAndSet, getProducts } from '../api/api';
-import { CardItem } from '../components/CardItem';
 import { useDispatch } from 'react-redux';
-import { Pagination } from '../components/Pagination/Pagination';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { ITEMS_PER_PAGE } from '../types/constants';
-import { Product } from '../types/Product';
-import { selectCurrentSort, setSort } from '../store/SortSlice';
 import { sortStatus } from '../types/enums';
-import { SortComponent } from '../components/SortComponent/SortComponent';
+import { motion } from 'framer-motion';
 import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs';
+import { CardItemSkeleton } from '../components/CardItem/CardItemSkeleton';
 import { Grid } from '../components/Grid/Grid';
 import { GridItem } from '../components/Grid/GridItem';
-import { CardItemSkeleton } from '../components/CardItem/CardItemSkeleton';
 import { Title } from '../components/Title/Title';
-import { motion } from 'framer-motion';
-import { generateAnimation } from '../utils/animations';
+
 import { selectItemsPerPage, setItemsPerPage } from '../store/perPageSlice';
+import { generateAnimation } from '../utils/animations';
+import { Product } from '../types/Product';
+import { selectCurrentSort, setSort } from '../store/SortSlice';
+import { SortComponent } from '../components/SortComponent/SortComponent';
+import { CardItem } from '../components/CardItem';
+import { ITEMS_PER_PAGE } from '../types/constants';
+import { Pagination } from '../components/Pagination/Pagination';
 
 export const ProductList = () => {
   const { category } = useParams();

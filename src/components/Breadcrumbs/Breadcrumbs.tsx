@@ -1,6 +1,7 @@
-import { Link, useLocation } from 'react-router-dom';
-import rightArrow from '../../assets/icons/rightArrow.svg';
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+
+import rightArrow from '../../assets/icons/rightArrow.svg';
 import { homeIcon } from '../../assets/SVGIcons';
 
 const preparedCategoryName = (categoryName: string) => {

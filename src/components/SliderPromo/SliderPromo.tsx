@@ -1,19 +1,23 @@
+import { motion } from 'framer-motion';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { Title } from '../Title/Title';
+
+import { leftArrow, rightArrow } from '../../assets/SVGIcons';
+import { generateAnimation } from '../../utils/animations';
+
+import styles from './SliderPromo.module.css';
+
 import Slider3 from '../../assets/SliderPromo/sleder3.jpeg';
 import Slider1 from '../../assets/SliderPromo/slider1.jpg';
 import Slider2 from '../../assets/SliderPromo/slider2.jpeg';
 import Slider4 from '../../assets/SliderPromo/slider4.jpg';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import styles from './SliderPromo.module.css';
-import { Title } from '../Title/Title';
-
-import { motion } from 'framer-motion';
-import { generateAnimation } from '../../utils/animations';
-import { leftArrow, rightArrow } from '../../assets/SVGIcons';
 
 const SliderPromo = () => {
   return (
@@ -32,7 +36,7 @@ const SliderPromo = () => {
       >
         <div className="flex gap-4 w-full mb-8">
           <button
-            className={`${styles.leftArrow} flex items-center justify-center  bg-surface-2 border border-elements`}
+            className={`${styles.leftArrow} items-center justify-center  bg-surface-2 border border-elements`}
           >
             {leftArrow}
           </button>
@@ -76,7 +80,7 @@ const SliderPromo = () => {
           </Swiper>
 
           <button
-            className={`${styles.rightArrow} flex items-center justify-center bg-surface-2 border border-elements`}
+            className={`${styles.rightArrow} items-center justify-center bg-surface-2 border border-elements`}
           >
             {rightArrow}
           </button>

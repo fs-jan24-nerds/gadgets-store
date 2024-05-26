@@ -1,8 +1,9 @@
 import React from 'react';
-import { ToastContainer } from 'react-toastify';
-import { Slide } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Slide, ToastContainer } from 'react-toastify';
+
 import { useColorTheme } from './hooks/useColorTheme';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ToastContainerWrapper: React.FC = () => {
   const [theme] = useColorTheme();

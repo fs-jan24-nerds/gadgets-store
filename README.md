@@ -43,12 +43,11 @@ This website is a React TypeScript implementation based on the Phone Catalog des
 The project follows a standard folder structure for better organization:
 
 ```graphql
-fs-jan24-Nerbs/
+fs-jan24-Nerds/
 │
 ├── public/              # Static assets and HTML template
 │
 ├── src/                 # Source files
-│   ├── modules/         # React components
 │   ├── components/      # Reusable React components.
 │   ├── pages/           # Components representing specific pages/views in the application.
 │   ├── hooks/           # Custom hooks
