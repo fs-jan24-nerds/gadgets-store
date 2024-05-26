@@ -6,8 +6,8 @@ import { SortDropdown } from './SortDropdown';
 
 import { setSort } from '../../store/SortSlice';
 import { setItemsPerPage } from '../../store/perPageSlice';
-import { SortStatus } from '../../types/enums';
 import { generateAnimation } from '../../utils/animations';
+import { sortStatus } from '../../types/enums';
 
 const pageSizeOptions = [4, 8, 16, 24];
 const MAX_ITEMS_PER_PAGE = pageSizeOptions[pageSizeOptions.length - 1];
@@ -17,7 +17,7 @@ export const SortComponent: React.FC = () => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const currentSort = searchParams.get('sort') as SortStatus | null;
+  //const currentSort = searchParams.get('sort') as SortStatus | null;
 
   let currentPerPage = searchParams.get('perPage') as number | null;
 
@@ -27,11 +27,14 @@ export const SortComponent: React.FC = () => {
     }
   }
 
-  const handleFilterChange = (selectedSort: SortStatus) => {
-    dispatch(setSort(selectedSort));
+  const handleFilterChange = (selectedSortName: string) => {
+    const foundSort = sortStatus.find((sort) => sort.name === selectedSortName)!;
+
+    dispatch(setSort(foundSort));
     setSearchParams({
       ...Object.fromEntries(searchParams),
-      sort: selectedSort,
+      sort: foundSort.sort,
+      order: foundSort.order,
     });
   };
 
@@ -60,9 +63,9 @@ export const SortComponent: React.FC = () => {
       <div className="w-[136px] md:w-[176px]">
         <p className="text-secondary text-xs font-bold mb-1 ">Sort by</p>
         <SortDropdown
-          options={Object.values(SortStatus)}
+          options={sortStatus.map((status) => status.name)}
           onSelect={handleFilterChange}
-          initialOption={currentSort ?? Object.values(SortStatus)[0]}
+          initialOption={sortStatus[0].name}
         />
       </div>
 

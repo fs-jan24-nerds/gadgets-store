@@ -1,12 +1,13 @@
 import classNames from 'classnames';
-import { motion } from 'framer-motion';
-import { Link, NavLink, useParams } from 'react-router-dom';
 
-import { getProductById } from '../../api/api';
 import { useCartProducts } from '../../hooks/useCartProducts';
 import { useColorTheme } from '../../hooks/useColorTheme';
 import { useFavouritesProducts } from '../../hooks/useFavouriteProducts';
-import { RootState, useAppSelector } from '../../store/store';
+
+import { Link, NavLink } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { asyncGetAndSet, preparedSameModelGetter } from '../../api/api';
+
 import { Item, Product } from '../../types/Product';
 import { generateAnimation } from '../../utils/animations';
 import createUniqueList from '../../utils/createUniqueList';
@@ -15,51 +16,47 @@ import dislike from '../../assets/icons/dislike.svg';
 import likeDark from '../../assets/icons/fav-dark.svg';
 import like from '../../assets/icons/like.svg';
 import SkeletonDescribe from '../ProductDetails/SkeleletonDescribe';
+
 import { useEffect, useState } from 'react';
 
 type Props = {
-  product: Item;
+  product: Product;
+  item: Item;
 };
 
-export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
-  const { isLoaded } = useAppSelector((state: RootState) => state.products);
+export const SelectedProductFilter: React.FC<Props> = ({ product, item }) => {
   const [isLoading, setIsLoading] = useState(true);
-
-  const { category = 'phones' } = useParams();
-
   const { cart, addProductToCart, removeAllFromCartById } = useCartProducts();
   const [favouritesProducts, addToFavourites, removeFromFavourites] = useFavouritesProducts();
-  const products = useAppSelector((state) => state.products.products);
+  const [sameModels, setSameModels] = useState<Product[]>([]);
 
-  // const [isLoading, setIsLoading] = useState(false);
+  const loadSameModels = (data: Product[]) => {
+    setSameModels(data);
+    setIsLoading(false);
+  };
 
-  const productsAll = products
-    .filter((product) => product.itemId.startsWith(phone.namespaceId))
-    .map((p) => {
-      const product = getProductById(p.itemId, category);
-      return { ...p, item: product };
-    })
-    .filter((p) => p?.item?.namespaceId === phone.namespaceId);
+  useEffect(() => {
+    if (isLoading) {
+      asyncGetAndSet(
+        preparedSameModelGetter,
+        loadSameModels,
+      )({
+        namespaceId: item.namespaceId,
+      });
+    }
+  });
 
   const filteredProductModel =
-    productsAll && productsAll.length
-      ? productsAll.filter((p) => p?.capacity === phone.capacity)
-      : [];
+    sameModels && sameModels.length ? sameModels.filter((p) => p?.capacity === item.capacity) : [];
   const filteredProductModelCap =
-    productsAll && productsAll.length ? productsAll.filter((p) => p?.color === phone.color) : [];
+    sameModels && sameModels.length ? sameModels.filter((p) => p?.color === item.color) : [];
 
-  const selectedProduct = products.find(
-    (p) => p.color === phone.color && p.capacity === phone.capacity,
-  );
-
-  const isLike = favouritesProducts.some((likeProduct) => likeProduct.id === selectedProduct?.id);
-  const isInCart = cart.some((cartProduct) => cartProduct.id === selectedProduct?.id);
-  const isDiscountActive = selectedProduct?.fullPrice !== selectedProduct?.price;
+  const isLike = favouritesProducts.some((likeProduct) => likeProduct.id === product?.id);
+  const isInCart = cart.some((cartProduct) => cartProduct.id === product?.id);
+  const isDiscountActive = product?.fullPrice !== product?.price;
 
   const selectedProductColor: string[] = createUniqueList(filteredProductModel, 'color');
   const selectedProductCapacity: string[] = createUniqueList(filteredProductModelCap, 'capacity');
-
-  const itemPhone = phone as Item;
 
   const [theme] = useColorTheme();
 
@@ -76,17 +73,11 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
       'hover:scale-110',
       'transition duration-300',
       {
-        'border-[3px] border-textMain': phone.color === color,
+        'border-[3px] border-textMain': item.color === color,
       },
     );
     return changeColorClasses;
   };
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }, []);
 
   const sizeMenu = (size: string) => {
     const changeSizeClasses: string = classNames(
@@ -97,12 +88,11 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
       'transition duration-300',
       'hover:border-primary',
       {
-        'bg-blackBg text-whiteActive': phone.capacity === size,
+        'bg-blackBg text-whiteActive': item.capacity === size,
       },
     );
     return changeSizeClasses;
   };
-  if (!isLoaded) return 'loading';
 
   return (
     <motion.article
@@ -125,7 +115,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
             <div className="flex mb-[25px] gap-2">
               {selectedProductColor.map((color) => (
                 <Link
-                  to={`/${phone.category}/${phone.namespaceId}-${phone.capacity.toLowerCase()}-${color.replace(' ', '-')}`}
+                  to={`/${item.category}/${item.namespaceId}-${item.capacity.toLowerCase()}-${color.replace(' ', '-')}`}
                   key={color}
                   className={colorMenu(color)}
                 >
@@ -143,7 +133,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
             <div className="font-mont-semiBold flex gap-1 mb-[24px] flex-wrap">
               {selectedProductCapacity.map((size) => (
                 <NavLink
-                  to={`/${phone.category}/${phone.namespaceId}-${size.toLowerCase()}-${phone.color.replace(' ', '-')}`}
+                  to={`/${item.category}/${item.namespaceId}-${size.toLowerCase()}-${item.color.replace(' ', '-')}`}
                   className={sizeMenu(size)}
                   // className={getCapacityClass}
                   key={size}
@@ -156,14 +146,14 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
               {isDiscountActive ? (
                 <>
                   <p className="font-mont-bold mr-2 font-extrabold text-[32px] text-primary">
-                    ${itemPhone.priceDiscount}
+                    ${item.priceDiscount}
                   </p>
                   <p className="font-mont-semiBold line-through  text-[22px] text-secondary">
-                    ${itemPhone.priceRegular}
+                    ${item.priceRegular}
                   </p>
                 </>
               ) : (
-                <p className="font-mont-bold text-primary text-[32px]">${itemPhone.priceRegular}</p>
+                <p className="font-mont-bold text-primary text-[32px]">${item.priceRegular}</p>
               )}
             </div>
 
@@ -172,14 +162,14 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
               {isInCart ? (
                 <button
                   className="w-[100%] h-[40px] font-bold text-sm bg-surface-2 border border-1 border-elements text-button-text-success"
-                  onClick={() => removeAllFromCartById((selectedProduct as Product)?.id)}
+                  onClick={() => removeAllFromCartById(product.id)}
                 >
                   Added to cart
                 </button>
               ) : (
                 <button
                   className="w-[100%] h-[40px] font-bold text-sm bg-accent hover:bg-accent-hover duration-300 text-white"
-                  onClick={() => addProductToCart(selectedProduct as Product)}
+                  onClick={() => addProductToCart(product)}
                 >
                   Add to cart
                 </button>
@@ -189,7 +179,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
                 <button
                   // className="flex items-center justify-center text-sm w-[40px] h-[48px] border border-1 border-elements"
                   className="flex items-center justify-center text-sm w-[40px] h-[40px] border border-1 bg-surface-2 border-elements"
-                  onClick={() => removeFromFavourites((selectedProduct as Product)?.id)}
+                  onClick={() => removeFromFavourites(product.id)}
                 >
                   <img src={dislike} alt="dislike" />
                 </button>
@@ -197,7 +187,7 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
                 <button
                   className="flex items-center justify-center text-sm w-[40px] h-[40px] border border-1 bg-surface-2 border-elements"
                   onClick={() => {
-                    addToFavourites(selectedProduct as Product);
+                    addToFavourites(product);
                   }}
                 >
                   {theme === 'light' ? (
@@ -217,10 +207,10 @@ export const SelectedProductFilter: React.FC<Props> = ({ product: phone }) => {
                 <p>RAM:</p>
               </div>
               <div className="flex flex-col gap-[6px] text-primary text-right">
-                <p>{itemPhone.screen}</p>
-                <p>{itemPhone.resolution}</p>
-                <p>{itemPhone.processor}</p>
-                <p>{itemPhone.ram}</p>
+                <p>{item.screen}</p>
+                <p>{item.resolution}</p>
+                <p>{item.processor}</p>
+                <p>{item.ram}</p>
               </div>
             </div>
           </div>

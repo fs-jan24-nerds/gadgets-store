@@ -1,15 +1,10 @@
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Navigation, Virtual } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
+import { asyncGetAndSet, getter } from '../../api/api';
 
-import { CardItem } from '../CardItem';
-
-import { getProducts } from '../../api/api';
-import { setProducts } from '../../store/productsSlice';
-import { RootState } from '../../store/store';
 import { Product } from '../../types/Product';
 
 import 'swiper/css';
@@ -19,38 +14,44 @@ import { motion } from 'framer-motion';
 
 import { generateAnimation } from '../../utils/animations';
 import { SubTitle } from '../SubTitle/SubTitle';
+import { CardItem } from '../CardItem';
 
 interface Props {
-  filterFunction: (products: Product[]) => Product[];
+  getter: getter<Product[]>;
   sectionTitle: string;
   prevButtonClass?: string;
   nextButtonClass?: string;
 }
 
 export const SliderModels: React.FC<Props> = ({
-  filterFunction,
+  getter,
   sectionTitle,
   prevButtonClass = 'slider1-prev',
   nextButtonClass = 'slider1-next',
 }) => {
-  const { products, isLoaded } = useSelector((state: RootState) => state.products);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [productList, setProductList] = useState<Product[]>([]);
 
-  const filteredProducts = filterFunction(products);
-
-  const dispatch = useDispatch();
+  const loadProductList = (data: Product[]): void => {
+    setIsLoaded(true);
+    setProductList(data);
+  };
 
   useEffect(() => {
-    if (isLoaded) {
-      return;
+    if (!isLoaded) {
+      asyncGetAndSet(getter, loadProductList)();
     }
-    dispatch(setProducts(getProducts()));
-  }, [isLoaded, dispatch]);
+  }, [getter, isLoaded]);
 
   const [sliderPosition, setSliderPosition] = useState(0);
 
   const onSlideChange = (e: SwiperType) => {
     setSliderPosition(e.progress);
   };
+
+  if (!isLoaded) {
+    return 'loading';
+  }
 
   return (
     <div className="mb-[56px] tablet:mb-[80px]">
@@ -141,7 +142,7 @@ export const SliderModels: React.FC<Props> = ({
           virtual
           onSlideChange={onSlideChange}
         >
-          {filteredProducts.map((product, index) => (
+          {productList.map((product, index) => (
             <SwiperSlide key={product.id} virtualIndex={index} className="swiper-slide">
               <CardItem product={product} />
             </SwiperSlide>

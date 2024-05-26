@@ -1,12 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { SortStatus } from '../types/enums';
+import { SortStatus, sortStatus } from '../types/enums';
 
 export interface SortState {
   sort: SortStatus;
 }
 
 const initialState = {
-  sort: SortStatus.Newest,
+  sort: sortStatus[0],
 };
 
 const sortSlice = createSlice({

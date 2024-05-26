@@ -13,8 +13,26 @@ export enum PhoneColor {
   WHITE = 'White',
 }
 
-export enum SortStatus {
-  Newest = 'Newest',
-  PriceLow = 'Price low',
-  PriceHigh = 'Price high',
-}
+export type SortStatus = {
+  name: string;
+  sort: string;
+  order: string;
+};
+
+export const sortStatus: SortStatus[] = [
+  {
+    name: 'Newest',
+    sort: 'year',
+    order: 'desc',
+  },
+  {
+    name: 'Price Low',
+    sort: 'price',
+    order: 'asc',
+  },
+  {
+    name: 'Price High',
+    sort: 'price',
+    order: 'desc',
+  },
+];
