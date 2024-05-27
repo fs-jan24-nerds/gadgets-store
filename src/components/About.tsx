@@ -18,7 +18,7 @@ interface Props {
 
 export const About: React.FC<Props> = ({ item }) => {
   const { screen, resolution, processor, ram, camera, zoom, cell } = item;
-
+  //
   return (
     <>
       <GridItem className="mb-4 laptop:mb-0 col-start-1 col-end-5 tablet:col-end-13 laptop:col-end-7 desktop:col-end-13">

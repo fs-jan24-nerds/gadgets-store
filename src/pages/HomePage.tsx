@@ -1,5 +1,6 @@
 import { getProducts } from '../api/api';
 import { Category } from '../components/Category/Category';
+import { useUser } from '../components/Reg/UserContext';
 import { SliderModels } from '../components/SliderModels/SliderModels';
 import SliderPromo from '../components/SliderPromo/SliderPromo';
 
@@ -9,8 +10,15 @@ const getter = async () => {
 };
 
 export const HomePage = () => {
+  const { user } = useUser();
+
   return (
     <div className="mt-6 sm:mt-8 md:mt-14">
+      {user && (
+        <div className="text-right">
+          <p className="text-lg font-bold">Hello, {user.username}!</p>
+        </div>
+      )}
       <section className="max-w-max-width mx-auto box-content px-0 sm:px-6 lg:px-8">
         <SliderPromo />
       </section>

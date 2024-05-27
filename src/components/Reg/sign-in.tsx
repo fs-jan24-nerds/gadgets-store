@@ -1,38 +1,47 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useUser } from './UserContext';
 
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const { setUser } = useUser();
 
-  // const handleSubmit = async (event: { preventDefault: () => void }) => {
-  //   event.preventDefault();
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:5005/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-  //   try {
-  //     const response = await fetch('http://localhost:3001/signin', {
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //       method: 'POST',
-  //       body: JSON.stringify({ email, password }),
-  //     });
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Error response:', errorText);
+        setError('Failed to login: ' + response.statusText);
+        return;
+      }
 
-  //     if (response.status === 200) {
-  //       const data = await response.json();
-  //       localStorage.setItem('user', email);
-  //       localStorage.setItem('token', JSON.stringify(data.data));
-  //       window.location.href = '/';
-  //     } else {
-  //       alert(response.statusText);
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+      const data = await response.json();
+      console.log('Login successful:', data);
+      localStorage.setItem('token', data.token); // Зберігаємо токен в локальному сховищі
+      setUser(data);
+      navigate('/');
+    } catch (err) {
+      console.error('Error:', err);
+      setError('Failed to login');
+    }
+  };
 
   return (
-    <form className="bg-white p-8 shadow-lg rounded-lg">
+    <form onSubmit={handleSubmit} className="bg-white p-8 shadow-lg rounded-lg">
       <h3 className="text-2xl font-bold mb-6">Sign in</h3>
+      {error && <p className="text-red-500 mb-4">{error}</p>}
       <div className="mb-4">
         <input
           type="email"
