@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { asyncGetAndSet, getProducts } from '../api/api';
 import { useDispatch } from 'react-redux';
@@ -57,15 +57,6 @@ export const ProductList = () => {
     }
   }, [dispatch, searchParams]);
 
-  const prevItemsPerPageRef = useRef(itemsPerPage);
-
-  useEffect(() => {
-    if (itemsPerPage !== prevItemsPerPageRef.current) {
-      prevItemsPerPageRef.current = itemsPerPage;
-      searchParams.set('page', '1');
-    }
-  }, [itemsPerPage, searchParams]);
-
   useEffect(() => {
     const perPageParam = parseInt(searchParams.get('perPage') || '16', 10);
     const validatedPerPage = Math.min(24, Math.max(4, perPageParam));
@@ -86,7 +77,7 @@ export const ProductList = () => {
       sort: currentSort.sort,
       order: currentSort.order,
     });
-  }, [isLoaded, dispatch, currentPageNumber, itemsPerPage, currentSort, category]);
+  }, [isLoaded, dispatch, currentPageNumber, itemsPerPage, currentSort, category, searchParams]);
 
   const title = useParams();
 

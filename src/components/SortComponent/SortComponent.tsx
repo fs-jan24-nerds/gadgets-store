@@ -47,6 +47,7 @@ export const SortComponent: React.FC = () => {
     dispatch(setItemsPerPage(validatedPerPage)); // Надсилаємо в Redux
     setSearchParams({
       ...Object.fromEntries(searchParams),
+      page: '1',
       perPage: validatedPerPage.toString(), // Оновлюємо в URL параметрах
     });
   };
