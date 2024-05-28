@@ -9,7 +9,8 @@ function MainForm() {
   return (
     <div className={`flex pt-[60px] transition-colors ${isSignUp ? '' : ''}`}>
       <div className="container max-w-lg mx-auto p-4">
-        <div className="flex justify-around mb-8">
+        {isSignUp ? <SignUp /> : <SignIn />}
+        <div className="flex justify-around mt-8">
           <button
             onClick={() => setIsSignUp(false)}
             className="bg-gray-300 text-gray-700 px-4 py-2 rounded"
@@ -23,7 +24,6 @@ function MainForm() {
             Sign up
           </button>
         </div>
-        {isSignUp ? <SignUp /> : <SignIn />}
       </div>
     </div>
   );
