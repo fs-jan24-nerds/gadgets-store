@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from './UserContext';
 
@@ -10,10 +10,10 @@ function SignUp() {
   const navigate = useNavigate();
   const { setUser } = useUser();
 
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5005/auth/register', {
+      const response = await fetch('https://nerds-gs-backend.onrender.com/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ function SignUp() {
       const data = await response.json();
       console.log('Registration successful:', data);
       localStorage.setItem('token', data.token); // Зберігаємо токен в локальному сховищі
-      setUser(data);
+      setUser({ username: data.username, email: data.email, token: data.token });
       navigate('/');
     } catch (err) {
       console.error('Error:', err);

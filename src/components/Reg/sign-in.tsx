@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from './UserContext';
 
@@ -9,10 +9,10 @@ function SignIn() {
   const navigate = useNavigate();
   const { setUser } = useUser();
 
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5005/auth/login', {
+      const response = await fetch('https://nerds-gs-backend.onrender.com/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,18 +23,18 @@ function SignIn() {
       if (!response.ok) {
         const errorText = await response.text();
         console.error('Error response:', errorText);
-        setError('Failed to login: ' + response.statusText);
+        setError('Failed to sign in: ' + response.statusText);
         return;
       }
 
       const data = await response.json();
-      console.log('Login successful:', data);
+      console.log('Sign in successful:', data);
       localStorage.setItem('token', data.token); // Зберігаємо токен в локальному сховищі
-      setUser(data);
+      setUser({ username: data.username, email: data.email, token: data.token });
       navigate('/');
     } catch (err) {
       console.error('Error:', err);
-      setError('Failed to login');
+      setError('Failed to sign in');
     }
   };
 
