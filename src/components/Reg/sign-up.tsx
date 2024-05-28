@@ -49,8 +49,8 @@ const SignUp = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-8 shadow-lg rounded-lg">
-      <h3 className="text-2xl font-bold mb-6">Sign up</h3>
+    <form onSubmit={handleSubmit} className="bg-surface-2 p-8 shadow-lg rounded-lg">
+      <h3 className="text-2xl font-bold mb-6 text-textMain">Sign up</h3>
       {error && (
         <p className="mb-4 border p-2 flex justify-center bg-[#dc2626] text-neutral-50 px-4 py-2 rounded">
           {error}
@@ -62,7 +62,7 @@ const SignUp = () => {
           placeholder="Full Name"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
+          className="w-full p-2 border border-gray-500 rounded bg-surface-1 text-textMain"
         />
       </div>
       <div className="mb-4">
@@ -71,7 +71,7 @@ const SignUp = () => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
+          className="w-full p-2 border border-gray-500 rounded bg-surface-1 text-textMain"
         />
       </div>
       <div className="mb-4">
@@ -80,10 +80,10 @@ const SignUp = () => {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
+          className="w-full p-2 border border-gray-500 rounded bg-surface-1 text-textMain"
         />
       </div>
-      <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">
+      <button type="submit" className="w-full bg-accent text-white p-2 rounded">
         Sign up
       </button>
     </form>

@@ -13,13 +13,13 @@ function MainForm() {
         <div className="flex justify-around mt-8">
           <button
             onClick={() => setIsSignUp(false)}
-            className="bg-gray-300 text-gray-700 px-4 py-2 rounded"
+            className="w-full bg-accent ml-8 text-white px-4 py-2 rounded shadow-lg"
           >
             Sign in
           </button>
           <button
             onClick={() => setIsSignUp(true)}
-            className="bg-gray-300 text-gray-700 px-4 py-2 rounded"
+            className="w-full bg-accent ml-8 mr-8 text-white px-4 py-2 rounded shadow-lg"
           >
             Sign up
           </button>
