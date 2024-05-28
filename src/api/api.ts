@@ -62,31 +62,41 @@ export const getItemAndProductById = async ({ itemId, productId }: getRequestPar
 
 //get same models variations for product
 export const getSameModels = async ({ namespaceId }: getRequestParams) => {
-  console.log('getSameModels:', namespaceId);
-
   const resp = await server.get(`/products/similar`, {
     params: {
       namespaceId,
     },
   });
 
-  console.log(resp.data);
+  return resp.data as Product[];
+};
+
+export const getRecommended = async ({ category }: getRequestParams) => {
+  const resp = await server.get(`/products/${category}/recommended`);
+
+  return resp.data as Product[];
+};
+export const getHot = async () => {
+  const resp = await server.get(`/products/products/hot-price`);
 
   return resp.data as Product[];
 };
 
-export const getRecommended = () => {};
-export const getHot = () => {};
-export const getSearch = () => {};
-export const getFilter = () => {};
+export const getSearch = async ({ search }: getRequestParams) => {
+  const resp = await server.get('products', {
+    params: {
+      query: search,
+    },
+  });
+
+  return resp.data.products as Product[];
+};
 
 export type getter<T> = (params: getRequestParams) => Promise<T>;
 type setter<T> = (_: T) => void;
 
 export const asyncGetAndSet = <T>(getter: getter<T>, setter: setter<T>) => {
   return (params?: getRequestParams) => {
-    console.log(getter, setter, params);
-
     getter(params || {}).then((data) => {
       setter(data);
     });
@@ -94,7 +104,6 @@ export const asyncGetAndSet = <T>(getter: getter<T>, setter: setter<T>) => {
 };
 
 export const preparedSameModelGetter = async (config: { namespaceId?: string }) => {
-  console.log('preparedSameModlelGetter', config);
   const sameModels = await getSameModels({ namespaceId: config.namespaceId });
 
   const data = await Promise.all(

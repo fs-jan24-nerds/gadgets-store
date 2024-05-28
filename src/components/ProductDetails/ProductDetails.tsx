@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { asyncGetAndSet, getItemAndProductById, getProducts } from '../../api/api';
+import { asyncGetAndSet, getItemAndProductById, getRecommended } from '../../api/api';
 
 import { motion } from 'framer-motion';
 
@@ -17,12 +17,8 @@ import { SubTitle } from '../SubTitle/SubTitle';
 import { generateAnimation } from '../../utils/animations';
 import PhotosLoader from './SkeletonPhotos';
 import SkeletonName from './SkeletonName';
-import { Item, Product } from '../../types/Product';
+import { Categories, Item, Product } from '../../types/Product';
 import PhotoLoader from './SkeletonPhoto';
-
-const getter = async () => {
-  return (await getProducts({})).products;
-};
 
 export const ProductDetails = () => {
   const { id } = useParams();
@@ -115,8 +111,14 @@ export const ProductDetails = () => {
               </GridItem>
 
               <About item={item as Item} />
-
-              <SliderModels sectionTitle="You may also like" getter={getter} />
+              <GridItem>
+                <SliderModels
+                  sectionTitle="You may also like"
+                  getter={async () =>
+                    await getRecommended({ category: product.category as Categories })
+                  }
+                />
+              </GridItem>
             </Grid>
           </div>
         )}

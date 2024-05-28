@@ -5,16 +5,39 @@ import { CardItem } from '../CardItem';
 import { CloseIcon } from '../Icons/CloseIcon';
 import { SearchIcon } from '../Icons/SearchIcon';
 
-import { useAppSelector } from '../../store/store';
 import { generateAnimation } from '../../utils/animations';
-import { getSearchProducts } from '../../utils/getSearchProducts';
+import { Product } from '../../types/Product';
+import { asyncGetAndSet, getSearch } from '../../api/api';
+import { debounce } from 'lodash';
 
 export const SearchForm = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [query, setQuery] = React.useState('');
-  const products = useAppSelector((state) => state.products.products);
 
-  const visibleProducts = getSearchProducts(products, query);
+  const [{ products, isLoaded }, setProducts] = React.useState<{
+    products: Product[];
+    isLoaded: boolean;
+  }>({
+    products: [],
+    isLoaded: false,
+  });
+
+  const loadProducts = (loadedProducts: Product[]) => {
+    setProducts({ products: loadedProducts, isLoaded: true });
+  };
+
+  useEffect(() => {
+    setProducts({
+      products: [],
+      isLoaded: false,
+    });
+  }, [query]);
+
+  useEffect(() => {
+    if (query) {
+      debounce(() => asyncGetAndSet(getSearch, loadProducts)({ search: query }), 2000)();
+    }
+  }, [query]);
 
   const ref = React.useRef<HTMLInputElement>(null);
 
@@ -83,17 +106,16 @@ export const SearchForm = () => {
 
                 <div className="relative p-6 flex-auto">
                   <div className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                    {!visibleProducts?.length && query && (
+                    {!isLoaded && query && <span className="text-textMain"> Loading...</span>}
+                    {isLoaded && !products?.length && query && (
                       <span className="text-textMain"> No matches found</span>
                     )}
-                    {!visibleProducts?.length && !query && (
+                    {!products?.length && !query && (
                       <span className="text-textMain"> Type to find your best matches</span>
                     )}
 
                     <div className="grid grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                      {visibleProducts?.map((product) => (
-                        <CardItem key={product.id} product={product} />
-                      ))}
+                      {products?.map((product) => <CardItem key={product.id} product={product} />)}
                     </div>
                   </div>
                 </div>
